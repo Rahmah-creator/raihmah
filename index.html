@@ -1,0 +1,1341 @@
+import React, { useState } from 'react';
+import {
+  Target, Sparkles, User, Star, Heart, MessageSquare, Mail, Send,
+  Coffee, Gift, Zap, BookOpen, TrendingUp, Instagram, Youtube, Video
+} from 'lucide-react';
+
+// Animated Robot SVG Component
+const RobotSVG = () => (
+  <svg width="220" height="220" viewBox="0 0 220 220" style={{ animation: 'float-robot 4s ease-in-out infinite' }}>
+    <defs>
+      <radialGradient id="glowGradient">
+        <stop offset="0%" stopColor="rgba(59, 130, 246, 0.3)" />
+        <stop offset="100%" stopColor="rgba(59, 130, 246, 0)" />
+      </radialGradient>
+      <linearGradient id="robotGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#3B82F6" />
+        <stop offset="100%" stopColor="#6366F1" />
+      </linearGradient>
+      <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stopColor="#60A5FA" />
+        <stop offset="100%" stopColor="#3B82F6" />
+      </linearGradient>
+      <linearGradient id="armGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="#93C5FD" />
+        <stop offset="100%" stopColor="#60A5FA" />
+      </linearGradient>
+    </defs>
+    
+    <circle cx="110" cy="110" r="90" fill="url(#glowGradient)" style={{ animation: 'pulse-glow 3s ease-in-out infinite' }} />
+    
+    <line x1="110" y1="40" x2="110" y2="20" stroke="#F97316" strokeWidth="3" strokeLinecap="round" />
+    <circle cx="110" cy="15" r="6" fill="#F97316" style={{ animation: 'pulse-antenna 2s ease-in-out infinite' }} />
+    
+    <rect x="70" y="60" width="80" height="70" rx="15" fill="url(#robotGradient)" style={{ animation: 'wiggle-head 2s ease-in-out infinite', transformOrigin: '110px 95px' }} />
+    
+    <circle cx="90" cy="85" r="8" fill="white" />
+    <circle cx="90" cy="85" r="4" fill="#1E293B" style={{ animation: 'blink-eyes 4s ease-in-out infinite', transformOrigin: '90px 85px' }} />
+    
+    <circle cx="130" cy="85" r="8" fill="white" />
+    <circle cx="130" cy="85" r="4" fill="#1E293B" style={{ animation: 'blink-eyes 4s ease-in-out infinite', transformOrigin: '130px 85px' }} />
+    
+    <rect x="95" y="105" width="30" height="4" rx="2" fill="#F97316" opacity="0.8" />
+    
+    <rect x="65" y="130" width="90" height="80" rx="12" fill="url(#bodyGradient)" style={{ animation: 'breathe-body 3s ease-in-out infinite', transformOrigin: '110px 170px' }} />
+    
+    <circle cx="110" cy="160" r="8" fill="#F97316" style={{ animation: 'pulse-glow 2s ease-in-out infinite' }} />
+    
+    <rect x="30" y="140" width="20" height="50" rx="8" fill="url(#armGradient)" style={{ animation: 'wave-arm-left 2.5s ease-in-out infinite', transformOrigin: '50px 145px' }} />
+    <rect x="170" y="140" width="20" height="50" rx="8" fill="url(#armGradient)" style={{ animation: 'wave-arm-right 2.5s ease-in-out infinite', transformOrigin: '170px 145px' }} />
+    
+    <rect x="80" y="215" width="20" height="35" rx="8" fill="url(#armGradient)" />
+    <rect x="120" y="215" width="20" height="35" rx="8" fill="url(#armGradient)" />
+  </svg>
+);
+
+export default function App() {
+  const [formData, setFormData] = useState({ name: '', email: '', feedback: '' });
+  const [feedbackList, setFeedbackList] = useState([]);
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.feedback) {
+      alert('Mohon isi semua field ya! 😊');
+      return;
+    }
+    const newFeedback = {
+      id: Date.now(),
+      ...formData,
+      timestamp: new Date().toISOString()
+    };
+    setFeedbackList(prev => [...prev, newFeedback]);
+    alert('Makasih banget! Feedback kamu sangat berarti! 🙏✨');
+    setFormData({ name: '', email: '', feedback: '' });
+  };
+
+  return (
+    <div className="app-container">
+      <style>{`
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          overflow-x: hidden;
+        }
+        
+        .app-container { width: 100%; overflow-x: hidden; }
+        
+        /* Hero Section */
+        .hero-section {
+          position: relative;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 80px 24px;
+          background: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 50%, #6366F1 100%);
+          overflow: hidden;
+        }
+        
+        .hero-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(80px);
+          opacity: 0.5;
+          animation: float-orb 15s ease-in-out infinite;
+        }
+        
+        .hero-orb-1 {
+          width: 300px; height: 300px;
+          background: linear-gradient(135deg, #F59E0B, #F97316);
+          top: 10%; left: 5%;
+        }
+        
+        .hero-orb-2 {
+          width: 400px; height: 400px;
+          background: linear-gradient(135deg, #EC4899, #F97316);
+          bottom: 10%; right: 5%;
+          animation-delay: 5s;
+        }
+        
+        .hero-orb-3 {
+          width: 250px; height: 250px;
+          background: linear-gradient(135deg, #F59E0B, #FCD34D);
+          top: 50%; right: 20%;
+          animation-delay: 10s;
+        }
+        
+        .hero-content {
+          position: relative;
+          z-index: 10;
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(24px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 32px;
+          padding: 60px;
+          max-width: 1200px;
+          display: flex;
+          align-items: center;
+          gap: 60px;
+          animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .robot-container {
+          flex-shrink: 0;
+        }
+        
+        .hero-text {
+          flex: 1;
+        }
+        
+        .hero-greeting {
+          color: #FDE68A;
+          font-size: 24px;
+          font-weight: 600;
+          margin-bottom: 16px;
+          animation: wave 2s ease-in-out infinite;
+        }
+        
+        .hero-title {
+          font-size: clamp(48px, 8vw, 120px);
+          font-weight: 900;
+          background: linear-gradient(135deg, white, #BFDBFE);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          line-height: 1.1;
+          margin-bottom: 24px;
+        }
+        
+        .hero-subtitle {
+          color: #F0F9FF;
+          font-size: clamp(18px, 2.5vw, 24px);
+          line-height: 1.6;
+          margin-bottom: 40px;
+        }
+        
+        .hero-buttons {
+          display: flex;
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+          background: linear-gradient(135deg, #F97316, #EA580C);
+          color: white;
+          padding: 16px 32px;
+          border-radius: 12px;
+          border: none;
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.4);
+          transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(249, 115, 22, 0.5);
+        }
+        
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(12px);
+          color: white;
+          padding: 16px 32px;
+          border-radius: 12px;
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          font-size: 18px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.2);
+          transform: translateY(-4px);
+        }
+        
+        /* Mission Section */
+        .mission-section {
+          background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+          padding: 140px 24px;
+        }
+        
+        .section-header {
+          text-align: center;
+          margin-bottom: 80px;
+        }
+        
+        .section-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 64px;
+          height: 64px;
+          background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+          border-radius: 16px;
+          margin-bottom: 24px;
+        }
+        
+        .section-title {
+          font-size: clamp(32px, 5vw, 48px);
+          font-weight: 800;
+          color: #0F172A;
+          margin-bottom: 16px;
+        }
+        
+        .title-underline {
+          width: 80px;
+          height: 4px;
+          background: linear-gradient(90deg, #3B82F6, #6366F1);
+          margin: 0 auto;
+          border-radius: 2px;
+        }
+        
+        .mission-cards-grid {
+          max-width: 1200px;
+          margin: 0 auto 80px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap: 32px;
+        }
+        
+        .mission-card {
+          background: white;
+          border-radius: 24px;
+          padding: 48px 32px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        
+        .mission-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 6px;
+          transition: all 0.3s ease;
+        }
+        
+        .mission-card:hover {
+          transform: translateY(-12px);
+          box-shadow: 0 24px 48px rgba(0, 0, 0, 0.12);
+        }
+        
+        .mission-card:hover::before {
+          height: 100%;
+          opacity: 0.05;
+        }
+        
+        .card-blue {
+          border: 2px solid #DBEAFE;
+        }
+        
+        .card-blue::before {
+          background: linear-gradient(90deg, #0EA5E9, #3B82F6);
+        }
+        
+        .card-blue:hover {
+          border-color: #93C5FD;
+        }
+        
+        .card-orange {
+          border: 2px solid #FED7AA;
+        }
+        
+        .card-orange::before {
+          background: linear-gradient(90deg, #F59E0B, #F97316);
+        }
+        
+        .card-orange:hover {
+          border-color: #FBD38D;
+        }
+        
+        .card-red {
+          border: 2px solid #FECACA;
+        }
+        
+        .card-red::before {
+          background: linear-gradient(90deg, #EF4444, #DC2626);
+        }
+        
+        .card-red:hover {
+          border-color: #FCA5A5;
+        }
+        
+        .mission-card-icon {
+          width: 80px;
+          height: 80px;
+          margin: 0 auto 24px;
+          border-radius: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s ease;
+        }
+        
+        .card-blue .mission-card-icon {
+          background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.2));
+          color: #3B82F6;
+        }
+        
+        .card-orange .mission-card-icon {
+          background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.2));
+          color: #F59E0B;
+        }
+        
+        .card-red .mission-card-icon {
+          background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(252, 165, 165, 0.2));
+          color: #EF4444;
+        }
+        
+        .mission-card:hover .mission-card-icon {
+          transform: scale(1.1) rotate(5deg);
+        }
+        
+        .mission-card-title {
+          font-size: 24px;
+          font-weight: 700;
+          color: #0F172A;
+          text-align: center;
+          margin-bottom: 16px;
+        }
+        
+        .mission-card-text {
+          color: #64748B;
+          font-size: 16px;
+          line-height: 1.6;
+          text-align: center;
+        }
+        
+        .mission-quote-box {
+          max-width: 800px;
+          margin: 0 auto;
+          background: linear-gradient(135deg, #0EA5E9, #3B82F6);
+          padding: 48px;
+          border-radius: 24px;
+          color: white;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .quote-orb {
+          position: absolute;
+          width: 200px;
+          height: 200px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 50%;
+          top: -50px;
+          right: -50px;
+          animation: float-orb 10s ease-in-out infinite;
+        }
+        
+        .mission-quote-box blockquote {
+          font-size: 20px;
+          line-height: 1.8;
+          font-style: italic;
+          margin-bottom: 16px;
+          position: relative;
+          z-index: 1;
+        }
+        
+        .quote-author {
+          font-size: 16px;
+          font-weight: 600;
+          opacity: 0.9;
+          position: relative;
+          z-index: 1;
+        }
+        
+        /* Personal Section */
+        .personal-section {
+          background: linear-gradient(180deg, #FDF4FF 0%, #FCE7F3 50%, #FEF3C7 100%);
+          padding: 140px 24px;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .personal-orb {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(60px);
+          opacity: 0.4;
+          animation: float-orb 12s ease-in-out infinite;
+        }
+        
+        .personal-orb-1 {
+          width: 300px;
+          height: 300px;
+          background: linear-gradient(135deg, #EC4899, #F472B6);
+          top: 10%;
+          left: -10%;
+        }
+        
+        .personal-orb-2 {
+          width: 350px;
+          height: 350px;
+          background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+          bottom: 10%;
+          right: -10%;
+          animation-delay: 6s;
+        }
+        
+        .personal-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          align-items: center;
+          gap: 80px;
+          position: relative;
+          z-index: 1;
+        }
+        
+        .personal-avatar-wrapper {
+          position: relative;
+          flex-shrink: 0;
+        }
+        
+        .personal-avatar {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: linear-gradient(135deg, #EC4899, #8B5CF6);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: float-avatar 4s ease-in-out infinite;
+          box-shadow: 0 24px 48px rgba(236, 72, 153, 0.3);
+        }
+        
+        .avatar-badge {
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          width: 56px;
+          height: 56px;
+          background: linear-gradient(135deg, #F59E0B, #F97316);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          animation: pulse-glow 2s ease-in-out infinite;
+          box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+        }
+        
+        .personal-content h2 {
+          font-size: clamp(32px, 5vw, 48px);
+          font-weight: 800;
+          background: linear-gradient(135deg, #EC4899, #8B5CF6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          margin-bottom: 32px;
+        }
+        
+        .personal-content p {
+          color: #334155;
+          font-size: 18px;
+          line-height: 1.8;
+          margin-bottom: 24px;
+        }
+        
+        .text-pink {
+          color: #EC4899;
+          font-weight: 700;
+        }
+        
+        .text-purple {
+          color: #8B5CF6;
+          font-style: italic;
+          font-weight: 600;
+        }
+        
+        .highlight-yellow {
+          background: rgba(254, 243, 199, 0.8);
+          padding: 2px 8px;
+          border-radius: 4px;
+        }
+        
+        .personal-quote {
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(12px);
+          padding: 32px;
+          border-radius: 16px;
+          border-left: 4px solid #EC4899;
+          margin-top: 32px;
+          display: flex;
+          gap: 20px;
+          align-items: flex-start;
+        }
+        
+        .quote-icon {
+          flex-shrink: 0;
+          animation: heartbeat 2s ease-in-out infinite;
+        }
+        
+        .personal-quote p {
+          color: #475569;
+          font-size: 16px;
+          margin: 0;
+        }
+        
+        /* Feedback Section */
+        .feedback-section {
+          background: linear-gradient(180deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+          padding: 140px 24px;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .feedback-light {
+          position: absolute;
+          border-radius: 50%;
+          filter: blur(100px);
+          opacity: 0.3;
+        }
+        
+        .feedback-light-1 {
+          width: 400px;
+          height: 400px;
+          background: radial-gradient(circle, #3B82F6, transparent);
+          top: 10%;
+          left: -10%;
+        }
+        
+        .feedback-light-2 {
+          width: 450px;
+          height: 450px;
+          background: radial-gradient(circle, #F97316, transparent);
+          bottom: 10%;
+          right: -10%;
+        }
+        
+        .feedback-section .section-title,
+        .feedback-intro {
+          color: white;
+        }
+        
+        .feedback-intro {
+          text-align: center;
+          max-width: 700px;
+          margin: 0 auto 60px;
+          font-size: 18px;
+          line-height: 1.6;
+          opacity: 0.9;
+        }
+        
+        .feedback-form-card {
+          max-width: 700px;
+          margin: 0 auto;
+          background: rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(24px);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 24px;
+          padding: 48px;
+          position: relative;
+          z-index: 1;
+        }
+        
+        .form-group {
+          margin-bottom: 24px;
+        }
+        
+        .form-label {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          color: white;
+          font-weight: 600;
+          margin-bottom: 12px;
+          font-size: 16px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+          width: 100%;
+          background: rgba(255, 255, 255, 0.95);
+          border: 2px solid transparent;
+          border-radius: 12px;
+          padding: 16px;
+          font-size: 16px;
+          font-family: inherit;
+          transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+          outline: none;
+          border-color: #F97316;
+          box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+        }
+        
+        .form-group textarea {
+          resize: vertical;
+          min-height: 150px;
+        }
+        
+        .form-button {
+          width: 100%;
+          background: linear-gradient(135deg, #F97316, #EA580C);
+          color: white;
+          padding: 18px;
+          border-radius: 12px;
+          border: none;
+          font-size: 18px;
+          font-weight: 700;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
+        }
+        
+        .form-button:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 32px rgba(249, 115, 22, 0.4);
+        }
+        
+        /* Support Section */
+        .support-section {
+          background: linear-gradient(180deg, #F0F9FF 0%, #DBEAFE 50%, #BFDBFE 100%);
+          padding: 140px 24px;
+        }
+        
+        .support-intro {
+          text-align: center;
+          max-width: 800px;
+          margin: 0 auto 60px;
+          color: #1E293B;
+          font-size: 18px;
+          line-height: 1.8;
+        }
+        
+        .benefits-grid {
+          max-width: 1000px;
+          margin: 0 auto 60px;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+        }
+        
+        .benefit-card {
+          background: white;
+          padding: 32px;
+          border-radius: 20px;
+          text-align: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+          width: 64px;
+          height: 64px;
+          margin: 0 auto 16px;
+          background: linear-gradient(135deg, #DBEAFE, #BFDBFE);
+          border-radius: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #3B82F6;
+        }
+        
+        .benefit-text {
+          color: #334155;
+          font-size: 16px;
+          font-weight: 600;
+        }
+        
+        .qris-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 40px;
+        }
+        
+        .qris-container {
+          width: 320px;
+          height: 320px;
+          position: relative;
+          border-radius: 24px;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          cursor: pointer;
+        }
+        
+        .qris-container:hover {
+          transform: translateY(-12px) rotate(2deg) scale(1.05);
+        }
+        
+        .qris-rotating-gradient {
+          position: absolute;
+          inset: -50%;
+          background: linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B, #8B5CF6);
+          animation: rotate-gradient 10s linear infinite;
+        }
+        
+        .qris-content {
+          position: absolute;
+          inset: 4px;
+          background: linear-gradient(135deg, #8B5CF6, #EC4899);
+          border-radius: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: white;
+        }
+        
+        .qris-text {
+          font-size: 120px;
+          font-weight: 900;
+          line-height: 1;
+          margin-bottom: 8px;
+        }
+        
+        .qris-label {
+          font-size: 24px;
+          font-weight: 700;
+          margin-bottom: 8px;
+        }
+        
+        .qris-note-small {
+          font-size: 14px;
+          opacity: 0.9;
+        }
+        
+        .support-note {
+          max-width: 700px;
+          margin: 0 auto;
+          background: white;
+          padding: 32px;
+          border-radius: 20px;
+          border-left: 4px solid #8B5CF6;
+          color: #334155;
+          line-height: 1.8;
+        }
+        
+        .text-bold-purple {
+          color: #8B5CF6;
+          font-weight: 700;
+        }
+        
+        /* Footer Section */
+        .footer-section {
+          background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);
+          border-top: 4px solid;
+          border-image: linear-gradient(90deg, #F97316, #EA580C) 1;
+          padding: 80px 24px 40px;
+          color: white;
+        }
+        
+        .footer-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        
+        .footer-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 60px;
+          margin-bottom: 60px;
+        }
+        
+        .footer-brand h3 {
+          font-size: 28px;
+          font-weight: 800;
+          margin-bottom: 12px;
+          background: linear-gradient(135deg, white, #BFDBFE);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        
+        .footer-tagline {
+          color: #94A3B8;
+          font-size: 16px;
+        }
+        
+        .footer-social h4 {
+          font-size: 20px;
+          font-weight: 700;
+          margin-bottom: 24px;
+        }
+        
+        .social-links {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        
+        .social-link {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: #CBD5E1;
+          text-decoration: none;
+          padding: 12px;
+          border-radius: 12px;
+          background: rgba(255, 255, 255, 0.05);
+          transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateX(8px);
+          color: white;
+        }
+        
+        .footer-cta {
+          text-align: center;
+          padding: 48px;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 24px;
+          margin-bottom: 40px;
+        }
+        
+        .footer-cta-text {
+          font-size: 18px;
+          margin-bottom: 24px;
+          color: #CBD5E1;
+        }
+        
+        .footer-bottom {
+          text-align: center;
+          padding-top: 32px;
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
+          color: #64748B;
+          font-size: 14px;
+        }
+        
+        /* Animations */
+        @keyframes float-robot {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-15px); }
+        }
+        
+        @keyframes wiggle-head {
+          0%, 100% { transform: rotate(0deg); }
+          25% { transform: rotate(-5deg); }
+          75% { transform: rotate(5deg); }
+        }
+        
+        @keyframes pulse-antenna {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.2); }
+        }
+        
+        @keyframes blink-eyes {
+          0%, 96%, 100% { transform: scaleY(1); }
+          98% { transform: scaleY(0.1); }
+        }
+        
+        @keyframes breathe-body {
+          0%, 100% { transform: scaleY(1); }
+          50% { transform: scaleY(0.97); }
+        }
+        
+        @keyframes wave-arm-left {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(-15deg); }
+        }
+        
+        @keyframes wave-arm-right {
+          0%, 100% { transform: rotate(0deg); }
+          50% { transform: rotate(15deg); }
+        }
+        
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.6; }
+        }
+        
+        @keyframes float-orb {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          33% { transform: translate(30px, -30px) scale(1.1); }
+          66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+        
+        @keyframes float-avatar {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        @keyframes heartbeat {
+          0%, 100% { transform: scale(1); }
+          10%, 30% { transform: scale(1.1); }
+          20%, 40% { transform: scale(0.9); }
+        }
+        
+        @keyframes rotate-gradient {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes wave {
+          0%, 100% { transform: rotate(0deg); }
+          10%, 30% { transform: rotate(14deg); }
+          20%, 40% { transform: rotate(-8deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .hero-section { padding: 60px 24px; }
+          .hero-content { 
+            flex-direction: column;
+            padding: 40px 24px;
+            text-align: center;
+          }
+          .hero-buttons { flex-direction: column; width: 100%; }
+          .btn-primary, .btn-secondary { width: 100%; }
+          
+          .mission-section,
+          .personal-section,
+          .feedback-section,
+          .support-section { padding: 80px 24px; }
+          
+          .personal-container { 
+            flex-direction: column;
+            text-align: center;
+          }
+          
+          .personal-quote {
+            flex-direction: column;
+            text-align: center;
+          }
+          
+          .feedback-form-card { padding: 32px 24px; }
+          
+          .mission-cards-grid {
+            grid-template-columns: 1fr;
+          }
+          
+          .footer-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .robot-container svg { width: 180px; height: 180px; }
+          .mission-quote-box { padding: 32px 24px; }
+          .personal-avatar { width: 160px; height: 160px; }
+          .qris-container { width: 280px; height: 280px; }
+          .qris-text { font-size: 90px; }
+        }
+      `}</style>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-orb hero-orb-1"></div>
+        <div className="hero-orb hero-orb-2"></div>
+        <div className="hero-orb hero-orb-3"></div>
+        
+        <div className="hero-content">
+          <div className="robot-container">
+            <RobotSVG />
+          </div>
+          
+          <div className="hero-text">
+            <div className="hero-greeting">Hai! 👋</div>
+            <h1 className="hero-title">Dikasih Info Mase</h1>
+            <p className="hero-subtitle">
+              Belajar AI itu gampang, kok! Yuk, mulai dari dasar bareng aku.
+            </p>
+            <div className="hero-buttons">
+              <button className="btn-primary" onClick={() => scrollToSection('misi-utama')}>
+                Kenalan Dulu Yuk
+              </button>
+              <button className="btn-secondary" onClick={() => scrollToSection('feedback')}>
+                Ngobrol
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission Section */}
+      <section id="misi-utama" className="mission-section">
+        <div className="section-header">
+          <div className="section-icon">
+            <Target size={32} color="#3B82F6" />
+          </div>
+          <h2 className="section-title">Apa Tujuan Akun Ini?</h2>
+          <div className="title-underline"></div>
+        </div>
+
+        <div className="mission-cards-grid">
+          <div className="mission-card card-blue">
+            <div className="mission-card-icon">
+              <Zap size={40} />
+            </div>
+            <h3 className="mission-card-title">AI Itu Wajib</h3>
+            <p className="mission-card-text">
+              Membantu mempercepat dan mempermudah kehidupanmu.
+            </p>
+          </div>
+
+          <div className="mission-card card-orange">
+            <div className="mission-card-icon">
+              <BookOpen size={40} />
+            </div>
+            <h3 className="mission-card-title">Materi Santai</h3>
+            <p className="mission-card-text">
+              Berbagi materi yang rumit jadi gampang dan asik.
+            </p>
+          </div>
+
+          <div className="mission-card card-red">
+            <div className="mission-card-icon">
+              <TrendingUp size={40} />
+            </div>
+            <h3 className="mission-card-title">100% Gratis</h3>
+            <p className="mission-card-text">
+              Bantu belajar AI tanpa hambatan biaya.
+            </p>
+          </div>
+        </div>
+
+        <div className="mission-quote-box">
+          <div className="quote-orb"></div>
+          <Sparkles size={32} color="white" style={{ marginBottom: '16px' }} />
+          <blockquote>
+            "AI ngga akan sepenuhnya gantiin manusia, tapi manusia yang punya 
+            skill AI akan gantiin yang ngga punya skillnya"
+          </blockquote>
+          <p className="quote-author">— Andrew Ng</p>
+        </div>
+      </section>
+
+      {/* Personal Section */}
+      <section className="personal-section">
+        <div className="personal-orb personal-orb-1"></div>
+        <div className="personal-orb personal-orb-2"></div>
+
+        <div className="personal-container">
+          <div className="personal-avatar-wrapper">
+            <div className="personal-avatar">
+              <User size={80} color="white" />
+            </div>
+            <div className="avatar-badge">
+              <Star size={24} />
+            </div>
+          </div>
+
+          <div className="personal-content">
+            <h2>Halo, Aku Raihan! 🙋‍♂️</h2>
+
+            <p>
+              Aku dulu juga <span className="text-pink">belajar dari nol</span>. 
+              Gak paham coding, gak ngerti AI, bahkan sempat ngerasa 
+              <span className="text-purple"> capek banget</span> karena materinya ribet.
+            </p>
+
+            <p>
+              Tapi pas aku mulai breakdown konsep AI jadi 
+              <span className="highlight-yellow"> sesuatu yang simpel</span>, 
+              ternyata <span className="text-pink">semua orang bisa kok!</span>
+            </p>
+
+            <p>
+              Sekarang, aku pengen <span className="text-purple">share ilmu itu</span> 
+              ke kamu. Biar kamu gak perlu struggle kayak aku dulu. 
+              Semua materi udah aku <span className="highlight-yellow">susun step-by-step</span>, 
+              dari yang paling dasar sampai level lanjut.
+            </p>
+
+            <div className="personal-quote">
+              <div className="quote-icon">
+                <Heart size={28} fill="#EC4899" color="#EC4899" />
+              </div>
+              <p>
+                "Ilmu kalau dibagi bakal lebih barokah, dan siapa tau bisa jadi 
+                ladang pahala juga. Yuk, mulai perjalanan AI kamu sekarang! 🚀"
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Feedback Section */}
+      <section id="feedback" className="feedback-section">
+        <div className="feedback-light feedback-light-1"></div>
+        <div className="feedback-light feedback-light-2"></div>
+
+        <div className="section-header">
+          <div className="section-icon">
+            <MessageSquare size={32} color="white" />
+          </div>
+          <h2 className="section-title">Bantu Aku Improve, Yuk! 🚀</h2>
+          <div className="title-underline"></div>
+          <p className="feedback-intro">
+            Konten ini dibuat <strong>buat kamu</strong>. Jadi, kalau ada yang 
+            kurang jelas, atau kamu punya <strong>ide topik baru</strong>, 
+            langsung aja kasih tau ya!
+          </p>
+        </div>
+
+        <div className="feedback-form-card">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label className="form-label">
+                <User size={18} />
+                Nama Kamu
+              </label>
+              <input 
+                type="text"
+                name="name"
+                placeholder="Siapa nih? 😊"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">
+                <Mail size={18} />
+                Email
+              </label>
+              <input 
+                type="email"
+                name="email"
+                placeholder="email@example.com"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">
+                <MessageSquare size={18} />
+                Feedback / Saran Topik
+              </label>
+              <textarea 
+                name="feedback"
+                placeholder="Spill aja semua! Aku siap dengerin 👂✨"
+                rows="6"
+                value={formData.feedback}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+            </div>
+
+            <button type="submit" className="form-button">
+              <span>Kirim Sekarang!</span>
+              <Send size={20} />
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* Support Section */}
+      <section id="support" className="support-section">
+        <div className="section-header">
+          <div className="section-icon">
+            <Coffee size={32} color="#3B82F6" />
+          </div>
+          <h2 className="section-title">Traktir Kopi Virtual? ☕</h2>
+          <div className="title-underline"></div>
+          <p className="support-intro">
+            Konten di sini <strong>100% gratis</strong> dan bakal tetap gratis! 
+            Tapi kalau kamu merasa <strong>terbantu</strong> dan pengen support, 
+            aku bakal <strong>super grateful</strong> banget. Ini bisa jadi 
+            bensin buat aku terus bikin konten yang lebih baik lagi! 🙏
+          </p>
+        </div>
+
+        <div className="benefits-grid">
+          <div className="benefit-card">
+            <div className="benefit-icon">
+              <Gift size={28} />
+            </div>
+            <p className="benefit-text">Dukung konten gratis berkualitas</p>
+          </div>
+
+          <div className="benefit-card">
+            <div className="benefit-icon">
+              <Heart size={28} />
+            </div>
+            <p className="benefit-text">Jadi bagian dari journey ini</p>
+          </div>
+
+          <div className="benefit-card">
+            <div className="benefit-icon">
+              <Zap size={28} />
+            </div>
+            <p className="benefit-text">Bonus: Akses grup WA eksklusif</p>
+          </div>
+        </div>
+
+        <div className="qris-wrapper">
+          <div className="qris-container">
+            <div className="qris-rotating-gradient"></div>
+            <div className="qris-content">
+              <div className="qris-text">QR</div>
+              <div className="qris-label">Scan QRIS</div>
+              <div className="qris-note-small">Nominal terserah kamu 😊</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="support-note">
+          <p>
+            <strong>Psst...</strong> Kalau kamu udah traktir, langsung aja 
+            chat aku dan kasih tau <span className="text-bold-purple">
+            nomor WhatsApp khusus</span> buat join grup eksklusif. 
+            Di sana kita bisa diskusi lebih dalam! 💬
+          </p>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="footer-section">
+        <div className="footer-container">
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <div style={{ marginBottom: '16px' }}>
+                <svg width="60" height="60" viewBox="0 0 60 60">
+                  <rect width="60" height="60" rx="12" fill="url(#miniRobotGradient)" />
+                  <circle cx="30" cy="30" r="15" fill="white" opacity="0.2" />
+                  <defs>
+                    <linearGradient id="miniRobotGradient" x1="0" y1="0" x2="60" y2="60">
+                      <stop offset="0%" stopColor="#3B82F6" />
+                      <stop offset="100%" stopColor="#6366F1" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <h3>Dikasih Info Mase</h3>
+              <p className="footer-tagline">
+                Bikin belajar AI jadi gampang & asik!
+              </p>
+            </div>
+
+            <div className="footer-social">
+              <h4>Let's Connect! 🤝</h4>
+              <div className="social-links">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Instagram size={24} />
+                  <span>Instagram</span>
+                </a>
+                <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Video size={24} />
+                  <span>TikTok</span>
+                </a>
+                <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="social-link">
+                  <Youtube size={24} />
+                  <span>YouTube</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-cta">
+            <p className="footer-cta-text">
+              Masih bingung atau pengen ngobrol? Yuk kontak aku!
+            </p>
+            <button className="btn-primary" onClick={() => scrollToSection('feedback')}>
+              Hubungi Sekarang
+            </button>
+          </div>
+
+          <div className="footer-bottom">
+            <p>© 2025 Dikasih Info Mase by Raihan • Made with ❤️ and lots of ☕</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
