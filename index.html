@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dikasih Info Mase - AI Education</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Belajar AI dan Machine Learning dari dasar dengan bahasa santai. Dapatkan info, tips, dan trik AI gratis dari Raihan (Dikasih Info Mase).">
+    <meta property="og:title" content="Dikasih Info Mase: Belajar AI Santai & Gratis">
+    <meta property="og:description" content="Belajar AI dan Machine Learning dari dasar dengan bahasa santai. Dapatkan info, tips, dan trik AI gratis dari Raihan (Dikasih Info Mase).">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="[GANTI DENGAN URL ASLI WEBSITE LO]">
+    <meta property="og:image" content="https://stock.adobe.com/search?k=robot+logo">
+    
+    <link rel="stylesheet" href="style.css">
     
     <style>
         /* Global Reset & Base */
@@ -14,7 +19,8 @@
             scroll-behavior: smooth;
         }
         body {
-            font-family: 'Inter', sans-serif;
+            /* Font system stack untuk performance instant */
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll from orbs */
         }
         .glass-effect {
@@ -128,15 +134,11 @@
             .qris-text { font-size: 90px !important; }
         }
     </style>
-    <!-- Lucide Icons Library (Replaces React component imports) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
-    <!-- NAVIGATION (Fixed and Responsive) -->
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-white/80 shadow-lg border-b border-blue-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -144,7 +146,6 @@
                     Dikasih Info Mase
                 </a>
                 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6 items-center">
                     <a href="#mission" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Tujuan</a>
                     <a href="#personal" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Personal</a>
@@ -155,14 +156,12 @@
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600">
                     <i data-lucide="menu" id="menu-icon"></i>
                 </button>
             </div>
         </div>
         
-        <!-- Mobile Menu Content -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-t border-blue-100">
             <a href="#mission" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Tujuan</a>
             <a href="#personal" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Personal</a>
@@ -173,11 +172,9 @@
     </nav>
 
     <main>
-        <!-- 1. HERO SECTION -->
         <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
             bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
             
-            <!-- Background Orbs -->
             <div class="absolute top-0 left-0 w-full h-full">
                 <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
                 <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
@@ -185,15 +182,11 @@
             </div>
 
             <div class="max-w-7xl mx-auto relative z-10 w-full">
-                <!-- Perubahan: Di HP (mobile), robot di atas teks (menggunakan flex-col-reverse) -->
-                <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
+                <div class="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) - Ini akan di atas di mobile -->
-                    <div class="w-full flex justify-center items-center relative lg:order-last">
+                    <div class="w-full flex justify-center items-center relative">
                         <div class="w-64 h-64 md:w-80 md:h-80 relative">
-                            <!-- Robot SVG component -->
                             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                                <!-- Define Gradients -->
                                 <defs>
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                                         <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
@@ -213,24 +206,18 @@
                                     </linearGradient>
                                 </defs>
 
-                                <!-- 1. Glowing Pulse Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
 
                                 <g class="animate-float-robot">
-                                    <!-- 4. Body Breathe Animation (Layer 2) - Origin for scaling -->
                                     <g class="animate-breathe-body">
                                         
-                                        <!-- Legs -->
                                         <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                         <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                         
-                                        <!-- Body -->
                                         <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" class="shadow-2xl" />
                                         
-                                        <!-- Chest Light (Pulse) -->
                                         <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
                                         
-                                        <!-- 5. Arms Waving Animation (Lebih Ekspresif) -->
                                         <g class="animate-wave-arm-left">
                                             <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                         </g>
@@ -238,22 +225,16 @@
                                             <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                         </g>
 
-                                        <!-- 3. Head Wiggle Animation (Lebih Sering) -->
                                         <g class="animate-wiggle-head">
-                                            <!-- Head -->
                                             <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
                                             
-                                            <!-- 6. Eyes Blinking Animation (Lebih Cepat) -->
                                             <g class="animate-blink-eyes">
-                                                <!-- Eye 1 -->
                                                 <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                                 <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
-                                                <!-- Eye 2 -->
                                                 <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                                 <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                             </g>
 
-                                            <!-- 7. Antenna Pulse Animation -->
                                             <g class="animate-pulse-antenna">
                                                 <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                                 <circle cx="50" cy="5" r="3" fill="#F97316" />
@@ -265,8 +246,7 @@
                         </div>
                     </div>
                     
-                    <!-- Left Content (Glass Card) - Ini akan di bawah di mobile -->
-                    <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
+                    <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp">
                         <h2 class="text-xl font-semibold mb-2 text-[#FDE68A] flex items-center">
                             Hai!
                             <i data-lucide="zap" class="w-6 h-6 inline-block text-[#FDE68A] ml-3"></i>
@@ -293,7 +273,6 @@
             </div>
         </section>
 
-        <!-- 2. MISSION/TUJUAN SECTION -->
         <section id="mission" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-16">
@@ -304,9 +283,7 @@
                     <div class="w-24 h-1 mx-auto mb-16 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
                 </div>
 
-                <!-- Mission Cards Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto mission-cards-grid">
-                    <!-- CARD 1 - BLUE -->
                     <div class="mission-card card-blue" tabindex="0">
                         <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#0EA5E9]/10 to-[#3B82F6]/10 mission-card-icon">
                             <i data-lucide="zap" class="w-10 h-10 text-[#0EA5E9]"></i>
@@ -315,7 +292,6 @@
                         <p class="text-gray-600 text-center">Membantu mempercepat dan mempermudah kehidupanmu.</p>
                     </div>
 
-                    <!-- CARD 2 - ORANGE -->
                     <div class="mission-card card-orange" tabindex="0">
                         <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#F59E0B]/10 to-[#F97316]/10 mission-card-icon">
                             <i data-lucide="book-open" class="w-10 h-10 text-[#F59E0B]"></i>
@@ -324,7 +300,6 @@
                         <p class="text-gray-600 text-center">Berbagi materi yang rumit jadi gampang dan asik.</p>
                     </div>
 
-                    <!-- CARD 3 - RED -->
                     <div class="mission-card card-red" tabindex="0">
                         <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#EF4444]/10 to-[#DC2626]/10 mission-card-icon">
                             <i data-lucide="trending-up" class="w-10 h-10 text-[#EF4444]"></i>
@@ -333,11 +308,10 @@
                         <p class="text-gray-600 text-center">Bantu belajar AI tanpa hambatan biaya.</p>
                     </div>
                 </div>
-                <!-- Andrew Ng Quote Box - Perubahan Copywriting Poin 3 -->
+
                 <div class="relative p-12 rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto
                     bg-gradient-to-br from-[#0EA5E9]/90 to-[#3B82F6]/90">
                     
-                    <!-- Floating Orb -->
                     <div class="absolute w-40 h-40 bg-white/20 rounded-full blur-2xl animate-float-orb-1" style="top: -10%; right: -10%; animation-duration: 6s;"></div>
                     
                     <div class="relative z-10 text-white text-center">
@@ -351,11 +325,9 @@
             </div>
         </section>
 
-        <!-- 3. PERSONAL SECTION -->
         <section id="personal" class="py-24 md:py-32 section-padding relative overflow-hidden 
             bg-gradient-to-br from-[#FDF4FF] via-[#FCE7F3] to-[#FEF3C7] px-4 sm:px-6 lg:px-8">
             
-            <!-- Background Orbs -->
             <div class="absolute top-0 left-0 w-full h-full">
                 <div class="absolute w-80 h-80 bg-pink-300/30 rounded-full blur-[60px] opacity-50 animate-float-orb-1" style="top: 60%; left: -10%; animation-duration: 4s;"></div>
                 <div class="absolute w-60 h-60 bg-purple-200/50 rounded-full blur-[60px] opacity-60 animate-float-orb-2" style="top: 15%; right: 5%; animation-duration: 5s;"></div>
@@ -364,13 +336,10 @@
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto items-start personal-container">
                     
-                    <!-- Left: Avatar -->
                     <div class="w-full lg:w-1/3 flex justify-center relative flex-shrink-0 lg:mt-10">
-                        <div class="w-52 h-52 md:w-60 md:h-60 rounded-full relative p-2 + bg-gradient-to-br from-[#EC4899] to-[#8B5CF6] animate-float-avatar shadow-xl hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] transition-shadow"> hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] transition-shadow"> hover:shadow-[0_0_20px_rgba(236,72,153,0.6)] transition-shadow">
-                            <div class="w-full h-full rounded-full bg-white/10 flex items-center justify-center">
-                                <i data-lucide="user" class="w-20 h-20 text-white opacity-80"></i>
-                            </div>
-                            <!-- Star Badge -->
+                        <div class="w-52 h-52 md:w-60 md:h-60 rounded-full relative p-2 
+                            bg-gradient-to-br from-[#EC4899] to-[#8B5CF6] animate-float-avatar shadow-xl">
+                            <img src="[URL/PATH FOTO ASLI LO]" alt="Avatar Raihan - Dikasih Info Mase" class="w-full h-full rounded-full object-cover">
                             <div class="absolute bottom-4 right-4 p-3 rounded-full 
                                 bg-gradient-to-r from-[#F59E0B] to-[#F97316] border-4 border-white shadow-lg animate-pulse-antenna">
                                 <i data-lucide="star" class="w-6 h-6 text-white"></i>
@@ -378,7 +347,6 @@
                         </div>
                     </div>
 
-                    <!-- Right: Story - Perubahan Copywriting Poin 2 -->
                     <div class="w-full lg:w-2/3 space-y-6 text-left">
                         <h2 class="text-3xl md:text-5xl font-extrabold mb-8 personal-title 
                             bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-center lg:text-left">
@@ -395,12 +363,10 @@
                             Untuk itu aku pengen berbagi <span class="italic font-semibold text-[#8B5CF6]">versi yang lebih gampang dicerna (gratis)</span>, biar temen-temen lain gampang ngerti dan nggak perlu luangin waktu yang lebih panjang.
                         </p>
                         
-                        <!-- Quote Box -->
                         <div class="relative p-6 md:p-8 rounded-xl shadow-lg border-l-4 border-[#EC4899] bg-white/80 backdrop-blur-sm">
                             <div class="flex items-start text-center md:text-left">
                                 <i data-lucide="heart" fill="#EC4899" class="w-8 h-8 text-[#EC4899] mr-4 mt-1 animate-heartbeat"></i>
                                 <div>
-                                    <!-- Perubahan Copywriting Poin 3 -->
                                     <p class="text-lg font-medium text-gray-800">
                                         "Ilmu kalau dibagi bakal lebih barokah. Dan jujur aja, salah satu cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi… ya sekalian aja kita belajar bareng di sini, hehe. 🚀"
                                     </p>
@@ -412,11 +378,9 @@
             </div>
         </section>
 
-        <!-- 4. FEEDBACK SECTION -->
         <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
             bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
             
-            <!-- Radial Light Effect -->
             <div class="absolute w-full h-full top-0 left-0 opacity-50">
                 <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
                 <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
@@ -429,16 +393,14 @@
                       Bantu Aku Improve, Yuk! 🚀
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <!-- Perubahan Copywriting Poin 4 -->
                     <p class="text-lg text-gray-300 text-center">
                       Konten ini dibuat <strong>untuk kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide topik baru</strong>, langsung aja kasih tau ya!
                     </p>
                 </div>
 
-                <!-- Glass-morphism Form Card - Perubahan Field Poin 5 -->
-                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
+                <form action="https://formspree.io/f/xxxxxxxx" method="POST" id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
+                  <input type="hidden" name="_next" value="[GANTI DENGAN URL ASLI WEBSITE LO]/#feedback" />
                   
-                  <!-- Asal Kota Input -->
                   <div class="mb-6">
                     <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
                       <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
@@ -446,21 +408,20 @@
                     <input 
                       type="text" 
                       id="city" 
-                      name="city"
+                      name="Asal_Kota"
                       placeholder="Dari kota mana nih? 📍" 
                       required 
                       class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
                     />
                   </div>
 
-                  <!-- Evaluasi / Saran Topik Textarea -->
                   <div class="mb-8">
                     <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
                       <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
                     </label>
                     <textarea 
                       id="feedback-text" 
-                      name="evaluation_or_topic"
+                      name="Evaluasi_atau_Topik"
                       rows="6" 
                       placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
                       required 
@@ -468,7 +429,6 @@
                     ></textarea>
                   </div>
 
-                  <!-- Submit Button -->
                   <button 
                     type="submit" 
                     id="submit-feedback-btn"
@@ -476,11 +436,11 @@
                   >
                     Kirim Sekarang! <i data-lucide="send" class="w-5 h-5 ml-2"></i>
                   </button>
+                  <p class="text-sm text-gray-400 mt-4 text-center"> Data ini hanya akan digunakan untuk meningkatkan kualitas konten.</p>
                 </form>
             </div>
         </section>
         
-        <!-- 5. SUPPORT SECTION -->
         <section id="support" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#F0F9FF] via-[#DBEAFE] to-[#BFDBFE] px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto text-center">
                 <div class="text-center max-w-2xl mx-auto mb-16">
@@ -489,7 +449,6 @@
                         Traktir Kopi Virtual? ☕
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <!-- Perubahan Copywriting Poin 6 -->
                     <p class="text-lg text-gray-600">
                         Aku upayakan materi pembelajaran <strong>100% gratis</strong>! Kalau kamu merasa <strong>terbantu</strong> dan pengen support, aku bakal <strong>super grateful</strong> banget. Ini bisa jadi bensin buat aku tingkatin kualitas konten yang lebih baik lagi! 😊
                     </p>
@@ -497,23 +456,19 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
                     
-                    <!-- Benefits Column (Left) -->
                     <div class="space-y-6">
-                        <!-- Benefit 1 -->
                         <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
                             <div class="flex items-center space-x-3">
                                 <i data-lucide="gift" class="w-7 h-7 text-[#8B5CF6]"></i>
                                 <p class="font-bold text-gray-800">Dukung konten gratis berkualitas</p>
                             </div>
                         </div>
-                        <!-- Benefit 2 -->
                         <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
                             <div class="flex items-center space-x-3">
                                 <i data-lucide="heart" class="w-7 h-7 text-[#8B5CF6]"></i>
                                 <p class="font-bold text-gray-800">Jadi bagian dari *journey* ini</p>
                             </div>
                         </div>
-                        <!-- Benefit 3 -->
                         <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
                             <div class="flex items-center space-x-3">
                                 <i data-lucide="zap" class="w-7 h-7 text-[#8B5CF6]"></i>
@@ -522,24 +477,25 @@
                         </div>
                     </div>
 
-                    <!-- QRIS Container (Right) -->
                     <div class="flex justify-center items-center">
                         <div class="relative w-full max-w-sm h-80 p-6 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.05] hover:rotate-1 cursor-pointer
                             bg-gradient-to-br from-[#8B5CF6] to-[#EC4899] qris-container">
                             
-                            <!-- Rotating Gradient Glow -->
                             <div class="absolute inset-0 z-0 opacity-40 animate-rotate-gradient" style="background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 70%);"></div>
                             
-                            <div class="relative z-10 flex flex-col items-center justify-center h-full">
-                                <p class="text-[120px] font-black text-white leading-none mb-1 qris-text">QR</p>
-                                <p class="text-2xl font-bold text-white mb-2">Scan QRIS Di Sini</p>
-                                <p class="text-lg text-purple-200">Nominal terserah kamu 😊</p>
+                            <div class="relative z-10 flex flex-col items-center justify-center h-full text-center"> 
+                                <i data-lucide="scan" class="w-24 h-24 text-white mb-4 opacity-80"></i> 
+                                <p class="text-3xl font-black text-white leading-none mb-1">Coming Soon!</p> 
+                                <p class="text-xl font-bold text-white mb-2">QRIS Sedang Disiapkan</p> 
+                                <p class="text-lg text-purple-200">Traktir kopi akan segera hadir! 😊</p> 
+                                <a href="https://wa.me/6281234567890?text=Mase%2C%20aku%20baru%20aja%20Traktir%20Kopi!%20Mau%20join%20grup%20eksklusif!" target="_blank" class="text-white font-bold py-3 px-8 rounded-full border border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 flex items-center justify-center mt-6"> 
+                                    Konfirmasi Via WA <i data-lucide="whatsapp" class="w-5 h-5 ml-2"></i> 
+                                </a> 
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Note Box -->
                 <div class="mt-16 max-w-4xl mx-auto p-4 rounded-xl bg-white/80 border-l-4 border-[#8B5CF6] backdrop-blur-sm shadow-md">
                     <p class="text-base text-gray-700 font-medium">
                         <span class="font-extrabold text-[#8B5CF6]">Psst...</span> Kalau kamu udah traktir, langsung aja chat aku dan kasih tau <span class="font-bold text-[#8B5CF6]">nomor WhatsApp khusus</span> buat join grup eksklusif. Di sana kita bisa diskusi lebih dalam! 💬
@@ -548,17 +504,13 @@
             </div>
         </section>
         
-        <!-- 6. FOOTER -->
         <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 
-                <!-- Footer Content Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pt-8 pb-10">
                     
-                    <!-- Column 1 - Brand -->
                     <div class="space-y-3 md:col-span-1">
                         <div class="w-20 h-20 mb-2 transition-transform hover:scale-[1.05]">
-                           <!-- Mini Robot Icon SVG -->
                            <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <defs>
                               <linearGradient id="miniRobotGradient" x1="0" y1="0" x2="60" y2="60">
@@ -578,7 +530,6 @@
                         <p class="text-base text-gray-400">Bikin belajar AI jadi gampang & asik!</p>
                     </div>
                     
-                    <!-- Column 2 - Social -->
                     <div class="md:col-span-1">
                         <h4 class="text-xl font-bold text-orange-400 mb-4">Let's Connect! 🤝</h4>
                         <div class="space-y-3">
@@ -597,12 +548,10 @@
                         </div>
                     </div>
                     
-                    <!-- Column 3 - CTA -->
                     <div class="md:col-span-1 flex flex-col justify-end items-start pt-4 md:pt-0">
                         <p class="text-lg text-gray-300 mb-4">
                             Masih bingung atau pengen ngobrol? Yuk kontak aku!
                         </p>
-                        <!-- Tombol Hubungi Sekarang mengarah ke Support -->
                         <a href="#support" class="w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-red-600 hover:to-orange-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center scroll-link">
                             Hubungi Sekarang
                         </a>
@@ -610,7 +559,6 @@
 
                 </div>
 
-                <!-- Bottom Copyright -->
                 <div class="border-t border-gray-700/50 mt-8 pt-8">
                     <p class="text-center text-sm text-gray-500">
                         © 2025 Dikasih Info Mase by Raihan • Made with <i data-lucide="heart" fill="#EF4444" class="w-4 h-4 inline-block text-red-500 mx-1"></i> and lots of ☕
@@ -635,12 +583,13 @@
             toastElement.className = `fixed bottom-6 right-6 p-4 rounded-xl shadow-2xl transition-all duration-300 z-50 flex items-center text-white ${colorClass}`;
             toastElement.style.opacity = '0'; // Start invisible
 
+            // Menggunakan ikon Lucide di toast. Ikon akan di-render oleh lucide-loader.js
             toastElement.innerHTML = `
                 <i data-lucide="${icon}" class="w-5 h-5 mr-2"></i>
                 <p class="font-semibold">${message}</p>
             `;
             
-            lucide.createIcons();
+            // lucide-loader.js akan me-render icon ini
 
             toastContainer.appendChild(toastElement);
 
@@ -660,26 +609,8 @@
             }, 3000);
         }
 
-        // 2. FORM SUBMISSION: SIMULASI PENGIRIMAN KE PIHAK KETIGA (Formspree/API)
-        async function sendFeedback(feedbackData) {
-            // Simulasi penundaan jaringan (penting untuk UX)
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            console.log('Feedback data sent (Simulasi API):', feedbackData);
-            
-            // Simulasi respons yang berhasil
-            if (Math.random() < 0.95) { // 95% success rate
-                return { success: true, message: "Data berhasil dikirim (Simulasi API)" };
-            } else {
-                // Simulasi kegagalan jaringan
-                throw new Error("Gagal mengirim data (Simulasi error jaringan)");
-            }
-        }
-
-        // 3. EVENT LISTENERS AND FORM HANDLING
+        // 2. EVENT LISTENERS AND FORM HANDLING
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-render Lucide icons after content is loaded
-            lucide.createIcons();
 
             // Mobile Menu Toggle
             const menuToggle = document.getElementById('menu-toggle');
@@ -696,7 +627,7 @@
                 } else {
                     menuIcon.setAttribute('data-lucide', 'menu');
                 }
-                lucide.createIcons();
+                // lucide-loader.js akan me-render icon ini
             });
 
             // Close menu on scroll link click
@@ -710,57 +641,15 @@
                     if (!mobileMenu.classList.contains('hidden')) {
                          mobileMenu.classList.add('hidden');
                          menuIcon.setAttribute('data-lucide', 'menu');
-                         lucide.createIcons();
+                         // lucide-loader.js akan me-render icon ini
                     }
                 });
             });
 
-
-            // Feedback Form Submission Logic (Menggunakan simulasi API)
-            const form = document.getElementById('feedback-form');
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const submitButton = document.getElementById('submit-feedback-btn');
-                const originalText = submitButton.innerHTML;
-                
-                // Ambil data untuk field baru (Asal Kota, Evaluasi / Saran Topik)
-                const city = document.getElementById('city').value.trim();
-                const feedbackText = document.getElementById('feedback-text').value.trim();
-
-                if (!city || !feedbackText) {
-                    showToast('Mohon isi semua field ya! 😊', 'error');
-                    return;
-                }
-                
-                // Tampilkan loading state
-                submitButton.innerHTML = 'Mengirim... <i data-lucide="loader-circle" class="w-5 h-5 ml-2 animate-spin"></i>';
-                submitButton.disabled = true;
-                lucide.createIcons();
-
-
-                const formData = { 
-                    asal_kota: city, 
-                    evaluasi_saran_topik: feedbackText 
-                };
-                
-                try {
-                    await sendFeedback(formData);
-                    showToast('Makasih banget! Feedback kamu sangat berarti! 🙏✨', 'success');
-                    // Reset form hanya jika sukses
-                    form.reset();
-                } catch (error) {
-                    console.error("Submission error:", error);
-                    showToast('Oops! Gagal kirim. Coba lagi ya!', 'error');
-                } finally {
-                    // Kembalikan tombol ke keadaan semula
-                    submitButton.innerHTML = originalText;
-                    submitButton.disabled = false;
-                    lucide.createIcons();
-                }
-            });
+            // LOGIKA FORM SUBMISSION LAMA DIHAPUS TOTAL. Formspree sekarang menangani submit secara native.
         });
 
     </script>
+    <script src="lucide-loader.js"></script>
 </body>
 </html>
