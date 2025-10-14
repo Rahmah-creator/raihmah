@@ -218,23 +218,24 @@
                     
                     <!-- Right Visual (Robot SVG) - Ini akan di atas di mobile -->
                     <div class="w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
-                        <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative">
-
+                        <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
+                            
                             <!-- Teks "Halo!" yang mengikuti robot -->
-                            <div class="absolute -top-4 -right-4 sm:-top-6 sm:-right-8 md:-top-8 md:-right-12 animate-wave-text z-20">
+                            <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
                                     <!-- Speech Bubble Background dengan Glass Effect -->
-                                    <div class="glass-effect px-5 py-3 md:px-7 md:py-4 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
-                                        <p class="text-2xl md:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
+                                    <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
+                                        <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
                                     <!-- Speech Bubble Tail dengan gradient -->
-                                    <div class="absolute -bottom-2 left-4 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[12px] border-t-white/40 drop-shadow-lg"></div>
-                                    <div class="absolute -bottom-3 left-[18px] w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/20"></div>
+                                    <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
+                                    <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
-                            
+
                             <!-- Robot SVG component -->
                             <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+
                                 <!-- Define Gradients -->
                                 <defs>
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
