@@ -208,11 +208,7 @@
                     
                     <!-- Right Visual (Robot SVG) - Ini akan di atas di mobile -->
                     <div class="w-full flex justify-center items-center relative lg:order-last">
-                        <div class="absolute z-20 animate-fadeInUp" style="top: 15%; left: 70%;">
-                            <span class="font-handwritten text-4xl sm:text-5xl text-white font-bold text-shadow drop-shadow-lg">Halo!</span>
-                        </div>
-                        
-                        <div class="w-64 h-64 md:w-80 md:h-80 relative"> <div class="w-full flex justify-center items-center relative lg:order-last">
+    
                         <div class="w-64 h-64 md:w-80 md:h-80 relative animate-float-robot">
         
                             <div class="absolute z-20 animate-fadeInUp" style="top: 15%; left: 70%;">
@@ -220,6 +216,17 @@
                             </div>
         
                             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            
+                                <g> 
+                
+                                    <g class="animate-wiggle-head">
+                                        ... (SVG content)
+                                    </g>
+                                    ... (Lanjutan konten SVG lainnya)
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
                                 <!-- Define Gradients -->
                                 <defs>
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
