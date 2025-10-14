@@ -176,10 +176,10 @@
         
         <!-- Mobile Menu Content -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-t border-blue-100">
-            <a href="#personal" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Personal</a>
-            <a href="#mission" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Tujuan</a>
-            <a href="#feedback" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Feedback</a>
-            <a href="#support" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Support</a>
+            <a href="#personal" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Personal</a>
+            <a href="#mission" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Tujuan</a>
+            <a href="#feedback" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Feedback</a>
+            <a href="#support" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Support</a>
         </div>
     </nav>
 
@@ -713,7 +713,7 @@
                 } else {
                     menuIcon.setAttribute('data-lucide', 'menu');
                 }
-                lucide.createIcons();
+                lucide.createIcons(); // <--- INI KUNCI AGAR IKON BARU MUNCUL
             });
 
             // Close menu on scroll link click
@@ -723,15 +723,14 @@
                     const targetId = link.getAttribute('href').substring(1);
                     document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
 
-                    // Hide mobile menu after clicking
+                    // Sembunyikan mobile menu setelah klik (Hanya jika menu mobile terbuka)
                     if (!mobileMenu.classList.contains('hidden')) {
                          mobileMenu.classList.add('hidden');
-                         menuIcon.setAttribute('data-lucide', 'menu');
-                         lucide.createIcons();
+                         menuIcon.setAttribute('data-lucide', 'menu'); // Pastikan kembali ke ikon menu
+                         lucide.createIcons(); // <--- INI JUGA PENTING SAAT MENU DITUTUP
                     }
                 });
             });
-
 
             // Feedback Form Submission Logic (Menggunakan simulasi API)
             const form = document.getElementById('feedback-form');
