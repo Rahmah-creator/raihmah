@@ -192,7 +192,7 @@
 
     <main>
         <!-- 1. HERO SECTION -->
-        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden
+        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
             bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
             
             <!-- Background Orbs -->
@@ -207,71 +207,10 @@
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
                     <!-- Right Visual (Robot SVG) - Ini akan di atas di mobile -->
-                    <div class="w-full lg:w-1/2 lg:order-last flex justify-center items-center">
-    
-                        <div class="w-64 h-64 md:w-80 md:h-80 relative animate-float-robot">
-                            
-                            <div class="absolute z-20 animate-fadeInUp" style="top: 10%; right: -20%;">
-                                <span class="font-handwritten text-4xl sm:text-5xl text-white font-bold text-shadow drop-shadow-lg">Halo!</span>
-                            </div>
-                    
-                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full absolute inset-0">
-                                
-                                <defs>
-                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                                        <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
-                                        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-                                    </radialGradient>
-                                    <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
-                                        <stop offset="0%" stop-color="#6366F1" />
-                                        <stop offset="100%" stop-color="#8B5CF6" />
-                                    </linearGradient>
-                                    <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
-                                        <stop offset="0%" stop-color="#3B82F6" />
-                                        <stop offset="100%" stop-color="#0EA5E9" />
-                                    </linearGradient>
-                                    <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
-                                        <stop offset="0%" stop-color="#F0F9FF" />
-                                        <stop offset="100%" stop-color="#BFDBFE" />
-                                    </linearGradient>
-                                </defs>
-                    
-                                <g>
-                                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
-                    
-                                    <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                                    <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                                    
-                                    <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" class="shadow-2xl" />
-                                    
-                                    <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
-                                    
-                                    <g class="animate-wave-arm-left">
-                                        <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
-                                    </g>
-                                    <g class="animate-wave-arm-right">
-                                        <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
-                                    </g>
-                    
-                                    <g class="animate-wiggle-head">
-                                        <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
-                                        
-                                        <g class="animate-blink-eyes">
-                                            <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
-                                            <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
-                                            <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
-                                            <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
-                                        </g>
-                    
-                                        <g class="animate-pulse-antenna">
-                                            <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
-                                            <circle cx="50" cy="5" r="3" fill="#F97316" />
-                                        </g>
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
+                    <div class="w-full flex justify-center items-center relative lg:order-last">
+                        <div class="w-64 h-64 md:w-80 md:h-80 relative">
+                            <!-- Robot SVG component -->
+                            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
                                 <!-- Define Gradients -->
                                 <defs>
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -291,7 +230,6 @@
                                         <stop offset="100%" stop-color="#BFDBFE" />
                                     </linearGradient>
                                 </defs>
-
                                 <!-- 1. Glowing Pulse Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
 
