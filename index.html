@@ -28,7 +28,11 @@
         .text-shadow {
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.2);
         }
-
+        /* Soft SVG Shadow for Robot */
+        svg {
+          filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
+        }
+            
         /* --- KEYFRAMES --- */
         /* Robot Animations: Lebih interaktif dan semangat */
         @keyframes float-robot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
@@ -223,24 +227,37 @@
                             </div>
                             <!-- Robot SVG component -->
                             <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                                <!-- Define Gradients -->
+                                <!-- 🔹 REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
-                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                                        <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
-                                        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-                                    </radialGradient>
-                                    <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
-                                        <stop offset="0%" stop-color="#FFFBEB" />
-                                        <stop offset="100%" stop-color="#FEF3C7" />
-                                    </linearGradient>
-                                    <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
-                                        <stop offset="0%" stop-color="#FFFFFF" />
-                                        <stop offset="100%" stop-color="#FFEDD5" />
-                                    </linearGradient>
-                                    <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
-                                        <stop offset="0%" stop-color="#FFF7ED" />
-                                        <stop offset="100%" stop-color="#FFEDD5" />
-                                    </linearGradient>
+                                  <!-- Cahaya pulsasi di belakang robot -->
+                                  <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                    <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
+                                    <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+                                  </radialGradient>
+                                
+                                  <!-- Kepala: gradasi ungu lembut -->
+                                  <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
+                                    <stop offset="0%" stop-color="#6366F1" />
+                                    <stop offset="100%" stop-color="#8B5CF6" />
+                                  </linearGradient>
+                                
+                                  <!-- Badan: biru cerah harmonis -->
+                                  <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
+                                    <stop offset="0%" stop-color="#3B82F6" />
+                                    <stop offset="100%" stop-color="#0EA5E9" />
+                                  </linearGradient>
+                                
+                                  <!-- Tangan & kaki: putih kebiruan lembut -->
+                                  <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
+                                    <stop offset="0%" stop-color="#E0F2FE" />
+                                    <stop offset="100%" stop-color="#BFDBFE" />
+                                  </linearGradient>
+                                
+                                  <!-- Highlight lembut di sisi kiri badan -->
+                                  <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
+                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
+                                    <stop offset="100%" stop-color="transparent" />
+                                  </linearGradient>
                                 </defs>
                                 <!-- 1. Glowing Pulse Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
@@ -250,11 +267,17 @@
                                         <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                         
                                         <!-- Body -->
-                                        <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" class="shadow-2xl" />
+                                        <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" filter="drop-shadow(0px 6px 10px rgba(0,0,0,0.08))" />
+                                        <!-- Highlight minimal di sisi kiri -->
+                                        <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
                                         
                                         <!-- Chest Light (Pulse) -->
                                         <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
                                         
+                                        <!-- Antenna -->
+                                        <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
+                                        <circle cx="50" cy="5" r="3" fill="#F97316" />
+                                
                                         <!-- 5. Arms Waving Animation (Lebih Ekspresif) -->
                                         <g class="animate-wave-arm-left">
                                             <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
