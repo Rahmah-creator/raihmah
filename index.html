@@ -707,23 +707,7 @@
             }, 3000);
         }
 
-        // 2. FORM SUBMISSION: SIMULASI PENGIRIMAN KE PIHAK KETIGA (Formspree/API)
-        async function sendFeedback(feedbackData) {
-            // Simulasi penundaan jaringan (penting untuk UX)
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            
-            console.log('Feedback data sent (Simulasi API):', feedbackData);
-            
-            // Simulasi respons yang berhasil
-            if (Math.random() < 0.95) { // 95% success rate
-                return { success: true, message: "Data berhasil dikirim (Simulasi API)" };
-            } else {
-                // Simulasi kegagalan jaringan
-                throw new Error("Gagal mengirim data (Simulasi error jaringan)");
-            }
-        }
-
-        // 3. EVENT LISTENERS AND FORM HANDLING
+        // 2. EVENT LISTENERS AND FORM HANDLING
         document.addEventListener('DOMContentLoaded', () => {
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
@@ -762,20 +746,20 @@
                 });
             });
 
-            // Feedback Form Submission Logic (Menggunakan simulasi API)
+            // Feedback Form Submission Logic (Menggunakan Google Apps Script)
             const form = document.getElementById('feedback-form');
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-
+            
                 const submitButton = document.getElementById('submit-feedback-btn');
                 const originalText = submitButton.innerHTML;
                 
                 // Ambil data untuk field baru (Asal Kota, Evaluasi / Saran Topik)
                 const city = document.getElementById('city').value.trim();
                 const feedbackText = document.getElementById('feedback-text').value.trim();
-
+            
                 if (!city || !feedbackText) {
-                    showToast('Mohon isi semua field ya! 😊', 'error');
+                    showToast('Mohon isi semua kolom ya! 😊', 'error');
                     return;
                 }
                 
@@ -783,18 +767,31 @@
                 submitButton.innerHTML = 'Mengirim... <i data-lucide="loader-circle" class="w-5 h-5 ml-2 animate-spin"></i>';
                 submitButton.disabled = true;
                 lucide.createIcons();
-
-
-                const formData = { 
-                    asal_kota: city, 
-                    evaluasi_saran_topik: feedbackText 
-                };
                 
+                // Alamat tujuan dari Google Apps Script yang sudah di-deploy
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydIYlBhlAb1QejtCW6F7feqiUWeQuSCoQDB0yx9cauM8t8U5eQUhbXAKjILbvHLKFoaA/exec'; // <-- JANGAN LUPA GANTI URL DI SINI
+            
                 try {
-                    await sendFeedback(formData);
-                    showToast('Makasih banget! Feedback kamu sangat berarti! 🙏✨', 'success');
-                    // Reset form hanya jika sukses
-                    form.reset();
+                    // Buat objek FormData langsung dari form HTML-mu
+                    const formData = new FormData(form);
+            
+                    // Kirim data ke Google Apps Script menggunakan fetch
+                    const response = await fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        body: formData,
+                    });
+            
+                    // Ubah respons menjadi JSON
+                    const result = await response.json();
+            
+                    if (result.status === 'success') {
+                        showToast('Makasih banget! Feedback kamu sangat berarti! 🙏✨', 'success');
+                        form.reset(); // Reset form jika sukses
+                    } else {
+                        // Tampilkan pesan error dari script jika ada
+                        throw new Error(result.message || 'Terjadi kesalahan di server.');
+                    }
+            
                 } catch (error) {
                     console.error("Submission error:", error);
                     showToast('Oops! Gagal kirim. Coba lagi ya!', 'error');
