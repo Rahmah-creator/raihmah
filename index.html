@@ -926,39 +926,22 @@
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
 
-            // Mobile Menu Toggle (Final Fix)
+            // Mobile Menu Toggle
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = document.getElementById('menu-icon');
-            
+
             menuToggle.addEventListener('click', () => {
-              // Toggle menu visibility
-              mobileMenu.classList.toggle('hidden');
-            
-              // Perbarui ikon secara manual
-              if (mobileMenu.classList.contains('hidden')) {
-                menuIcon.innerHTML = '<i data-lucide="menu"></i>';
-              } else {
-                menuIcon.innerHTML = '<i data-lucide="x"></i>';
-              }
-            
-              lucide.createIcons(); // render ulang ikon lucide
-            });
-            
-            // Tutup menu saat klik link scroll
-            document.querySelectorAll('.scroll-link').forEach(link => {
-              link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
-            
-                // Jika menu sedang terbuka, tutup dan ubah ikon kembali
-                if (!mobileMenu.classList.contains('hidden')) {
-                  mobileMenu.classList.add('hidden');
-                  menuIcon.innerHTML = '<i data-lucide="menu"></i>';
-                  lucide.createIcons();
+                const isHidden = mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden', !isHidden);
+
+                // Toggle menu icon
+                if (isHidden) {
+                    menuIcon.setAttribute('data-lucide', 'x');
+                } else {
+                    menuIcon.setAttribute('data-lucide', 'menu');
                 }
-              });
+                lucide.createIcons(); // <--- INI KUNCI AGAR IKON BARU MUNCUL
             });
 
             // Close menu on scroll link click
