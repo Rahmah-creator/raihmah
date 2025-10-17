@@ -11,10 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
-        /* Global Reset & Base */
-        :root {
-            scroll-behavior: smooth;
-        }
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll from orbs */
@@ -947,11 +943,6 @@
 
         // 2. EVENT LISTENERS AND FORM HANDLING
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // === TAMBAHKAN 2 BARIS INI ===
-            history.scrollRestoration = 'manual';
-            window.scrollTo(0, 0);
-            // ============================
             
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
