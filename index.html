@@ -548,44 +548,52 @@
                 Jadwal Ngonten
               </h2>
             </div>
-        
-            <!-- Card Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <div class="jn-card jn-neon p-1" data-day="1" aria-label="Senin - Video Materi">
-                <div class="jn-glass p-6 flex flex-col h-full">
-                  <div class="flex items-center gap-3 mb-3">
-                    <i data-lucide="video" class="w-7 h-7 text-blue-500"></i>
-                    <h3 class="font-semibold text-gray-900">Senin</h3>
+              
+            <!-- Cards row with subtle gradient border wrappers -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+              <!-- Card TEMPLATE: gradient outer -> inner glass card -->
+              <div id="card-mon" data-day="1" class="relative rounded-3xl p-1"
+                   aria-label="Senin - Video Materi">
+                <div class="bg-gradient-to-r from-blue-200/30 to-indigo-200/15 rounded-3xl p-1 transition-all duration-300">
+                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                    <div class="flex items-center gap-4 mb-3">
+                      <i data-lucide="video" class="w-8 h-8 text-blue-500"></i>
+                      <h3 class="text-xl font-bold text-gray-900">Senin</h3>
+                    </div>
+                    <p class="text-gray-700 flex-1">Materi — pembahasan step-by-step.</p>
+                    <div class="mt-4 text-sm text-gray-500">Format: Video Pendek</div>
                   </div>
-                  <p class="text-gray-700 flex-1">Video Materi — pembahasan step-by-step.</p>
-                  <p class="text-sm text-gray-500 mt-3">Format: long-form video</p>
                 </div>
               </div>
         
-              <div class="jn-card jn-neon p-1" data-day="4" aria-label="Kamis - Carousel">
-                <div class="jn-glass p-6 flex flex-col h-full">
-                  <div class="flex items-center gap-3 mb-3">
-                    <i data-lucide="book-open" class="w-7 h-7 text-orange-500"></i>
-                    <h3 class="font-semibold text-gray-900">Kamis</h3>
+              <div id="card-thu" data-day="4" class="relative rounded-3xl p-1" aria-label="Kamis - Caroseul">
+                <div class="bg-gradient-to-r from-orange-200/30 to-red-200/10 rounded-3xl p-1 transition-all duration-300">
+                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                    <div class="flex items-center gap-4 mb-3">
+                      <i data-lucide="book-open" class="w-8 h-8 text-orange-500"></i>
+                      <h3 class="text-xl font-bold text-gray-900">Kamis</h3>
+                    </div>
+                    <p class="text-gray-700 flex-1">Caroseul materi lengkap — ringkas & shareable.</p>
+                    <div class="mt-4 text-sm text-gray-500">Format: carrousel (IG / LinkedIn)</div>
                   </div>
-                  <p class="text-gray-700 flex-1">Carousel materi lengkap — ringkas & shareable.</p>
-                  <p class="text-sm text-gray-500 mt-3">Format: carousel (IG / LinkedIn)</p>
                 </div>
               </div>
         
-              <div class="jn-card jn-neon p-1" data-day="6" aria-label="Sabtu - Tips & Trik">
-                <div class="jn-glass p-6 flex flex-col h-full">
-                  <div class="flex items-center gap-3 mb-3">
-                    <i data-lucide="sparkles" class="w-7 h-7 text-purple-500"></i>
-                    <h3 class="font-semibold text-gray-900">Sabtu</h3>
+              <div id="card-sat" data-day="6" class="relative rounded-3xl p-1" aria-label="Sabtu - Tips & Trik">
+                <div class="bg-gradient-to-r from-purple-200/30 to-pink-200/10 rounded-3xl p-1 transition-all duration-300">
+                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                    <div class="flex items-center gap-4 mb-3">
+                      <i data-lucide="sparkles" class="w-8 h-8 text-purple-500"></i>
+                      <h3 class="text-xl font-bold text-gray-900">Sabtu</h3>
+                    </div>
+                    <p class="text-gray-700 flex-1">Video tips & trik / info menarik — ringan & applicable.</p>
+                    <div class="mt-4 text-sm text-gray-500">Format: short video / reel</div>
                   </div>
-                  <p class="text-gray-700 flex-1">Video tips & trik / info menarik — ringan & applicable.</p>
-                  <p class="text-sm text-gray-500 mt-3">Format: short video / reel</p>
                 </div>
               </div>
             </div>
         
-            <!-- Countdown -->
+            <!-- Countdown / actions box -->
             <div class="max-w-4xl mx-auto jn-count-box px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
                 <div class="text-sm text-gray-500">Upload berikutnya</div>
