@@ -928,22 +928,26 @@
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
 
-            // Mobile Menu Toggle
+            // Mobile Menu Toggle (fixed)
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = document.getElementById('menu-icon');
-
+            
             menuToggle.addEventListener('click', () => {
-                const isHidden = mobileMenu.classList.contains('hidden');
-                mobileMenu.classList.toggle('hidden', !isHidden);
-                
-                // Toggle menu icon
-                if (isHidden) {
-                    menuIcon.setAttribute('data-lucide', 'x');
-                } else {
-                    menuIcon.setAttribute('data-lucide', 'menu');
-                }
-                lucide.createIcons(); // <--- INI KUNCI AGAR IKON BARU MUNCUL
+              // toggle class hidden
+              mobileMenu.classList.toggle('hidden');
+            
+              // setelah toggle, cek kondisi real sekarang
+              const isNowHidden = mobileMenu.classList.contains('hidden');
+            
+              // ubah ikon sesuai kondisi sekarang
+              if (isNowHidden) {
+                menuIcon.setAttribute('data-lucide', 'menu');
+              } else {
+                menuIcon.setAttribute('data-lucide', 'x');
+              }
+            
+              lucide.createIcons();
             });
 
             // Close menu on scroll link click
