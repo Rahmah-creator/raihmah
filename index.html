@@ -180,12 +180,12 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600">
-                    <i data-lucide="menu" id="menu-icon"></i>
-                </button>
-            </div>
-        </div>
-        
+                <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600 flex items-center justify-center">
+            <span id="menu-icon">
+                <i data-lucide="menu"></i>
+            </span>
+        </button>
+
         <!-- Mobile Menu Content -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/50 border-t border-blue-50">
             <a href="#personal" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Personal</a>
@@ -928,24 +928,26 @@
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
 
-            // Mobile Menu Toggle (FIXED)
+            // Mobile Menu Toggle (Final Fix)
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = document.getElementById('menu-icon');
             
             menuToggle.addEventListener('click', () => {
-              // toggle visibilitas menu
+              // Toggle menu visibility
               mobileMenu.classList.toggle('hidden');
             
-              // cek kondisi sekarang
-              const isNowHidden = mobileMenu.classList.contains('hidden');
+              // Perbarui ikon secara manual
+              if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.innerHTML = '<i data-lucide="menu"></i>';
+              } else {
+                menuIcon.innerHTML = '<i data-lucide="x"></i>';
+              }
             
-              // ubah ikon sesuai kondisi
-              menuIcon.setAttribute('data-lucide', isNowHidden ? 'menu' : 'x');
-              lucide.createIcons();
+              lucide.createIcons(); // render ulang ikon lucide
             });
             
-            // Tutup menu otomatis saat user klik salah satu link
+            // Tutup menu saat klik link scroll
             document.querySelectorAll('.scroll-link').forEach(link => {
               link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -955,7 +957,7 @@
                 // Jika menu sedang terbuka, tutup dan ubah ikon kembali
                 if (!mobileMenu.classList.contains('hidden')) {
                   mobileMenu.classList.add('hidden');
-                  menuIcon.setAttribute('data-lucide', 'menu');
+                  menuIcon.innerHTML = '<i data-lucide="menu"></i>';
                   lucide.createIcons();
                 }
               });
