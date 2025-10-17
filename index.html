@@ -152,15 +152,34 @@
             .qris-container { width: 90%; max-width: 320px; height: 320px; } 
             .qris-text { font-size: 90px !important; }
         }
-    <style>
-        /* Global Reset & Base */
-        :root {
-            scroll-behavior: smooth;
-        }
-        .font-handwritten { 
-            font-family: 'Pacifico', cursive; 
-        }
-    </style>
+        <head>
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+        
+        <style>
+            /* Global Reset & Base */
+            :root {
+                scroll-behavior: smooth;
+            }
+            body {
+                font-family: 'Inter', sans-serif;
+                overflow-x: hidden; /* Prevent horizontal scroll from orbs */
+            }
+            
+            /* === TAMBAHKAN KODE INI DI SINI === */
+            .font-handwritten {
+                font-family: 'Pacifico', cursive;
+            }
+            /* ==================================== */
+    
+            .glass-effect {
+                background-color: rgba(255, 255, 255, 0.08);
+                backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+            /* ... (sisa kode CSS lainnya) ... */
+        </style>
+        <script src="https://unpkg.com/lucide@latest"></script>
+    </head>
 
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
