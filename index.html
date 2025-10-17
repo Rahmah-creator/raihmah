@@ -181,14 +181,16 @@
 
                 <!-- Mobile Menu Button -->
                 <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600">
-            <i data-lucide="menu" id="menu-icon"></i>
-        </button>
-
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+        
         <!-- Mobile Menu Content -->
         <div id="mobile-menu" class="hidden md:hidden bg-white/50 border-t border-blue-50">
             <a href="#personal" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Personal</a>
             <a href="#mission" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Tujuan</a>
-            <a href="#jadwal-ngonten" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Jadwal</a>
+            <a href="#jadwal-ngonten" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Jadwal</a>
             <a href="#feedback" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Feedback</a>
             <a href="#support" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Support</a>
         </div>
@@ -934,7 +936,7 @@
             menuToggle.addEventListener('click', () => {
                 const isHidden = mobileMenu.classList.contains('hidden');
                 mobileMenu.classList.toggle('hidden', !isHidden);
-
+                
                 // Toggle menu icon
                 if (isHidden) {
                     menuIcon.setAttribute('data-lucide', 'x');
