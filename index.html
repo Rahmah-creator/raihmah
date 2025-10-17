@@ -973,7 +973,7 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('href').substring(1);
-                    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById(targetId)?.scrollIntoView({ behavior: 'm' });
 
                     // Sembunyikan mobile menu setelah klik (Hanya jika menu mobile terbuka)
                     if (!mobileMenu.classList.contains('hidden')) {
@@ -1041,7 +1041,43 @@
                 }
             });
         });
-
+        <!-- Fix: preserve scroll position on reload and prevent automatic jump-to-fragment on reload (esp. Safari desktop) -->
+        <script>
+        (function(){
+          try{
+            if ('scrollRestoration' in history) {
+              try { history.scrollRestoration = 'manual'; } catch(e){}
+            }
+        
+            window.addEventListener('beforeunload', function(){
+              try { sessionStorage.setItem('savedScrollY', String(window.scrollY || window.pageYOffset || 0)); } catch(e){}
+            });
+        
+            function isReload() {
+              try{
+                var navEntries = performance.getEntriesByType ? performance.getEntriesByType('navigation') : null;
+                if (navEntries && navEntries.length) return navEntries[0].type === 'reload';
+                if (performance.navigation) return performance.navigation.type === 1;
+              } catch(e){}
+              return false;
+            }
+        
+            window.addEventListener('DOMContentLoaded', function(){
+              try{
+                var saved = sessionStorage.getItem('savedScrollY');
+                if (isReload() && saved !== null){
+                  var y = parseInt(saved,10) || 0;
+                  if (location.hash) {
+                    // remove fragment from URL without reloading so browser won't jump to it
+                    history.replaceState(null, '', location.pathname + location.search);
+                  }
+                  window.scrollTo(0, y);
+                  sessionStorage.removeItem('savedScrollY');
+                }
+              }catch(e){}
+            }, {passive:true});
+          }catch(e){}
+        })();
     </script>
 </body>
 </html>
