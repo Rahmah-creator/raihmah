@@ -928,26 +928,37 @@
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
 
-            // Mobile Menu Toggle (fixed)
+            // Mobile Menu Toggle (FIXED)
             const menuToggle = document.getElementById('menu-toggle');
             const mobileMenu = document.getElementById('mobile-menu');
             const menuIcon = document.getElementById('menu-icon');
             
             menuToggle.addEventListener('click', () => {
-              // toggle class hidden
+              // toggle visibilitas menu
               mobileMenu.classList.toggle('hidden');
             
-              // setelah toggle, cek kondisi real sekarang
+              // cek kondisi sekarang
               const isNowHidden = mobileMenu.classList.contains('hidden');
             
-              // ubah ikon sesuai kondisi sekarang
-              if (isNowHidden) {
-                menuIcon.setAttribute('data-lucide', 'menu');
-              } else {
-                menuIcon.setAttribute('data-lucide', 'x');
-              }
-            
+              // ubah ikon sesuai kondisi
+              menuIcon.setAttribute('data-lucide', isNowHidden ? 'menu' : 'x');
               lucide.createIcons();
+            });
+            
+            // Tutup menu otomatis saat user klik salah satu link
+            document.querySelectorAll('.scroll-link').forEach(link => {
+              link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
+            
+                // Jika menu sedang terbuka, tutup dan ubah ikon kembali
+                if (!mobileMenu.classList.contains('hidden')) {
+                  mobileMenu.classList.add('hidden');
+                  menuIcon.setAttribute('data-lucide', 'menu');
+                  lucide.createIcons();
+                }
+              });
             });
 
             // Close menu on scroll link click
