@@ -462,80 +462,11 @@
             </div>
         </section>
 
-        <!-- 4. FEEDBACK SECTION -->
-        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
-            bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
-            
-            <!-- Radial Light Effect -->
-            <div class="absolute w-full h-full top-0 left-0 opacity-50">
-                <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
-                <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
-            </div>
-
-            <div class="max-w-3xl mx-auto relative z-10">
-                <div class='text-center mb-12'>
-                    <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
-                      Yuk, Evaluasi! 🚀
-                    </h2>
-                    <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <!-- Perubahan Copywriting Poin 4 -->
-                    <p class="text-lg text-gray-300 text-center">
-                      Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
-                    </p>
-                </div>
-
-                <!-- Glass-morphism Form Card - Perubahan Field Poin 5 -->
-                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
-                  
-                  <!-- Asal Kota Input -->
-                  <div class="mb-6">
-                    <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
-                      <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
-                    </label>
-                    <input 
-                      type="text" 
-                      id="city" 
-                      name="city"
-                      placeholder="Dari kota mana nih? 📍" 
-                      required 
-                      class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
-                    />
-                  </div>
-
-                  <!-- Evaluasi / Saran Topik Textarea -->
-                  <div class="mb-8">
-                    <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
-                      <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
-                    </label>
-                    <textarea 
-                      id="feedback-text" 
-                      name="evaluation_or_topic"
-                      rows="6" 
-                      placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
-                      required 
-                      class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
-                    ></textarea>
-                  </div>
-
-                  <!-- Submit Button -->
-                  <button 
-                    type="submit" 
-                    id="submit-feedback-btn"
-                    class="w-full text-xl bg-gradient-to-r from-orange-500 to-red-600 hover:from-red-600 hover:to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center"
-                  >
-                    Kirim Sekarang! <i data-lucide="send" class="w-5 h-5 ml-2"></i>
-                  </button>
-                </form>
-            </div>
-        </section>
-
         <!-- JADWAL NGONTEN (MINI SECTION - INTERAKTIF) -->
         <section id="jadwal-ngonten" class="py-20 section-padding animate-fadeInUp px-4 sm:px-6 lg:px-8">
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-6">
               <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-gray-900">📅 Jadwal Ngonten</h2>
-              <p class="text-gray-600">Catat hari-harinya — dan lihat kapan upload berikutnya!</p>
             </div>
         
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
@@ -656,6 +587,74 @@
           window.addEventListener('beforeunload', () => clearInterval(intervalId));
         })();
         </script>
+        
+        <!-- 4. FEEDBACK SECTION -->
+        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
+            bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
+            
+            <!-- Radial Light Effect -->
+            <div class="absolute w-full h-full top-0 left-0 opacity-50">
+                <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
+                <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
+            </div>
+
+            <div class="max-w-3xl mx-auto relative z-10">
+                <div class='text-center mb-12'>
+                    <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
+                      Yuk, Evaluasi! 🚀
+                    </h2>
+                    <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
+                    <!-- Perubahan Copywriting Poin 4 -->
+                    <p class="text-lg text-gray-300 text-center">
+                      Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
+                    </p>
+                </div>
+
+                <!-- Glass-morphism Form Card - Perubahan Field Poin 5 -->
+                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
+                  
+                  <!-- Asal Kota Input -->
+                  <div class="mb-6">
+                    <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
+                      <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
+                    </label>
+                    <input 
+                      type="text" 
+                      id="city" 
+                      name="city"
+                      placeholder="Dari kota mana nih? 📍" 
+                      required 
+                      class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
+                    />
+                  </div>
+
+                  <!-- Evaluasi / Saran Topik Textarea -->
+                  <div class="mb-8">
+                    <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
+                      <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
+                    </label>
+                    <textarea 
+                      id="feedback-text" 
+                      name="evaluation_or_topic"
+                      rows="6" 
+                      placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
+                      required 
+                      class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
+                    ></textarea>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <button 
+                    type="submit" 
+                    id="submit-feedback-btn"
+                    class="w-full text-xl bg-gradient-to-r from-orange-500 to-red-600 hover:from-red-600 hover:to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center"
+                  >
+                    Kirim Sekarang! <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                  </button>
+                </form>
+            </div>
+        </section>
 
         <!-- 5. SUPPORT SECTION -->
         <section id="support" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#F0F9FF] via-[#DBEAFE] to-[#BFDBFE] px-4 sm:px-6 lg:px-8">
