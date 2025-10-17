@@ -462,71 +462,134 @@
             </div>
         </section>
 
-        <!-- JADWAL NGONTEN (MINI SECTION - INTERAKTIF) -->
+        <!-- =========================
+          JADWAL NGONTEN - REVISI OPTIMAL
+          Paste this BEFORE <section id="feedback"> 
+          Script below should be placed right after this section or before </body>
+        ========================= -->
         <section id="jadwal-ngonten" class="py-20 section-padding animate-fadeInUp px-4 sm:px-6 lg:px-8">
           <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-6">
-              <h2 class="text-3xl md:text-4xl font-extrabold mb-2 text-gray-900">📅 Jadwal Ngonten</h2>
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+              <div class="text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-extrabold mb-1 text-gray-900 flex items-center gap-3">
+                  <i data-lucide="calendar" class="w-8 h-8 text-indigo-600"></i>
+                  <span>Jadwal Ngonten</span>
+                </h2>
+                <p class="text-sm text-gray-500">Konsisten upload: biar kamu nggak ketinggalan materi & tips.</p>
+              </div>
+        
+              <!-- Next upload badge kecil di header -->
+              <div id="header-next-badge" class="hidden md:flex items-center gap-3 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/30">
+                <div class="text-sm text-gray-500">Next upload</div>
+                <div id="header-next-day" class="text-sm font-semibold text-gray-900">—</div>
+              </div>
             </div>
         
+            <!-- Cards row with subtle gradient border wrappers -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <!-- Senin -->
-              <div class="glass-effect rounded-2xl p-6 border border-blue-100 hover:translate-y-[-6px] transition-transform duration-300 shadow-lg">
-                <div class="flex items-center gap-4 mb-3">
-                  <i data-lucide="video" class="w-8 h-8 text-blue-500"></i>
-                  <h3 class="text-xl font-bold">Senin</h3>
+              <!-- Card TEMPLATE: gradient outer -> inner glass card -->
+              <div id="card-mon" data-day="1" class="relative rounded-3xl p-1"
+                   aria-label="Senin - Video Materi">
+                <div class="bg-gradient-to-r from-blue-200/30 to-indigo-200/15 rounded-3xl p-1 transition-all duration-300">
+                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                    <div class="flex items-center gap-4 mb-3">
+                      <i data-lucide="video" class="w-8 h-8 text-blue-500"></i>
+                      <h3 class="text-xl font-bold text-gray-900">Senin</h3>
+                    </div>
+                    <p class="text-gray-700 flex-1">Video Materi — pembahasan step-by-step.</p>
+                    <div class="mt-4 text-sm text-gray-500">Format: long-form video</div>
+                  </div>
                 </div>
-                <p class="text-gray-700">Video Materi — pembahasan step-by-step.</p>
               </div>
         
-              <!-- Kamis -->
-              <div class="glass-effect rounded-2xl p-6 border border-orange-100 hover:translate-y-[-6px] transition-transform duration-300 shadow-lg">
-                <div class="flex items-center gap-4 mb-3">
-                  <i data-lucide="book-open" class="w-8 h-8 text-orange-500"></i>
-                  <h3 class="text-xl font-bold">Kamis</h3>
+              <div id="card-thu" data-day="4" class="relative rounded-3xl p-1" aria-label="Kamis - Caroseul">
+                <div class="bg-gradient-to-r from-orange-200/30 to-red-200/10 rounded-3xl p-1 transition-all duration-300">
+                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                    <div class="flex items-center gap-4 mb-3">
+                      <i data-lucide="book-open" class="w-8 h-8 text-orange-500"></i>
+                      <h3 class="text-xl font-bold text-gray-900">Kamis</h3>
+                    </div>
+                    <p class="text-gray-700 flex-1">Caroseul materi lengkap — ringkas & shareable.</p>
+                    <div class="mt-4 text-sm text-gray-500">Format: carrousel (IG / LinkedIn)</div>
+                  </div>
                 </div>
-                <p class="text-gray-700">Caroseul materi lengkap — ringkas & shareable.</p>
               </div>
         
-              <!-- Sabtu -->
-              <div class="glass-effect rounded-2xl p-6 border border-purple-100 hover:translate-y-[-6px] transition-transform duration-300 shadow-lg">
-                <div class="flex items-center gap-4 mb-3">
-                  <i data-lucide="sparkles" class="w-8 h-8 text-purple-500"></i>
-                  <h3 class="text-xl font-bold">Sabtu</h3>
+              <div id="card-sat" data-day="6" class="relative rounded-3xl p-1" aria-label="Sabtu - Tips & Trik">
+                <div class="bg-gradient-to-r from-purple-200/30 to-pink-200/10 rounded-3xl p-1 transition-all duration-300">
+                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                    <div class="flex items-center gap-4 mb-3">
+                      <i data-lucide="sparkles" class="w-8 h-8 text-purple-500"></i>
+                      <h3 class="text-xl font-bold text-gray-900">Sabtu</h3>
+                    </div>
+                    <p class="text-gray-700 flex-1">Video tips & trik / info menarik — ringan & applicable.</p>
+                    <div class="mt-4 text-sm text-gray-500">Format: short video / reel</div>
+                  </div>
                 </div>
-                <p class="text-gray-700">Video tips & trik / info menarik — ringan & applicable.</p>
               </div>
             </div>
         
-            <!-- Countdown / Next Upload -->
-            <div class="max-w-3xl mx-auto mt-6 p-5 rounded-2xl glass-effect border border-white/20 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-              <div>
-                <p class="text-sm text-gray-500">Upload berikutnya</p>
-                <p id="next-upload-day" class="text-lg font-bold text-gray-900 mt-1">—</p>
+            <!-- Countdown / actions box -->
+            <div class="max-w-4xl mx-auto mt-6 p-1 rounded-3xl bg-gradient-to-r from-white/30 to-white/10">
+              <div class="flex flex-col md:flex-row items-center justify-between gap-4 bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/40">
+                <div class="flex-1">
+                  <div class="text-sm text-gray-500">Upload berikutnya</div>
+                  <div id="next-upload-day" class="text-xl md:text-2xl font-extrabold text-gray-900 mt-1">—</div>
+                </div>
+        
+                <div class="flex-1 text-center">
+                  <div id="countdown" class="text-2xl md:text-3xl font-mono font-extrabold text-gray-900">00d 00:00:00</div>
+                  <div class="text-xs text-gray-500 mt-1">hari : jam : menit : detik</div>
+                </div>
+        
+                <div class="flex-shrink-0 flex flex-col items-center gap-3">
+                  <div class="flex gap-2">
+                    <a id="add-calendar-btn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold border border-transparent hover:shadow-lg transition" href="#" target="_blank" rel="noopener" aria-label="Tambah ke Google Calendar">
+                      <i data-lucide="calendar-plus" class="w-4 h-4"></i>
+                      <span>Tambahkan</span>
+                    </a>
+                    <a id="follow-btn" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold bg-indigo-600 text-white hover:scale-[1.02] transition" href="#" aria-label="Ikuti Dikasih Info Mase">
+                      <i data-lucide="user-plus" class="w-4 h-4"></i>
+                      <span>Follow</span>
+                    </a>
+                  </div>
+        
+                  <button id="refresh-next" class="mt-1 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white border border-gray-200 shadow-sm hover:shadow-md transition" aria-label="Perbarui countdown">
+                    <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                    <span class="text-sm text-gray-700">Update</span>
+                  </button>
+                </div>
               </div>
-              <div class="text-center">
-                <div id="countdown" class="text-2xl font-mono font-bold text-gray-900">00d 00:00:00</div>
-                <div class="text-sm text-gray-500 mt-1">hari : jam : menit : detik</div>
-              </div>
-              <div class="text-right">
-                <button id="refresh-next" class="mt-2 md:mt-0 px-4 py-2 rounded-full bg-orange-500 text-white font-semibold shadow hover:scale-[1.02] transition-all">Refresh</button>
-              </div>
+            </div>
+        
+            <!-- Micro copy -->
+            <div class="max-w-2xl mx-auto mt-4 text-center text-sm text-gray-500">
+              <span>Waktu menyesuaikan timezone perangkatmu. Klik “Tambahkan” untuk simpan ke Google Calendar.</span>
             </div>
           </div>
         </section>
         
-        <!-- END JADWAL NGONTEN (INTERAKTIF) -->
+        <!-- =========================
+          END JADWAL NGONTEN - REVISI OPTIMAL
+        ========================= -->
         
-        <!-- COUNTDOWN SCRIPT (letakkan setelah section ini atau di akhir body) -->
+        <!-- ========== SCRIPT: Next Upload + UI State (PLACE AFTER SECTION OR BEFORE </body>) ========== -->
         <script>
         (function(){
-          // Ubah jam upload default (0-23) jika mau
-          const UPLOAD_HOUR = 10; // 10:00 lokal
-          // Jadwal: 1=Senin, 4=Kamis, 6=Sabtu (sesuai getDay())
-          const SCHEDULE = [1,4,6];
+          // CONFIG
+          const UPLOAD_HOUR = 19; // 19:00 lokal (WIB ideal untuk audiens Indonesia)
+          const SCHEDULE = [1,4,6]; // 1=Mon, 4=Thu, 6=Sat
         
-          function getNextUploadDate(now = new Date()) {
-            for (let i = 0; i <= 14; i++) { // cek 2 minggu ke depan untuk aman
+          // UTILS
+          function pad(n){ return String(n).padStart(2,'0'); }
+          function getWeekdayName(date){
+            return date.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'short' });
+          }
+        
+          // Find next upload date (in user's local timezone)
+          function getNextUploadDate(now = new Date()){
+            for (let i=0;i<=14;i++){
               const candidate = new Date(now);
               candidate.setDate(now.getDate() + i);
               candidate.setHours(UPLOAD_HOUR, 0, 0, 0);
@@ -534,57 +597,126 @@
                 return candidate;
               }
             }
-            // fallback: satu minggu ke depan ke hari pertama schedule
+            // fallback: next week's first scheduled day
             const fallback = new Date(now);
             fallback.setDate(now.getDate() + 7);
             fallback.setHours(UPLOAD_HOUR,0,0,0);
             return fallback;
           }
         
+          // format remaining ms
           function formatRemaining(ms) {
-            if (ms <= 0) return { d:0, h:0, m:0, s:0 };
-            const total = Math.floor(ms / 1000);
+            if (ms <= 0) return { d:0,h:0,m:0,s:0 };
+            const total = Math.floor(ms/1000);
             const s = total % 60;
-            const m = Math.floor(total / 60) % 60;
-            const h = Math.floor(total / 3600) % 24;
-            const d = Math.floor(total / 86400);
-            return { d, h, m, s };
+            const m = Math.floor(total/60) % 60;
+            const h = Math.floor(total/3600) % 24;
+            const d = Math.floor(total/86400);
+            return { d,h,m,s };
           }
-        
-          function pad(n){ return String(n).padStart(2,'0'); }
         
           // DOM nodes
           const nextDayEl = document.getElementById('next-upload-day');
           const countdownEl = document.getElementById('countdown');
+          const headerNextDay = document.getElementById('header-next-day');
+          const headerBadge = document.getElementById('header-next-badge');
           const refreshBtn = document.getElementById('refresh-next');
+          const addCalendarBtn = document.getElementById('add-calendar-btn');
+          const followBtn = document.getElementById('follow-btn');
         
+          const cardMap = {
+            1: document.getElementById('card-mon'),
+            4: document.getElementById('card-thu'),
+            6: document.getElementById('card-sat')
+          };
+        
+          // UI helpers
+          function setActiveCard(dayNumber){
+            // remove existing active states
+            Object.values(cardMap).forEach(el => {
+              if (!el) return;
+              el.querySelector('.glass-effect').classList.remove('ring-4','ring-opacity-30','ring-indigo-300','shadow-[0_20px_40px_rgba(59,130,246,0.08)]');
+              el.classList.remove('transform','-translate-y-1');
+            });
+        
+            const el = cardMap[dayNumber];
+            if (!el) return;
+            const inner = el.querySelector('.glass-effect');
+            // Add visible active styles
+            inner.classList.add('ring-4','ring-opacity-30','ring-indigo-300','shadow-[0_20px_40px_rgba(59,130,246,0.08)]');
+            // small scale
+            el.classList.add('transform','-translate-y-1');
+          }
+        
+          // Google Calendar link generator
+          function buildGoogleCalendarUrl(startDate, endDate, title = 'Upload - Dikasih Info Mase', details='Jangan sampai ketinggalan!'){
+            // Google Calendar expects UTC in YYYYMMDDTHHMMSSZ format
+            const toUTCStringForCal = (d) => {
+              const yyyy = d.getUTCFullYear();
+              const mm = pad(d.getUTCMonth()+1);
+              const dd = pad(d.getUTCDate());
+              const hh = pad(d.getUTCHours());
+              const min = pad(d.getUTCMinutes());
+              const sec = pad(d.getUTCSeconds());
+              return `${yyyy}${mm}${dd}T${hh}${min}${sec}Z`;
+            };
+            const start = toUTCStringForCal(startDate);
+            const end = toUTCStringForCal(endDate);
+            const url = new URL('https://calendar.google.com/calendar/render');
+            url.searchParams.set('action','TEMPLATE');
+            url.searchParams.set('text', title);
+            url.searchParams.set('details', details);
+            url.searchParams.set('dates', `${start}/${end}`);
+            return url.toString();
+          }
+        
+          // Main logic
           let nextDate = getNextUploadDate(new Date());
         
-          function updateDisplay() {
+          function updateDisplay(){
             const now = new Date();
-            if (!nextDate || nextDate <= now) {
-              nextDate = getNextUploadDate(now);
-            }
+            if (!nextDate || nextDate <= now) nextDate = getNextUploadDate(now);
             const rem = nextDate - now;
             const t = formatRemaining(rem);
-            nextDayEl.textContent = nextDate.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'short' });
+        
+            // Update DOM texts
+            nextDayEl.textContent = getWeekdayName(nextDate);
             countdownEl.textContent = `${t.d}d ${pad(t.h)}:${pad(t.m)}:${pad(t.s)}`;
+            // header badge
+            headerNextDay.textContent = nextDate.toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+            if (headerBadge) headerBadge.classList.remove('hidden');
+        
+            // highlight the card that matches nextDate
+            setActiveCard(nextDate.getDay());
+        
+            // update add calendar btn
+            const endDate = new Date(nextDate);
+            endDate.setMinutes(endDate.getMinutes() + 30); // default length 30 minutes
+            addCalendarBtn.setAttribute('href', buildGoogleCalendarUrl(nextDate, endDate, 'Upload Baru dari Dikasih Info Mase', 'Reminder: ada upload baru — jangan ketinggalan!'));
           }
         
           // start interval
           updateDisplay();
           const intervalId = setInterval(updateDisplay, 1000);
         
-          // refresh button (manual recalc)
+          // Refresh button
           refreshBtn?.addEventListener('click', () => {
             nextDate = getNextUploadDate(new Date());
             updateDisplay();
-            // re-render lucide icons just in case (safe)
+            // subtle feedback: pulse refresh btn
+            refreshBtn.classList.add('animate-pulse');
+            setTimeout(()=> refreshBtn.classList.remove('animate-pulse'), 700);
             if (window.lucide && lucide.createIcons) lucide.createIcons();
           });
         
-          // Cleanup on page unload (best practice)
-          window.addEventListener('beforeunload', () => clearInterval(intervalId));
+          // Follow button: link to your instagram or channel (edit href)
+          followBtn && followBtn.setAttribute('href', '#'); // <- change to your IG or page link
+        
+          // Ensure lucide icons render
+          if (window.lucide && lucide.createIcons) lucide.createIcons();
+        
+          // cleanup
+          window.addEventListener('beforeunload', ()=> clearInterval(intervalId));
         })();
         </script>
         
