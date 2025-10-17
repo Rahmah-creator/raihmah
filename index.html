@@ -11,10 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     
     <style>
-        /* Global Reset & Base */
-        :root {
-            scroll-behavior: smooth;
-        }
         body {
             font-family: 'Inter', sans-serif;
             overflow-x: hidden; /* Prevent horizontal scroll from orbs */
@@ -944,11 +940,37 @@
                 }, 300);
             }, 3000);
         }
+        <script>
+        // --- JAVASCRIPT & UTILITIES ---
+    
+        // ... (kode toast utility) ...
+    
+        // === TAMBAHKAN KODE BARU INI ===
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        } else {
+            window.onbeforeunload = function () {
+                window.scrollTo(0, 0);
+            };
+        }
+    
+        window.addEventListener('load', () => {
+            const scrollPos = sessionStorage.getItem('scrollPos');
+            if (scrollPos) {
+                window.scrollTo(0, parseInt(scrollPos));
+                sessionStorage.removeItem('scrollPos');
+            }
+        });
+    
+        window.addEventListener('beforeunload', () => {
+            sessionStorage.setItem('scrollPos', window.scrollY);
+        });
+        // ================================
 
         // 2. EVENT LISTENERS AND FORM HANDLING
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-render Lucide icons after content is loaded
-            lucide.createIcons();
+        // Re-render Lucide icons after content is loaded
+        lucide.createIcons();
 
             // Mobile Menu Toggle
             const menuToggle = document.getElementById('menu-toggle');
@@ -967,6 +989,7 @@
                 }
                 lucide.createIcons(); // <--- INI KUNCI AGAR IKON BARU MUNCUL
             });
+        </script>
 
             // Close menu on scroll link click
             document.querySelectorAll('.scroll-link').forEach(link => {
