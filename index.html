@@ -947,6 +947,12 @@
 
         // 2. EVENT LISTENERS AND FORM HANDLING
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // === TAMBAHKAN 2 BARIS INI ===
+            history.scrollRestoration = 'manual';
+            window.scrollTo(0, 0);
+            // ============================
+            
             // Re-render Lucide icons after content is loaded
             lucide.createIcons();
 
