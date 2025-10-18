@@ -34,7 +34,7 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.2);
         }
         /* Soft SVG Shadow for Robot */
-        svg {
+        svg.robot-svg {
             filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
         }
         
@@ -43,7 +43,7 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* --- KEYFRAMES --- */
+        /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
         /* Robot Animations */
         @keyframes float-robot { 
             0%, 100% { transform: translateY(0); } 
@@ -112,7 +112,7 @@
             75% { transform: scale(1.01) rotate(-0.5deg); }
         }
         
-        /* --- ANIMATION APPLICATION --- */
+        /* --- ANIMATION APPLICATION (Lembut di mobile) --- */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
         .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
@@ -178,7 +178,7 @@
             transition: transform 0.3s ease; 
         }
 
-        /* --- RESPONSIVE ADJUSTMENTS (REVISI: Lebih Ketat untuk Mobile) --- */
+        /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
         /* Tablet & Landscape Mobile (max-1024px) */
         @media (max-width: 1024px) {
             .hero-title { 
@@ -191,8 +191,8 @@
             .hero-buttons { flex-direction: column; width: 100%; }
             .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; } /* Button text lebih kecil */
             .hero-grid { flex-direction: column-reverse; } 
-            /* Robot scale down di tablet */
-            .hero-robot-container { transform: scale(0.85); } /* Kelas baru buat wrapper robot */
+            /* Robot scale lembut di tablet */
+            .hero-robot-container { transform: scale(0.95); } /* Naik dari 0.85, biar nggak terlalu kecil */
         }
 
         /* Mobile HP (max-768px) */
@@ -214,12 +214,20 @@
                 padding: 24px 16px; 
                 border-radius: 24px; /* Biar lebih compact */
             }
-            /* Robot lebih kecil di HP */
+            /* Robot lebih aman di HP - Naik scale, tambah min-width */
             .hero-robot-container { 
-                transform: scale(0.75); 
-                max-width: 280px; /* Batasi lebar */
+                transform: scale(0.9); /* Naik dari 0.75, biar keliatan jelas */
+                min-width: 250px; /* Pastikan nggak hilang di layar kecil */
             }
-            .hero-robot-container svg { width: 100%; height: auto; } /* Responsive SVG */
+            .hero-robot-container svg.robot-svg { 
+                width: 100%; 
+                height: auto; 
+                min-height: 200px; /* Fallback height biar nggak collapse */
+            }
+            /* Animasi lebih lambat di mobile buat performa */
+            .animate-wiggle-head, .animate-wave-arm-left, .animate-wave-arm-right { 
+                animation-duration: 2s; /* Dari 1.5s/1.2s → lebih smooth di HP */
+            }
             /* Buttons & Cards di mobile */
             .hero-buttons a { 
                 padding: 12px 20px; 
@@ -239,6 +247,10 @@
             .section-padding { padding: 48px 16px; }
             .hero-content-card { padding: 20px 12px; }
             .mission-card { padding: 24px 16px; }
+            .hero-robot-container { 
+                transform: scale(0.85); /* Masih keliatan, tapi compact */
+                min-width: 220px; 
+            }
         }
 
         /* --- JADWAL NGONTEN SCOPED STYLING --- */
@@ -305,16 +317,49 @@
 </head>
 
 <body>
-    <!-- Sisanya sama persis seperti kode sebelumnya. Hanya tambahin kelas `hero-robot-container` di wrapper robot SVG untuk scaling. -->
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
-    <!-- ... (Navigasi sama) ... -->
+    <!-- NAVIGATION (Fixed and Responsive) -->
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-white/80 shadow-lg border-b border-blue-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <a href="#hero" class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-800 scroll-link">
+                    Raihan Hikmah
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6 items-center">
+                    <a href="#personal" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Personal</a>
+                    <a href="#mission" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Tujuan</a>
+                    <a href="#jadwal-ngonten" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Jadwal</a>
+                    <a href="#feedback" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Feedback</a>
+                    <a href="#support" class="text-gray-700 hover:text-blue-600 font-medium transition-colors hover:scale-105 scroll-link">Support</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menu-toggle" class="md:hidden text-gray-700 hover:text-blue-600">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Content -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/50 border-t border-blue-50">
+            <a href="#personal" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Personal</a>
+            <a href="#mission" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Tujuan</a>
+            <a href="#jadwal-ngonten" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Jadwal</a>
+            <a href="#feedback" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Feedback</a>
+            <a href="#support" class="block px-4 py-3 text-gray-700 hover:bg-blue-50/50 scroll-link">Support</a>
+        </div>
+    </nav>
 
     <main>
-        <!-- 1. HERO SECTION (Tambah kelas di wrapper robot) -->
+        <!-- 1. HERO SECTION -->
         <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
             bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
             
-            <!-- Background Orbs (sama) -->
+            <!-- Background Orbs -->
             <div class="absolute top-0 left-0 w-full h-full">
                 <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
                 <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
@@ -324,27 +369,104 @@
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) - Tambah kelas hero-robot-container -->
+                    <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-                            <!-- Teks "Halo!" (sama) -->
+                            <!-- Teks "Halo!" yang mengikuti robot -->
                             <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
+                                    <!-- Speech Bubble Background dengan Glass Effect -->
                                     <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
                                         <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
+                                    <!-- Speech Bubble Tail dengan gradient -->
                                     <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
                                     <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
-                            <!-- Robot SVG (sama) -->
-                            <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                                <!-- ... (Defs dan SVG content sama persis) ... -->
+                            <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
+                            <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
+                                <defs>
+                                    <!-- Cahaya pulsasi di belakang robot -->
+                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                        <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
+                                        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+                                    </radialGradient>
+                                
+                                    <!-- Kepala: gradasi ungu lembut -->
+                                    <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
+                                        <stop offset="0%" stop-color="#6366F1" />
+                                        <stop offset="100%" stop-color="#8B5CF6" />
+                                    </linearGradient>
+                                
+                                    <!-- Badan: biru cerah harmonis -->
+                                    <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
+                                        <stop offset="0%" stop-color="#3B82F6" />
+                                        <stop offset="100%" stop-color="#0EA5E9" />
+                                    </linearGradient>
+                                
+                                    <!-- Tangan & kaki: putih kebiruan lembut -->
+                                    <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#E0F2FE" />
+                                        <stop offset="100%" stop-color="#BFDBFE" />
+                                    </linearGradient>
+                                
+                                    <!-- Highlight lembut di sisi kiri badan -->
+                                    <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
+                                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
+                                        <stop offset="100%" stop-color="transparent" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Glowing Pulse Ring Ring Behind (Layer 1) -->
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
+
+                                <!-- Legs -->
+                                <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                
+                                <!-- Body -->
+                                <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
+                                <!-- Highlight minimal di sisi kiri -->
+                                <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
+                                
+                                <!-- Chest Light (Pulse) -->
+                                <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                
+                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
+                                <g class="animate-wave-arm-left">
+                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
+                                </g>
+                                <g class="animate-wave-arm-right">
+                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
+                                </g>
+
+                                <!-- Head Wiggle Animation (Lebih Sering) -->
+                                <g class="animate-wiggle-head">
+                                    <!-- Head -->
+                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
+                                    
+                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
+                                    <g class="animate-blink-eyes">
+                                        <!-- Eye 1 -->
+                                        <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
+                                        <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
+                                        <!-- Eye 2 -->
+                                        <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
+                                        <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
+                                    </g>
+
+                                    <!-- Antenna Pulse Animation -->
+                                    <g class="animate-pulse-antenna">
+                                        <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
+                                        <circle cx="50" cy="5" r="3" fill="#F97316" />
+                                    </g>
+                                </g>
                             </svg>
                         </div>
                     </div>
                     
-                    <!-- Left Content (sama, tapi subtitle punya kelas hero-subtitle) -->
+                    <!-- Left Content (Glass Card) -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#BFDBFE]">
@@ -687,7 +809,7 @@
                                 </div>
                             
                                 <!-- QRIS Image -->
-                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-80 mb-4">
+                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4"> <!-- Fix border-gray-80 → gray-100 -->
                                     <img 
                                         src="qris.jpg" 
                                         alt="QRIS Raihan Hikmah" 
@@ -787,8 +909,9 @@
         </footer>
     </main>
 
-    <!-- JAVASCRIPT & UTILITIES -->
     <script>
+        // --- JAVASCRIPT & UTILITIES ---
+
         // 1. TOAST NOTIFICATION UTILITY
         const toastContainer = document.getElementById('toast-container');
         function showToast(message, type) {
@@ -874,7 +997,7 @@
                     return;
                 }
                 
-                submitButton.innerHTML = 'Mengirim... <i data-lucide="loader-circle" class="w-5 h-5 ml-2 animate-spin"></i>';
+                submitButton.innerHTML = 'Mengirim... <i data-lucide="loader" class="w-5 h-5 ml-2 animate-spin"></i>';
                 submitButton.disabled = true;
                 lucide.createIcons();
                 
@@ -912,7 +1035,6 @@
                 const pad = n => String(n).padStart(2,'0');
                 const elDay = document.getElementById('jn-next-day');
                 const elCount = document.getElementById('jn-countdown');
-                const elRefresh = document.getElementById('jn-refresh');
             
                 function nextUpload(now = new Date()){
                     for(let i = 0; i < 14; i++){
@@ -938,7 +1060,7 @@
                     elCount.textContent = `${d > 0 ? d + 'd ' : ''}${pad(h)}:${pad(m)}:${pad(s)}`;
                     elCount.classList.add('jn-tick');
             
-                    document.querySelectorAll('#jn-jadwal-ngonten [data-day]').forEach(card => {
+                    document.querySelectorAll('#jadwal-ngonten [data-day]').forEach(card => {
                         card.classList.remove('jn-active');
                         if(Number(card.dataset.day) === window.jn_next.getDay()) card.classList.add('jn-active');
                     });
@@ -946,8 +1068,6 @@
             
                 update();
                 const timer = setInterval(update, 1000);
-                if(elRefresh) elRefresh.addEventListener('click', () => { window.jn_next = nextUpload(); update(); });
-                if(window.lucide && lucide.createIcons) lucide.createIcons();
                 window.addEventListener('beforeunload', () => clearInterval(timer));
             })();
         });
