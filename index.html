@@ -7,6 +7,31 @@
     
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+      <!-- Style kustom khusus tombol WhatsApp -->
+      <style>
+        /* WhatsApp CTA - minimal & scoped */
+        .wa-button{
+          display:inline-flex; align-items:center; gap:10px;
+          padding:10px 16px; border-radius:12px; font-weight:700;
+          background:linear-gradient(90deg,#16A34A,#22C55E);
+          color:#fff; text-decoration:none; max-width:320px;
+          box-shadow:0 10px 30px rgba(16,185,129,0.12);
+          border:1px solid rgba(255,255,255,0.05);
+          transition:transform .18s,box-shadow .18s;
+        }
+        .wa-button:focus,.wa-button:hover{
+          transform:translateY(-3px);
+          box-shadow:0 18px 44px rgba(16,185,129,0.14);
+        }
+        .wa-button .wa-icon{
+          width:20px; height:20px; display:inline-flex;
+          align-items:center; justify-content:center;
+        }
+        @media(max-width:1024px){
+          .wa-button{ max-width:100%; padding:12px 14px; }
+        }
+      </style>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -908,13 +933,10 @@
                     <h4 class="text-xl font-bold text-orange-400 mb-4">Kerjasama? 🤝</h4>
                     <div class="space-y-4">
                         <!-- WhatsApp Button -->
-                        <a href="https://wa.me/62895324959492" 
-                           target="_blank"
-                           class="flex items-center justify-center p-4 rounded-xl transition-all duration-300 
-                                  bg-gradient-to-r from-green-600 to-green-500 hover:from-green-500 hover:to-green-600
-                                  hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)] group">
-                            <i data-lucide="message-circle" class="w-5 h-5 mr-2 text-white group-hover:scale-110 transition-transform"></i>
-                            <span class="text-white font-bold">Chat via WhatsApp</span>
+                        <a href="https://wa.me/62895324959492" target="_blank" rel="noopener noreferrer"
+                           class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
+                          <span class="wa-icon"><i data-lucide="message-circle"></i></span>
+                          <span>Chat via WhatsApp</span>
                         </a>
                     </div>
                 </div>
