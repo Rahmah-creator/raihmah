@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dikasih Info Mase - AI Education</title>
+    
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         /* Global Reset & Base */
@@ -24,47 +29,91 @@
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        /* New: Text shadow for better contrast on complex backgrounds */
+        /* Text shadow for better contrast on complex backgrounds */
         .text-shadow {
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.2);
         }
         /* Soft SVG Shadow for Robot */
         svg {
-          filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
+            filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
         }
-            
+        
+        /* === Font Handwritten (Fallback to Inter) === */
+        .font-handwritten {
+            font-family: 'Inter', sans-serif;
+        }
+        
         /* --- KEYFRAMES --- */
-        /* Robot Animations: Lebih interaktif dan semangat */
-        @keyframes float-robot { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        /* Kepala lebih sering bergerak */
-        @keyframes wiggle-head { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-8deg); } 50% { transform: rotate(0deg); } 75% { transform: rotate(8deg); } } 
-        @keyframes pulse-antenna { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.1); } }
-        /* Blink lebih cepat dan ceria */
-        @keyframes blink-eyes { 0%, 85%, 100% { transform: scaleY(1); } 87%, 90% { transform: scaleY(0.1); } } 
-        @keyframes breathe-body { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.97); } }
-        /* Tangan melambai "Halo" lebih ekspresif */
-        @keyframes wave-arm-left { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-25deg); } } 
-        @keyframes wave-arm-right { 
-        0%, 100% { transform: rotate(0deg) translateY(0); } /* Awal dan Akhir (Tangan di bawah) */
-        25%, 75% { transform: rotate(40deg) translateY(-25px); } /* Gerakan Melambai ke Atas (lebih ekspresif) */
-        50% { transform: rotate(15deg) translateY(-15px); } /* Di tengah, swing sedikit ke bawah */
+        /* Robot Animations */
+        @keyframes float-robot { 
+            0%, 100% { transform: translateY(0); } 
+            50% { transform: translateY(-12px); } 
         }
-
-        @keyframes pulse-glow { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.6; } }
+        @keyframes wiggle-head { 
+            0%, 100% { transform: rotate(0deg); } 
+            25% { transform: rotate(-8deg); } 
+            50% { transform: rotate(0deg); } 
+            75% { transform: rotate(8deg); } 
+        } 
+        @keyframes pulse-antenna { 
+            0%, 100% { opacity: 1; transform: scale(1); } 
+            50% { opacity: 0.6; transform: scale(1.1); } 
+        }
+        @keyframes blink-eyes { 
+            0%, 85%, 100% { transform: scaleY(1); } 
+            87%, 90% { transform: scaleY(0.1); } 
+        } 
+        @keyframes breathe-body { 
+            0%, 100% { transform: scaleY(1); } 
+            50% { transform: scaleY(0.97); } 
+        }
+        @keyframes wave-arm-left { 
+            0%, 100% { transform: rotate(0deg); } 
+            50% { transform: rotate(-25deg); } 
+        } 
+        @keyframes wave-arm-right { 
+            0%, 100% { transform: rotate(0deg) translateY(0); } 
+            25%, 75% { transform: rotate(40deg) translateY(-25px); } 
+            50% { transform: rotate(15deg) translateY(-15px); } 
+        }
+        @keyframes pulse-glow { 
+            0%, 100% { opacity: 0.3; } 
+            50% { opacity: 0.6; } 
+        }
 
         /* General Animations */
-        @keyframes float-orb { 0%, 100% { transform: translate(0, 0) scale(1); } 33% { transform: translate(30px, -30px) scale(1.1); } 66% { transform: translate(-20px, 20px) scale(0.9); } }
-        @keyframes float-avatar { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(2deg); } }
-        @keyframes heartbeat { 0%, 100% { transform: scale(1); } 10%, 30% { transform: scale(1.1); } 20%, 40% { transform: scale(0.9); } }
-        @keyframes rotate-gradient { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float-orb { 
+            0%, 100% { transform: translate(0, 0) scale(1); } 
+            33% { transform: translate(30px, -30px) scale(1.1); } 
+            66% { transform: translate(-20px, 20px) scale(0.9); } 
+        }
+        @keyframes float-avatar { 
+            0%, 100% { transform: translateY(0) rotate(0deg); } 
+            50% { transform: translateY(-15px) rotate(2deg); } 
+        }
+        @keyframes heartbeat { 
+            0%, 100% { transform: scale(1); } 
+            10%, 30% { transform: scale(1.1); } 
+            20%, 40% { transform: scale(0.9); } 
+        }
+        @keyframes rotate-gradient { 
+            from { transform: rotate(0deg); } 
+            to { transform: rotate(360deg); } 
+        }
+        @keyframes fadeInUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
 
+        /* Jiggle Animation for CTA */
+        @keyframes jiggle-button { 
+            0%, 100% { transform: scale(1) rotate(0deg); } 
+            25% { transform: scale(1.01) rotate(0.5deg); }
+            75% { transform: scale(1.01) rotate(-0.5deg); }
+        }
+        
         /* --- ANIMATION APPLICATION --- */
-        /* New Class: Jiggle Application (TEMPATKAN DI SINI) */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
-        .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
-        .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
-        /* ... dan seterusnya ... */
         .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
         .animate-pulse-antenna { animation: pulse-antenna 2s ease-in-out infinite; }
@@ -80,16 +129,6 @@
         .animate-heartbeat { animation: heartbeat 1s infinite; }
         .animate-rotate-gradient { animation: rotate-gradient 10s linear infinite; }
         .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* New Animation: Subtle Jiggle for CTA (TEMPATKAN DI SINI) */
-        @keyframes jiggle-button { 
-            0%, 100% { transform: scale(1) rotate(0deg); } 
-            25% { transform: scale(1.01) rotate(0.5deg); }
-            75% { transform: scale(1.01) rotate(-0.5deg); }
-        }
-        
-        /* --- ANIMATION APPLICATION --- */
 
         /* --- MISSION CARD STYLING --- */
         .mission-card {
@@ -101,7 +140,6 @@
             transition: all 0.3s ease-in-out;
             cursor: pointer;
         }
-
         .mission-card::before {
             content: '';
             position: absolute;
@@ -109,31 +147,36 @@
             height: 6px;
             transition: height 0.3s, opacity 0.3s;
         }
-
         .mission-card:hover {
             transform: translateY(-12px);
         }
-        
         .mission-card:hover::before {
             height: 100%;
             opacity: 0.05;
         }
-
         /* Specific Card Accents and Hover Shadows */
         .card-blue { border: 2px solid #DBEAFE; }
         .card-blue::before { background: linear-gradient(to right, #0EA5E9, #3B82F6); }
-        .card-blue:hover { box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.1); border-color: #93C5FD; }
-
+        .card-blue:hover { 
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -2px rgba(59, 130, 246, 0.1); 
+            border-color: #93C5FD; 
+        }
         .card-orange { border: 2px solid #FED7AA; }
         .card-orange::before { background: linear-gradient(to right, #F59E0B, #F97316); }
-        .card-orange:hover { box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3), 0 4px 6px -2px rgba(249, 115, 22, 0.1); border-color: #FBD38D; }
-
+        .card-orange:hover { 
+            box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3), 0 4px 6px -2px rgba(249, 115, 22, 0.1); 
+            border-color: #FBD38D; 
+        }
         .card-red { border: 2px solid #FECACA; }
         .card-red::before { background: linear-gradient(to right, #EF4444, #DC2626); }
-        .card-red:hover { box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3), 0 4px 6px -2px rgba(239, 68, 68, 0.1); border-color: #FCA5A5; }
-
-        .mission-card:hover .mission-card-icon { transform: scale(1.1) rotate(5deg); transition: transform 0.3s ease; }
-
+        .card-red:hover { 
+            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3), 0 4px 6px -2px rgba(239, 68, 68, 0.1); 
+            border-color: #FCA5A5; 
+        }
+        .mission-card:hover .mission-card-icon { 
+            transform: scale(1.1) rotate(5deg); 
+            transition: transform 0.3s ease; 
+        }
 
         /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 1024px) {
@@ -141,10 +184,8 @@
             .hero-content-card { padding: 40px 24px; }
             .hero-buttons { flex-direction: column; width: 100%; }
             .hero-buttons a { width: 100%; justify-content: center; }
-            /* Perubahan: Di HP/Tablet (lebar < 1024px), konten dibalik */
             .hero-grid { flex-direction: column-reverse; } 
         }
-
         @media (max-width: 768px) {
             .section-padding { padding: 80px 24px; }
             .personal-container { flex-direction: column; text-align: center; }
@@ -152,35 +193,71 @@
             .qris-container { width: 90%; max-width: 320px; height: 320px; } 
             .qris-text { font-size: 90px !important; }
         }
-        <head>
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-        
-        <style>
-            /* Global Reset & Base */
-            :root {
-                scroll-behavior: smooth;
-            }
-            body {
-                font-family: 'Inter', sans-serif;
-                overflow-x: hidden; /* Prevent horizontal scroll from orbs */
-            }
-            
-            /* === TAMBAHKAN KODE INI DI SINI === */
-            .font-handwritten {
-                font-family: 'Inter', sans-serif;
-            }
-            /* ==================================== */
-    
-            .glass-effect {
-                background-color: rgba(255, 255, 255, 0.08);
-                backdrop-filter: blur(24px);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-            }
-            /* ... (sisa kode CSS lainnya) ... */
-        </style>
-        <script src="https://unpkg.com/lucide@latest"></script>
-    </head>
 
+        /* --- JADWAL NGONTEN SCOPED STYLING --- */
+        #jn-jadwal-ngonten * { box-sizing: border-box; }
+        .jn-card { transition: transform .25s ease, box-shadow .3s ease; }
+        .jn-card:hover { transform: translateY(-6px); }
+        .jn-glass {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px) saturate(140%);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .jn-neon {
+            position: relative;
+            border-radius: 1.25rem;
+        }
+        .jn-neon::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 1.5rem;
+            background: linear-gradient(90deg,#6366f1,#0ea5e9,#a855f7);
+            opacity: .15;
+            filter: blur(10px);
+            z-index: -1;
+        }
+        .jn-active {
+            box-shadow: inset 0 0 20px rgba(99,102,241,0.3);
+        }
+        .jn-count-box {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .jn-count-box::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(90deg,rgba(99,102,241,0.1),rgba(14,165,233,0.1));
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        .jn-countdown { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+        @keyframes jn-tick { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+        .jn-tick { animation: jn-tick 1s steps(1,end) infinite; }
+        .jn-follow-btn {
+            background: linear-gradient(90deg,#6366f1,#8b5cf6);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: transform .25s ease;
+        }
+        .jn-follow-btn:hover { transform: scale(1.03); }
+        @media (max-width:768px){
+            .jn-card h3 { font-size: 1.125rem; }
+        }
+    </style>
+</head>
+
+<body>
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
@@ -231,10 +308,9 @@
             </div>
 
             <div class="max-w-7xl mx-auto relative z-10 w-full">
-                <!-- Perubahan: Di HP (mobile), robot di atas teks (menggunakan flex-col-reverse) -->
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) - Ini akan di atas di mobile -->
+                    <!-- Right Visual (Robot SVG) -->
                     <div class="w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
                             <!-- Teks "Halo!" yang mengikuti robot -->
@@ -251,89 +327,87 @@
                             </div>
                             <!-- Robot SVG component -->
                             <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-                                <!-- 🔹 REVISED COLOR DEFINITIONS FOR ROBOT -->
+                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
-                                  <!-- Cahaya pulsasi di belakang robot -->
-                                  <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                                    <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
-                                    <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-                                  </radialGradient>
+                                    <!-- Cahaya pulsasi di belakang robot -->
+                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                        <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
+                                        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+                                    </radialGradient>
                                 
-                                  <!-- Kepala: gradasi ungu lembut -->
-                                  <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
-                                    <stop offset="0%" stop-color="#6366F1" />
-                                    <stop offset="100%" stop-color="#8B5CF6" />
-                                  </linearGradient>
+                                    <!-- Kepala: gradasi ungu lembut -->
+                                    <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
+                                        <stop offset="0%" stop-color="#6366F1" />
+                                        <stop offset="100%" stop-color="#8B5CF6" />
+                                    </linearGradient>
                                 
-                                  <!-- Badan: biru cerah harmonis -->
-                                  <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
-                                    <stop offset="0%" stop-color="#3B82F6" />
-                                    <stop offset="100%" stop-color="#0EA5E9" />
-                                  </linearGradient>
+                                    <!-- Badan: biru cerah harmonis -->
+                                    <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
+                                        <stop offset="0%" stop-color="#3B82F6" />
+                                        <stop offset="100%" stop-color="#0EA5E9" />
+                                    </linearGradient>
                                 
-                                  <!-- Tangan & kaki: putih kebiruan lembut -->
-                                  <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
-                                    <stop offset="0%" stop-color="#E0F2FE" />
-                                    <stop offset="100%" stop-color="#BFDBFE" />
-                                  </linearGradient>
+                                    <!-- Tangan & kaki: putih kebiruan lembut -->
+                                    <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#E0F2FE" />
+                                        <stop offset="100%" stop-color="#BFDBFE" />
+                                    </linearGradient>
                                 
-                                  <!-- Highlight lembut di sisi kiri badan -->
-                                  <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
-                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
-                                    <stop offset="100%" stop-color="transparent" />
-                                  </linearGradient>
+                                    <!-- Highlight lembut di sisi kiri badan -->
+                                    <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
+                                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
+                                        <stop offset="100%" stop-color="transparent" />
+                                    </linearGradient>
                                 </defs>
-                                <!-- 1. Glowing Pulse Ring Behind (Layer 1) -->
+                                <!-- Glowing Pulse Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
 
-                                        <!-- Legs -->
-                                        <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                                        <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                                        
-                                        <!-- Body -->
-                                        <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" filter="drop-shadow(0px 6px 10px rgba(0,0,0,0.08))" />
-                                        <!-- Highlight minimal di sisi kiri -->
-                                        <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
-                                        
-                                        <!-- Chest Light (Pulse) -->
-                                        <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                <!-- Legs -->
+                                <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                 
-                                        <!-- 5. Arms Waving Animation (Lebih Ekspresif) -->
-                                        <g class="animate-wave-arm-left">
-                                            <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
-                                        </g>
-                                        <g class="animate-wave-arm-right">
-                                            <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
-                                        </g>
+                                <!-- Body -->
+                                <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" filter="drop-shadow(0px 6px 10px rgba(0,0,0,0.08))" />
+                                <!-- Highlight minimal di sisi kiri -->
+                                <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
+                                
+                                <!-- Chest Light (Pulse) -->
+                                <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                
+                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
+                                <g class="animate-wave-arm-left">
+                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
+                                </g>
+                                <g class="animate-wave-arm-right">
+                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
+                                </g>
 
-                                        <!-- 3. Head Wiggle Animation (Lebih Sering) -->
-                                        <g class="animate-wiggle-head">
-                                            <!-- Head -->
-                                            <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
-                                            
-                                            <!-- 6. Eyes Blinking Animation (Lebih Cepat) -->
-                                            <g class="animate-blink-eyes">
-                                                <!-- Eye 1 -->
-                                                <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
-                                                <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
-                                                <!-- Eye 2 -->
-                                                <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
-                                                <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
-                                            </g>
+                                <!-- Head Wiggle Animation (Lebih Sering) -->
+                                <g class="animate-wiggle-head">
+                                    <!-- Head -->
+                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
+                                    
+                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
+                                    <g class="animate-blink-eyes">
+                                        <!-- Eye 1 -->
+                                        <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
+                                        <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
+                                        <!-- Eye 2 -->
+                                        <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
+                                        <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
+                                    </g>
 
-                                            <!-- 7. Antenna Pulse Animation -->
-                                            <g class="animate-pulse-antenna">
-                                                <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
-                                                <circle cx="50" cy="5" r="3" fill="#F97316" />
-                                            </g>
-                                        </g>
+                                    <!-- Antenna Pulse Animation -->
+                                    <g class="animate-pulse-antenna">
+                                        <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
+                                        <circle cx="50" cy="5" r="3" fill="#F97316" />
                                     </g>
                                 </g>
                             </svg>
                         </div>
                     </div>
                     
-                    <!-- Left Content (Glass Card) - Ini akan di bawah di mobile -->
+                    <!-- Left Content (Glass Card) -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#BFDBFE]">
@@ -353,7 +427,6 @@
                             </a>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </section>
@@ -399,7 +472,7 @@
                     </div>
                 </div>
 
-                <!-- Andrew Ng Quote Box - Perubahan Copywriting Poin 3 -->
+                <!-- Andrew Ng Quote Box -->
                 <div class="relative p-12 rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto
                     bg-gradient-to-br from-[#0EA5E9]/90 to-[#3B82F6]/90">
                     
@@ -449,7 +522,7 @@
                         </div>
                     </div>
 
-                    <!-- Right: Story - Perubahan Copywriting Poin 2 -->
+                    <!-- Right: Story -->
                     <div class="w-full lg:w-2/3 space-y-6 text-left">
                         <h2 class="text-3xl md:text-5xl font-extrabold mb-8 personal-title 
                             bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-center lg:text-left">
@@ -474,7 +547,6 @@
                             <div class="flex items-start text-center md:text-left">
                                 <i data-lucide="heart" fill="#EC4899" class="w-8 h-8 text-[#EC4899] mr-4 mt-1 animate-heartbeat"></i>
                                 <div>
-                                    <!-- Perubahan Copywriting Poin 3 -->
                                     <p class="text-lg font-medium text-gray-800">
                                         "Ilmu kalau dibagi bakal lebih berkah. Dan jujur aja, cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi… sekalian aja kita belajar bareng di sini, hehe. 😄"
                                     </p>
@@ -486,206 +558,81 @@
             </div>
         </section>
 
-        <!-- =========================
-          JADWAL NGONTEN - REVISI OPTIMAL
-          Paste this BEFORE <section id="feedback"> 
-          Script below should be placed right after this section or before </body>
-        ========================= -->
+        <!-- 4. JADWAL NGONTEN SECTION -->
         <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 animate-fadeInUp">
-          <style>
-            /* === Scoped styling: JN (Jadwal Ngonten) === */
-            #jn-jadwal-ngonten * { box-sizing: border-box; }
-        
-            .jn-card { transition: transform .25s ease, box-shadow .3s ease; }
-            .jn-card:hover { transform: translateY(-6px); }
-        
-            .jn-glass {
-              background: rgba(255,255,255,0.8);
-              backdrop-filter: blur(10px) saturate(140%);
-              border: 1px solid rgba(255,255,255,0.6);
-              border-radius: 1rem;
-              box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            }
-        
-            .jn-neon {
-              position: relative;
-              border-radius: 1.25rem;
-            }
-            .jn-neon::before {
-              content: "";
-              position: absolute;
-              inset: -2px;
-              border-radius: 1.5rem;
-              background: linear-gradient(90deg,#6366f1,#0ea5e9,#a855f7);
-              opacity: .15;
-              filter: blur(10px);
-              z-index: -1;
-            }
-        
-            .jn-active {
-              box-shadow: inset 0 0 20px rgba(99,102,241,0.3);
-            }
-        
-            .jn-count-box {
-              background: rgba(255,255,255,0.75);
-              backdrop-filter: blur(12px);
-              border: 1px solid rgba(255,255,255,0.5);
-              border-radius: 1.5rem;
-              box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-              position: relative;
-              overflow: hidden;
-            }
-        
-            .jn-count-box::after {
-              content: "";
-              position: absolute;
-              inset: 0;
-              border-radius: inherit;
-              background: linear-gradient(90deg,rgba(99,102,241,0.1),rgba(14,165,233,0.1));
-              opacity: 0.4;
-              pointer-events: none;
-            }
-        
-            .jn-countdown { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
-            @keyframes jn-tick { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
-            .jn-tick { animation: jn-tick 1s steps(1,end) infinite; }
-        
-            .jn-follow-btn {
-              background: linear-gradient(90deg,#6366f1,#8b5cf6);
-              color: #fff;
-              font-weight: 600;
-              border-radius: 9999px;
-              transition: transform .25s ease;
-            }
-            .jn-follow-btn:hover { transform: scale(1.03); }
-        
-            @media (max-width:768px){
-              .jn-card h3 { font-size: 1.125rem; }
-            }
-          </style>
-        
-          <div class="max-w-6xl mx-auto">
-            <!-- Header Center -->
-            <div class="text-center mb-10">
-              <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 flex justify-center items-center gap-3">
-                <i data-lucide="calendar" class="w-8 h-8 text-indigo-600"></i>
-                Jadwal Ngonten
-              </h2>
-            </div>
-              
-            <!-- Cards row with subtle gradient border wrappers -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-              <!-- Card TEMPLATE: gradient outer -> inner glass card -->
-              <div id="card-mon" data-day="1" class="relative rounded-3xl p-1"
-                   aria-label="Senin - Video Materi">
-                <div class="bg-gradient-to-r from-blue-200/30 to-indigo-200/15 rounded-3xl p-1 transition-all duration-300">
-                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
-                    <div class="flex items-center gap-4 mb-3">
-                      <i data-lucide="video" class="w-8 h-8 text-blue-500"></i>
-                      <h3 class="text-xl font-bold text-gray-900">Senin</h3>
-                    </div>
-                    <p class="text-gray-700 flex-1">Materi edukasi.</p>
-                    <div class="mt-4 text-sm text-gray-500">Format: Video pendek</div>
-                  </div>
+            <div class="max-w-6xl mx-auto">
+                <!-- Header Center -->
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 flex justify-center items-center gap-3">
+                        <i data-lucide="calendar" class="w-8 h-8 text-indigo-600"></i>
+                        Jadwal Ngonten
+                    </h2>
                 </div>
-              </div>
-        
-              <div id="card-thu" data-day="4" class="relative rounded-3xl p-1" aria-label="Kamis - Caroseul">
-                <div class="bg-gradient-to-r from-orange-200/30 to-red-200/10 rounded-3xl p-1 transition-all duration-300">
-                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
-                    <div class="flex items-center gap-4 mb-3">
-                      <i data-lucide="book-open" class="w-8 h-8 text-orange-500"></i>
-                      <h3 class="text-xl font-bold text-gray-900">Kamis</h3>
+                
+                <!-- Cards row with subtle gradient border wrappers -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <!-- Card Senin -->
+                    <div id="card-mon" data-day="1" class="relative rounded-3xl p-1 jn-card"
+                         aria-label="Senin - Video Materi">
+                        <div class="bg-gradient-to-r from-blue-200/30 to-indigo-200/15 rounded-3xl p-1 transition-all duration-300">
+                            <div class="jn-glass rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <i data-lucide="video" class="w-8 h-8 text-blue-500"></i>
+                                    <h3 class="text-xl font-bold text-gray-900">Senin</h3>
+                                </div>
+                                <p class="text-gray-700 flex-1">Materi edukasi.</p>
+                                <div class="mt-4 text-sm text-gray-500">Format: Video pendek</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-700 flex-1">Materi edukasi lebih lengkap.</p>
-                    <div class="mt-4 text-sm text-gray-500">Format: Carrousel</div>
-                  </div>
-                </div>
-              </div>
-        
-              <div id="card-sat" data-day="6" class="relative rounded-3xl p-1" aria-label="Sabtu - Tips & Trik">
-                <div class="bg-gradient-to-r from-purple-200/30 to-pink-200/10 rounded-3xl p-1 transition-all duration-300">
-                  <div class="glass-effect rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
-                    <div class="flex items-center gap-4 mb-3">
-                      <i data-lucide="sparkles" class="w-8 h-8 text-purple-500"></i>
-                      <h3 class="text-xl font-bold text-gray-900">Sabtu</h3>
+                    
+                    <!-- Card Kamis -->
+                    <div id="card-thu" data-day="4" class="relative rounded-3xl p-1 jn-card" aria-label="Kamis - Caroseul">
+                        <div class="bg-gradient-to-r from-orange-200/30 to-red-200/10 rounded-3xl p-1 transition-all duration-300">
+                            <div class="jn-glass rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <i data-lucide="book-open" class="w-8 h-8 text-orange-500"></i>
+                                    <h3 class="text-xl font-bold text-gray-900">Kamis</h3>
+                                </div>
+                                <p class="text-gray-700 flex-1">Materi edukasi lebih lengkap.</p>
+                                <div class="mt-4 text-sm text-gray-500">Format: Carrousel</div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-gray-700 flex-1">Tips & trik / info menarik.</p>
-                    <div class="mt-4 text-sm text-gray-500">Format: Video pendek</div>
-                  </div>
+                    
+                    <!-- Card Sabtu -->
+                    <div id="card-sat" data-day="6" class="relative rounded-3xl p-1 jn-card" aria-label="Sabtu - Tips & Trik">
+                        <div class="bg-gradient-to-r from-purple-200/30 to-pink-200/10 rounded-3xl p-1 transition-all duration-300">
+                            <div class="jn-glass rounded-3xl p-6 h-full hover:translate-y-[-6px] transition-transform duration-300 shadow-lg flex flex-col" role="button" tabindex="0">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <i data-lucide="sparkles" class="w-8 h-8 text-purple-500"></i>
+                                    <h3 class="text-xl font-bold text-gray-900">Sabtu</h3>
+                                </div>
+                                <p class="text-gray-700 flex-1">Tips & trik / info menarik.</p>
+                                <div class="mt-4 text-sm text-gray-500">Format: Video pendek</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                
+                <!-- Countdown / actions box -->
+                <div class="max-w-4xl mx-auto jn-count-box px-6 py-8 flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-6 text-center md:text-left">
+                    <div class="flex flex-col items-center md:items-start">
+                        <div class="text-sm text-gray-500">Upload Berikutnya</div>
+                        <div id="jn-next-day" class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">—</div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div id="jn-countdown" class="text-3xl md:text-4xl font-mono font-bold text-gray-900 jn-countdown">00:00:00</div>
+                        <div class="text-xs text-gray-500 mt-1">hari : jam : menit : detik</div>
+                    </div>
+                </div>
+                
+                <p class="text-center text-sm text-gray-500 mt-4">Waktu udah nyesuain timezone perangkatmu.</p>
             </div>
-        
-            <!-- Countdown / actions box -->
-            <div class="max-w-4xl mx-auto jn-count-box px-6 py-8 flex flex-col md:flex-row items-center md:items-center justify-center md:justify-between gap-6 text-center md:text-left">
-              <div class="flex flex-col items-center md:items-start">
-                <div class="text-sm text-gray-500">Upload Berikutnya</div>
-                <div id="jn-next-day" class="text-2xl md:text-3xl font-extrabold text-gray-900 mt-1">—</div>
-              </div>
-        
-              <div class="text-center">
-                <div id="jn-countdown" class="text-3xl md:text-4xl font-mono font-bold text-gray-900 jn-countdown">00:00:00</div>
-                <div class="text-xs text-gray-500 mt-1">hari : jam : menit : detik</div>
-              </div>
-            </div>
-        
-            <p class="text-center text-sm text-gray-500 mt-4">Waktu udah nyesuain timezone perangkatmu.</p>
-          </div>
         </section>
 
-        <!-- =========================
-          END JADWAL NGONTEN - REVISI OPTIMAL
-        ========================= -->
-        
-        <!-- ========== SCRIPT: Next Upload + UI State (PLACE AFTER SECTION OR BEFORE </body>) ========== -->
-        <script>
-        (function(){
-          const SCHEDULE=[1,4,6];const UPLOAD_HOUR=19;
-          const pad=n=>String(n).padStart(2,'0');
-          const elDay=document.getElementById('jn-next-day');
-          const elCount=document.getElementById('jn-countdown');
-          const elRefresh=document.getElementById('jn-refresh');
-        
-          function nextUpload(now=new Date()){
-            for(let i=0;i<14;i++){
-              const d=new Date(now);
-              d.setDate(now.getDate()+i);d.setHours(UPLOAD_HOUR,0,0,0);
-              if(SCHEDULE.includes(d.getDay())&&d>now)return d;
-            }
-            return new Date(now.getTime()+86400000*7);
-          }
-        
-          function format(ms){
-            const t=Math.floor(ms/1000);
-            const s=t%60,m=Math.floor(t/60)%60,h=Math.floor(t/3600)%24,d=Math.floor(t/86400);
-            return {d,h,m,s};
-          }
-        
-          function update(){
-            const now=new Date();
-            if(!window.jn_next||window.jn_next<=now)window.jn_next=nextUpload(now);
-            const diff=window.jn_next-now;
-            const {d,h,m,s}=format(diff);
-            elDay.textContent=window.jn_next.toLocaleDateString(undefined,{weekday:'long',day:'numeric',month:'short'});
-            elCount.textContent=`${d>0?d+'d ':''}${pad(h)}:${pad(m)}:${pad(s)}`;
-            elCount.classList.add('jn-tick');
-        
-            document.querySelectorAll('#jn-jadwal-ngonten [data-day]').forEach(card=>{
-              card.classList.remove('jn-active');
-              if(Number(card.dataset.day)===window.jn_next.getDay())card.classList.add('jn-active');
-            });
-          }
-        
-          update();
-          const timer=setInterval(update,1000);
-          elRefresh.addEventListener('click',()=>{window.jn_next=nextUpload();update();});
-          if(window.lucide&&lucide.createIcons)lucide.createIcons();
-          window.addEventListener('beforeunload',()=>clearInterval(timer));
-        })();
-        </script>
-            
-        <!-- 4. FEEDBACK SECTION -->
+        <!-- 5. FEEDBACK SECTION -->
         <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
             bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
             
@@ -699,61 +646,60 @@
                 <div class='text-center mb-12'>
                     <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
                     <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
-                      Yuk, Evaluasi! 🚀
+                        Yuk, Evaluasi! 🚀
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <!-- Perubahan Copywriting Poin 4 -->
                     <p class="text-lg text-gray-300 text-center">
-                      Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
+                        Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
 
-                <!-- Glass-morphism Form Card - Perubahan Field Poin 5 -->
+                <!-- Glass-morphism Form Card -->
                 <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
                   
-                  <!-- Asal Kota Input -->
-                  <div class="mb-6">
-                    <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
-                      <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
-                    </label>
-                    <input 
-                      type="text" 
-                      id="city" 
-                      name="city"
-                      placeholder="Dari kota mana nih? 📍" 
-                      required 
-                      class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
-                    />
-                  </div>
+                    <!-- Asal Kota Input -->
+                    <div class="mb-6">
+                        <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
+                        </label>
+                        <input 
+                            type="text" 
+                            id="city" 
+                            name="city"
+                            placeholder="Dari kota mana nih? 📍" 
+                            required 
+                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
+                        />
+                    </div>
 
-                  <!-- Evaluasi / Saran Topik Textarea -->
-                  <div class="mb-8">
-                    <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
-                      <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
-                    </label>
-                    <textarea 
-                      id="feedback-text" 
-                      name="evaluation_or_topic"
-                      rows="6" 
-                      placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
-                      required 
-                      class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
-                    ></textarea>
-                  </div>
+                    <!-- Evaluasi / Saran Topik Textarea -->
+                    <div class="mb-8">
+                        <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
+                            <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
+                        </label>
+                        <textarea 
+                            id="feedback-text" 
+                            name="evaluation_or_topic"
+                            rows="6" 
+                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
+                            required 
+                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
+                        ></textarea>
+                    </div>
 
-                  <!-- Submit Button -->
-                  <button 
-                    type="submit" 
-                    id="submit-feedback-btn"
-                    class="w-full text-xl bg-gradient-to-r from-orange-500 to-red-600 hover:from-red-600 hover:to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center"
-                  >
-                    Kirim Sekarang! <i data-lucide="send" class="w-5 h-5 ml-2"></i>
-                  </button>
+                    <!-- Submit Button -->
+                    <button 
+                        type="submit" 
+                        id="submit-feedback-btn"
+                        class="w-full text-xl bg-gradient-to-r from-orange-500 to-red-600 hover:from-red-600 hover:to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center"
+                    >
+                        Kirim Sekarang! <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                    </button>
                 </form>
             </div>
         </section>
 
-        <!-- 5. SUPPORT SECTION -->
+        <!-- 6. SUPPORT SECTION -->
         <section id="support" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#F0F9FF] via-[#DBEAFE] to-[#BFDBFE] px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto text-center">
                 <div class="text-center max-w-2xl mx-auto mb-16">
@@ -762,7 +708,6 @@
                         Support Konten 
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <!-- Perubahan Copywriting Poin 6 -->
                     <p class="text-lg text-gray-600">
                         Aku usahain materi <strong>100% gratis!</strong> Kalau kamu <strong>pengen support</strong>, aku bersyukur banget. Dukunganmu jadi bahan bakar buat ningkatin kualitas belajar kita! 🫶
                     </p>
@@ -799,36 +744,36 @@
                     <div class="flex justify-center items-center">
                         <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-200">
                             <div class="relative z-10 flex flex-col items-center justify-center">
-                            <!-- Title -->
-                            <div class="mb-4 text-center">
-                                <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                                <!-- Title -->
+                                <div class="mb-4 text-center">
+                                    <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                                </div>
+                            
+                                <!-- QRIS Image -->
+                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-80 mb-4">
+                                    <img 
+                                        src="qris.jpg" 
+                                        alt="QRIS Raihan Hikmah" 
+                                        class="w-full h-auto"
+                                    />
+                                </div>
+                            
+                                <!-- Info Text -->
+                                <div class="text-center space-y-1">
+                                    <p class="text-lg font-bold text-gray-800">Nominal Berapa Aja Boleh 💜</p>
+                                    <p class="text-sm text-gray-500">Semua e-wallet & mobile banking</p>
+                                </div>
                             </div>
-                        
-                            <!-- QRIS Image -->
-                            <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-80 mb-4">
-                                <img 
-                                    src="qris.jpg" 
-                                    alt="QRIS Raihan Hikmah" 
-                                    class="w-full h-auto"
-                                />
-                            </div>
-                        
-                            <!-- Info Text -->
-                            <div class="text-center space-y-1">
-                                <p class="text-lg font-bold text-gray-800">Nominal Berapa Aja Boleh 💜</p>
-                                <p class="text-sm text-gray-500">Semua e-wallet & mobile banking</p>
-                            </div>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Note Box -->
-                    <p class="text-base text-gray-700 font-medium mt-16 sm:mt-20 md:mt-24 lg:mt-28 text-center">
-                        Upload bukti transfer <span class="font-bold text-[#8B5CF6]">buat akses BONUS! 💬 </span>
-                    </p>
-                    <div class="mt-6 flex justify-center">
-                      <a 
+                <p class="text-base text-gray-700 font-medium mt-16 sm:mt-20 md:mt-24 lg:mt-28 text-center">
+                    Upload bukti transfer <span class="font-bold text-[#8B5CF6]">buat akses BONUS! 💬 </span>
+                </p>
+                <div class="mt-6 flex justify-center">
+                    <a 
                         href="https://forms.gle/41Tb488BMszWqg267" 
                         target="_blank"
                         class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg text-white 
@@ -837,16 +782,15 @@
                                hover:scale-[1.03] transition-all duration-300 ease-in-out 
                                backdrop-blur-md border border-white/20"
                         style="box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.4), 0 8px 10px -6px rgba(249, 115, 22, 0.3);"
-                      >
+                    >
                         <i data-lucide="upload-cloud" class="w-6 h-6 text-white"></i>
                         Upload (GForm)
-                      </a>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
         
-        <!-- 6. FOOTER -->
+        <!-- 7. FOOTER -->
         <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 
@@ -856,19 +800,19 @@
                     <!-- Column 1 - Brand -->
                     <div class="space-y-3 md:col-span-1">
                         <div class="w-20 h-20 mb-2 transition-transform hover:scale-[1.05]">
-                           <!-- Mini Robot Icon SVG -->
-                           <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                              <linearGradient id="miniRobotGradient" x1="0" y1="0" x2="60" y2="60">
-                                <stop offset="0%" stop-color="#3B82F6"/>
-                                <stop offset="100%" stop-color="#6366F1"/>
-                              </linearGradient>
-                            </defs>
-                            <rect width="60" height="60" rx="12" fill="url(#miniRobotGradient)"/>
-                            <circle cx="30" cy="30" r="15" fill="white" opacity="0.2"/>
-                            <rect x="25" y="25" width="10" height="15" rx="2" fill="white" opacity="0.8" />
-                            <circle cx="30" cy="20" r="3" fill="#F97316" />
-                           </svg>
+                            <!-- Mini Robot Icon SVG -->
+                            <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="miniRobotGradient" x1="0" y1="0" x2="60" y2="60">
+                                        <stop offset="0%" stop-color="#3B82F6"/>
+                                        <stop offset="100%" stop-color="#6366F1"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect width="60" height="60" rx="12" fill="url(#miniRobotGradient)"/>
+                                <circle cx="30" cy="30" r="15" fill="white" opacity="0.2"/>
+                                <rect x="25" y="25" width="10" height="15" rx="2" fill="white" opacity="0.8" />
+                                <circle cx="30" cy="20" r="3" fill="#F97316" />
+                            </svg>
                         </div>
                         <h3 class="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300">
                             Raihan Hikmah
@@ -894,6 +838,7 @@
                             </a>
                         </div>
                     </div>
+                </div>
                 
                 <!-- Bottom Copyright -->
                 <div class="border-t border-gray-700/50 mt-8 pt-8">
@@ -905,9 +850,8 @@
         </footer>
     </main>
 
+    <!-- JAVASCRIPT & UTILITIES -->
     <script>
-        // --- JAVASCRIPT & UTILITIES ---
-
         // 1. TOAST NOTIFICATION UTILITY
         const toastContainer = document.getElementById('toast-container');
         function showToast(message, type) {
@@ -916,9 +860,8 @@
             const colorClass = isSuccess ? 'bg-green-600' : 'bg-red-600';
 
             const toastElement = document.createElement('div');
-            // Toast diposisikan di bawah kanan untuk mobile
             toastElement.className = `fixed bottom-6 right-6 p-4 rounded-xl shadow-2xl transition-all duration-300 z-50 flex items-center text-white ${colorClass}`;
-            toastElement.style.opacity = '0'; // Start invisible
+            toastElement.style.opacity = '0';
 
             toastElement.innerHTML = `
                 <i data-lucide="${icon}" class="w-5 h-5 mr-2"></i>
@@ -926,16 +869,13 @@
             `;
             
             lucide.createIcons();
-
             toastContainer.appendChild(toastElement);
 
-            // Animate in
             setTimeout(() => {
                 toastElement.style.opacity = '1';
                 toastElement.style.transform = 'translateY(0)';
             }, 10);
 
-            // Animate out and remove after 3 seconds
             setTimeout(() => {
                 toastElement.style.opacity = '0';
                 toastElement.style.transform = 'translateY(20px)';
@@ -947,7 +887,6 @@
         
         // 2. EVENT LISTENERS AND FORM HANDLING
         document.addEventListener('DOMContentLoaded', () => {
-            // Re-render Lucide icons after content is loaded
             lucide.createIcons();
 
             // Mobile Menu Toggle
@@ -959,13 +898,12 @@
                 const isHidden = mobileMenu.classList.contains('hidden');
                 mobileMenu.classList.toggle('hidden', !isHidden);
                 
-                // Toggle menu icon
                 if (isHidden) {
                     menuIcon.setAttribute('data-lucide', 'x');
                 } else {
                     menuIcon.setAttribute('data-lucide', 'menu');
                 }
-                lucide.createIcons(); // <--- INI KUNCI AGAR IKON BARU MUNCUL
+                lucide.createIcons();
             });
 
             // Close menu on scroll link click
@@ -973,18 +911,17 @@
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const targetId = link.getAttribute('href').substring(1);
-                    document.getElementById(targetId)?.scrollIntoView({ behavior: 'm' });
+                    document.getElementById(targetId)?.scrollIntoView({ behavior: 'smooth' });
 
-                    // Sembunyikan mobile menu setelah klik (Hanya jika menu mobile terbuka)
                     if (!mobileMenu.classList.contains('hidden')) {
-                         mobileMenu.classList.add('hidden');
-                         menuIcon.setAttribute('data-lucide', 'menu'); // Pastikan kembali ke ikon menu
-                         lucide.createIcons(); // <--- INI JUGA PENTING SAAT MENU DITUTUP
+                        mobileMenu.classList.add('hidden');
+                        menuIcon.setAttribute('data-lucide', 'menu');
+                        lucide.createIcons();
                     }
                 });
             });
 
-            // Feedback Form Submission Logic (Menggunakan Google Apps Script)
+            // Feedback Form Submission Logic
             const form = document.getElementById('feedback-form');
             form.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -992,7 +929,6 @@
                 const submitButton = document.getElementById('submit-feedback-btn');
                 const originalText = submitButton.innerHTML;
                 
-                // Ambil data untuk field baru (Asal Kota, Evaluasi / Saran Topik)
                 const city = document.getElementById('city').value.trim();
                 const feedbackText = document.getElementById('feedback-text').value.trim();
             
@@ -1001,32 +937,25 @@
                     return;
                 }
                 
-                // Tampilkan loading state
                 submitButton.innerHTML = 'Mengirim... <i data-lucide="loader-circle" class="w-5 h-5 ml-2 animate-spin"></i>';
                 submitButton.disabled = true;
                 lucide.createIcons();
                 
-                // Alamat tujuan dari Google Apps Script yang sudah di-deploy
-                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydIYlBhlAb1QejtCW6F7feqiUWeQuSCoQDB0yx9cauM8t8U5eQUhbXAKjILbvHLKFoaA/exec'; // <-- JANGAN LUPA GANTI URL DI SINI
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbydIYlBhlAb1QejtCW6F7feqiUWeQuSCoQDB0yx9cauM8t8U5eQUhbXAKjILbvHLKFoaA/exec';
             
                 try {
-                    // Buat objek FormData langsung dari form HTML-mu
                     const formData = new FormData(form);
-            
-                    // Kirim data ke Google Apps Script menggunakan fetch
                     const response = await fetch(SCRIPT_URL, {
                         method: 'POST',
                         body: formData,
                     });
             
-                    // Ubah respons menjadi JSON
                     const result = await response.json();
             
                     if (result.status === 'success') {
                         showToast('Makasih banget! Feedback kamu sangat berarti! 🙏✨', 'success');
-                        form.reset(); // Reset form jika sukses
+                        form.reset();
                     } else {
-                        // Tampilkan pesan error dari script jika ada
                         throw new Error(result.message || 'Terjadi kesalahan di server.');
                     }
             
@@ -1034,14 +963,57 @@
                     console.error("Submission error:", error);
                     showToast('Oops! Gagal kirim. Coba lagi ya!', 'error');
                 } finally {
-                    // Kembalikan tombol ke keadaan semula
                     submitButton.innerHTML = originalText;
                     submitButton.disabled = false;
                     lucide.createIcons();
                 }
             });
-        });
 
+            // JADWAL NGONTEN SCRIPT
+            (function(){
+                const SCHEDULE = [1,4,6]; const UPLOAD_HOUR = 19;
+                const pad = n => String(n).padStart(2,'0');
+                const elDay = document.getElementById('jn-next-day');
+                const elCount = document.getElementById('jn-countdown');
+                const elRefresh = document.getElementById('jn-refresh');
+            
+                function nextUpload(now = new Date()){
+                    for(let i = 0; i < 14; i++){
+                        const d = new Date(now);
+                        d.setDate(now.getDate() + i); d.setHours(UPLOAD_HOUR, 0, 0, 0);
+                        if(SCHEDULE.includes(d.getDay()) && d > now) return d;
+                    }
+                    return new Date(now.getTime() + 86400000 * 7);
+                }
+            
+                function format(ms){
+                    const t = Math.floor(ms / 1000);
+                    const s = t % 60, m = Math.floor(t / 60) % 60, h = Math.floor(t / 3600) % 24, d = Math.floor(t / 86400);
+                    return {d, h, m, s};
+                }
+            
+                function update(){
+                    const now = new Date();
+                    if(!window.jn_next || window.jn_next <= now) window.jn_next = nextUpload(now);
+                    const diff = window.jn_next - now;
+                    const {d, h, m, s} = format(diff);
+                    elDay.textContent = window.jn_next.toLocaleDateString(undefined, {weekday:'long', day:'numeric', month:'short'});
+                    elCount.textContent = `${d > 0 ? d + 'd ' : ''}${pad(h)}:${pad(m)}:${pad(s)}`;
+                    elCount.classList.add('jn-tick');
+            
+                    document.querySelectorAll('#jn-jadwal-ngonten [data-day]').forEach(card => {
+                        card.classList.remove('jn-active');
+                        if(Number(card.dataset.day) === window.jn_next.getDay()) card.classList.add('jn-active');
+                    });
+                }
+            
+                update();
+                const timer = setInterval(update, 1000);
+                if(elRefresh) elRefresh.addEventListener('click', () => { window.jn_next = nextUpload(); update(); });
+                if(window.lucide && lucide.createIcons) lucide.createIcons();
+                window.addEventListener('beforeunload', () => clearInterval(timer));
+            })();
+        });
     </script>
 </body>
 </html>
