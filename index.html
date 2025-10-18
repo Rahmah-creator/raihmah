@@ -484,19 +484,8 @@
                                 Kenalan Dulu Yuk
                             </a>
                             <a href="#support"
-                               class="inline-flex items-center gap-3 px-6 py-3 rounded-full text-lg font-semibold
-                                      bg-white/10 backdrop-blur-sm border border-white/20 shadow-md
-                                      hover:scale-[1.02] transition-transform duration-200
-                                      focus:outline-none focus:ring-2 focus:ring-orange-300"
+                               class="text-white font-bold py-3 px-8 rounded-full border border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 flex items-center justify-center whitespace-nowrap">
                                aria-label="Support Konten — scroll ke bagian support">
-                              <!-- ikon tangan bersalaman (inline SVG) -->
-                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
-                                <path d="M21 15v4a1 1 0 0 1-1 1h-4"/>
-                                <path d="M3 9v-4a1 1 0 0 1 1-1h4"/>
-                                <path d="M16 7l-4.5 4.5a2 2 0 0 1-2.8 0L7 10"/>
-                                <path d="M14 9l2 2"/>
-                              </svg>
-                            
                               <span>Support Konten</span>
                             </a>
                         </div>
@@ -917,38 +906,25 @@
                 </div>
 
                 <!-- Column 3 - Kerjasama -->
-                <div class="flex flex-col items-end gap-2">
-                  <!-- 1) label kecil di atas -->
-                  <div class="text-sm text-gray-300/80">Kerjasama</div>
-                
-                  <!-- 2) tombol utama (Kerjasama (WA)) -->
-                  <a href="https://wa.me/XXXXXXXXXXX" target="_blank" rel="noopener"
+                <div class=""md:col-span-1"">
+
+                  <!-- tombol utama (Kerjasama (WA)) -->
+                  <a href="https://wa.me/62895324959492" target="_blank" rel="noopener"
                      class="flex items-center gap-3 px-5 py-3 rounded-2xl text-base font-semibold
                             bg-gradient-to-r from-orange-400 to-orange-500 text-white
                             shadow-lg relative overflow-hidden transform transition-all duration-200
                             hover:scale-[1.02] focus:outline-none"
                      aria-label="Kerjasama (WA) — buka WhatsApp">
-                    <!-- ikon tangan bersalaman (sama gaya hero, ukuran disesuaikan) -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M21 15v4a1 1 0 0 1-1 1h-4"/>
-                      <path d="M3 9v-4a1 1 0 0 1 1-1h4"/>
-                      <path d="M16 7l-4.5 4.5a2 2 0 0 1-2.8 0L7 10"/>
-                      <path d="M14 9l2 2"/>
-                    </svg>
-                    <span>Kerjasama (WA)</span>
+                    <span>Kerjasama (WA) <i data-lucide="handshake" class="w-5 h-5 ml-2"></i></span>
                 
                     <!-- subtle glow layer (for smooth glow on hover) -->
                     <span class="absolute inset-0 rounded-2xl pointer-events-none blur-xl opacity-0 transition-opacity duration-300" aria-hidden="true"></span>
                   </a>
                 
-                  <!-- 3) caption kecil bawah -->
-                  <div class="text-xs text-gray-400/80">Klik untuk ngobrol via WhatsApp</div>
-                </div>
-                
                 <!-- Tambahkan CSS kecil (paste di <head> atau style utama) untuk glow efek -->
                 <style>
                 /* scoped untuk footer CTA glow */
-                .footer-cta-glow { /* jika butuh selector khusus, tambahkan class ke <a> di atas dan sesuaikan */
+                .footer-cta-glow { 
                   position: relative;
                 }
                 .footer-cta-glow::after {
