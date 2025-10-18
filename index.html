@@ -43,7 +43,8 @@
             font-family: 'Inter', sans-serif;
         }
         
-        /* --- KEYFRAMES (Sama seperti sebelumnya, no change) --- */
+        /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
+        /* Robot Animations */
         @keyframes float-robot { 
             0%, 100% { transform: translateY(0); } 
             50% { transform: translateY(-12px); } 
@@ -79,6 +80,8 @@
             0%, 100% { opacity: 0.3; } 
             50% { opacity: 0.6; } 
         }
+
+        /* General Animations */
         @keyframes float-orb { 
             0%, 100% { transform: translate(0, 0) scale(1); } 
             33% { transform: translate(30px, -30px) scale(1.1); } 
@@ -101,13 +104,15 @@
             from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
+
+        /* Jiggle Animation for CTA */
         @keyframes jiggle-button { 
             0%, 100% { transform: scale(1) rotate(0deg); } 
             25% { transform: scale(1.01) rotate(0.5deg); }
             75% { transform: scale(1.01) rotate(-0.5deg); }
         }
         
-        /* --- ANIMATION APPLICATION --- */
+        /* --- ANIMATION APPLICATION (Lembut di mobile) --- */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
         .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
@@ -125,7 +130,7 @@
         .animate-rotate-gradient { animation: rotate-gradient 10s linear infinite; }
         .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
 
-        /* --- MISSION CARD STYLING (Sama) --- */
+        /* --- MISSION CARD STYLING --- */
         .mission-card {
             background: white;
             border-radius: 24px;
@@ -149,6 +154,7 @@
             height: 100%;
             opacity: 0.05;
         }
+        /* Specific Card Accents and Hover Shadows */
         .card-blue { border: 2px solid #DBEAFE; }
         .card-blue::before { background: linear-gradient(to right, #0EA5E9, #3B82F6); }
         .card-blue:hover { 
@@ -172,145 +178,82 @@
             transition: transform 0.3s ease; 
         }
 
-        /* --- RESPONSIVE ADJUSTMENTS (Tambah fix untuk orbs di mobile/tablet) --- */
+        /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
+        /* Tablet & Landscape Mobile (max-1024px) */
         @media (max-width: 1024px) {
             .hero-title { 
-                font-size: clamp(2.5rem, 6vw, 4rem); 
+                font-size: clamp(2.5rem, 6vw, 4rem); /* Kurangin dari 3.5-5rem, biar tablet nggak terlalu gede */
             }
             .hero-subtitle { 
-                font-size: clamp(1rem, 2vw, 1.25rem); 
+                font-size: clamp(1rem, 2vw, 1.25rem); /* Subtitle lebih kompak */
             }
-            .hero-content-card { padding: 32px 20px; } 
+            .hero-content-card { padding: 32px 20px; } /* Padding lebih kecil */
             .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; } 
+            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; } /* Button text lebih kecil */
             .hero-grid { flex-direction: column-reverse; } 
-            .hero-robot-container { transform: scale(0.95); } 
-            /* Fix orbs di tablet: Scale down & reposition */
-            #hero .hero-orb-1 { 
-                transform: scale(0.8); 
-                top: 20% !important; 
-                left: 10% !important; 
-                opacity: 0.3; 
-                filter: blur(60px); 
-            }
-            #hero .hero-orb-2 { 
-                transform: scale(0.85); 
-                bottom: 0% !important; 
-                right: 10% !important; 
-                opacity: 0.3; 
-                filter: blur(60px); 
-            }
-            #hero .hero-orb-3 { 
-                transform: scale(0.75); 
-                top: 50% !important; 
-                right: 10% !important; 
-                opacity: 0.35; 
-                filter: blur(60px); 
-            }
+            /* Robot scale lembut di tablet */
+            .hero-robot-container { transform: scale(0.95); } /* Naik dari 0.85, biar nggak terlalu kecil */
         }
 
+        /* Mobile HP (max-768px) */
         @media (max-width: 768px) {
-            .section-padding { padding: 60px 20px; } 
+            .section-padding { padding: 60px 20px; } /* Kurangin dari 80px */
             .personal-container { flex-direction: column; text-align: center; }
             .mission-cards-grid { grid-template-columns: 1fr; }
             .qris-container { width: 90%; max-width: 320px; height: 320px; } 
             .qris-text { font-size: 90px !important; }
+            /* Hero spesifik HP: Font lebih kecil */
             .hero-title { 
-                font-size: clamp(2rem, 5vw, 3.5rem); 
-                line-height: 1.1; 
+                font-size: clamp(2rem, 5vw, 3.5rem); /* Max 3.5rem = ~56px, min 2rem=32px → pas di HP */
+                line-height: 1.1; /* Rapetin line-height biar nggak terlalu tinggi */
             }
             .hero-subtitle { 
-                font-size: clamp(0.875rem, 1.5vw, 1.125rem); 
+                font-size: clamp(0.875rem, 1.5vw, 1.125rem); /* ~14-18px, mudah dibaca tanpa dominan */
             }
             .hero-content-card { 
                 padding: 24px 16px; 
-                border-radius: 24px; 
+                border-radius: 24px; /* Biar lebih compact */
             }
+            /* Robot lebih aman di HP - Naik scale, tambah min-width */
             .hero-robot-container { 
-                transform: scale(0.9); 
-                min-width: 250px; 
+                transform: scale(0.9); /* Naik dari 0.75, biar keliatan jelas */
+                min-width: 250px; /* Pastikan nggak hilang di layar kecil */
             }
             .hero-robot-container svg.robot-svg { 
                 width: 100%; 
                 height: auto; 
-                min-height: 200px; 
+                min-height: 200px; /* Fallback height biar nggak collapse */
             }
+            /* Animasi lebih lambat di mobile buat performa */
             .animate-wiggle-head, .animate-wave-arm-left, .animate-wave-arm-right { 
-                animation-duration: 2s; 
+                animation-duration: 2s; /* Dari 1.5s/1.2s → lebih smooth di HP */
             }
+            /* Buttons & Cards di mobile */
             .hero-buttons a { 
                 padding: 12px 20px; 
-                font-size: 0.875rem; 
+                font-size: 0.875rem; /* Text button lebih kecil */
             }
             .mission-card { 
                 padding: 32px 24px; 
                 border-radius: 20px; 
             }
-            .mission-card h3 { font-size: 1.5rem; } 
-            /* Fix orbs di HP: Lebih subtle, central, tambah orb kecil di belakang robot */
-            #hero { background-attachment: fixed; } /* Smooth scroll */
-            #hero .hero-orb-1 { 
-                transform: scale(0.7); 
-                top: 30% !important; 
-                left: 5% !important; 
-                opacity: 0.25; 
-                filter: blur(50px); 
-                animation-duration: 20s; /* Lebih lambat biar nggak distracting */
-            }
-            #hero .hero-orb-2 { 
-                transform: scale(0.75); 
-                bottom: 20% !important; 
-                right: 5% !important; 
-                opacity: 0.25; 
-                filter: blur(50px); 
-                animation-duration: 22s; 
-            }
-            #hero .hero-orb-3 { 
-                transform: scale(0.65); 
-                top: 60% !important; 
-                left: 50% !important; /* Pindah ke tengah, hug robot */
-                opacity: 0.3; 
-                filter: blur(50px); 
-                animation-duration: 18s; 
-            }
-            /* Orb kecil khusus mobile di belakang robot */
-            #hero::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                width: 120px;
-                height: 120px;
-                background: radial-gradient(circle, rgba(249, 115, 22, 0.15) 0%, transparent 70%);
-                border-radius: 50%;
-                z-index: 1;
-                animation: pulse-glow 4s ease-in-out infinite;
-                display: none;
-            }
-            @media (max-width: 768px) {
-                #hero::before { display: block; } /* Muncul hanya di HP */
-            }
+            .mission-card h3 { font-size: 1.5rem; } /* Judul card lebih kecil */
         }
 
+        /* Extra Kecil untuk Very Small Screens (max-480px, misal iPhone SE) */
         @media (max-width: 480px) {
-            body { font-size: 0.875rem; } 
-            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); } 
+            body { font-size: 0.875rem; } /* Base font lebih kecil secara global */
+            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); } /* Max ~48px, aman */
             .section-padding { padding: 48px 16px; }
             .hero-content-card { padding: 20px 12px; }
             .mission-card { padding: 24px 16px; }
             .hero-robot-container { 
-                transform: scale(0.85); 
+                transform: scale(0.85); /* Masih keliatan, tapi compact */
                 min-width: 220px; 
-            }
-            /* Orbs lebih minimal di very small screen */
-            #hero .hero-orb-1, #hero .hero-orb-2, #hero .hero-orb-3 { 
-                opacity: 0.2; 
-                filter: blur(40px); 
             }
         }
 
-        /* --- JADWAL NGONTEN SCOPED STYLING (Sama) --- */
+        /* --- JADWAL NGONTEN SCOPED STYLING --- */
         #jadwal-ngonten * { box-sizing: border-box; }
         .jn-card { transition: transform .25s ease, box-shadow .3s ease; }
         .jn-card:hover { transform: translateY(-6px); }
@@ -377,7 +320,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
-    <!-- NAVIGATION (Sama) -->
+    <!-- NAVIGATION (Fixed and Responsive) -->
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-white/80 shadow-lg border-b border-blue-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
@@ -412,77 +355,108 @@
     </nav>
 
     <main>
-        <!-- 1. HERO SECTION (Tambah class ke orbs untuk targeting CSS) -->
+        <!-- 1. HERO SECTION -->
         <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
             bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
             
-            <!-- Background Orbs (Tambah class hero-orb-X untuk easy targeting) -->
+            <!-- Background Orbs -->
             <div class="absolute top-0 left-0 w-full h-full">
-                <div class="hero-orb-1 absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
-                <div class="hero-orb-2 absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
-                <div class="hero-orb-3 absolute w-56 h-56 bg-gradient-to-br from-[#F59E0B]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-3" style="top: 40%; right: 5%;"></div>
+                <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
+                <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
+                <div class="absolute w-56 h-56 bg-gradient-to-br from-[#F59E0B]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-3" style="top: 40%; right: 5%;"></div>
             </div>
 
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) - Sama seperti sebelumnya -->
+                    <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-                            <!-- Teks "Halo!" -->
+                            <!-- Teks "Halo!" yang mengikuti robot -->
                             <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
+                                    <!-- Speech Bubble Background dengan Glass Effect -->
                                     <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
                                         <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
+                                    <!-- Speech Bubble Tail dengan gradient -->
                                     <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
                                     <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
-                            <!-- Robot SVG FULL -->
+                            <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
                             <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
+                                    <!-- Cahaya pulsasi di belakang robot -->
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                                         <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
                                         <stop offset="100%" stop-color="transparent" stop-opacity="0" />
                                     </radialGradient>
+                                
+                                    <!-- Kepala: gradasi ungu lembut -->
                                     <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
                                         <stop offset="0%" stop-color="#6366F1" />
                                         <stop offset="100%" stop-color="#8B5CF6" />
                                     </linearGradient>
+                                
+                                    <!-- Badan: biru cerah harmonis -->
                                     <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
                                         <stop offset="0%" stop-color="#3B82F6" />
                                         <stop offset="100%" stop-color="#0EA5E9" />
                                     </linearGradient>
+                                
+                                    <!-- Tangan & kaki: putih kebiruan lembut -->
                                     <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
                                         <stop offset="0%" stop-color="#E0F2FE" />
                                         <stop offset="100%" stop-color="#BFDBFE" />
                                     </linearGradient>
+                                
+                                    <!-- Highlight lembut di sisi kiri badan -->
                                     <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
                                         <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
                                         <stop offset="100%" stop-color="transparent" />
                                     </linearGradient>
                                 </defs>
+                                <!-- Glowing Pulse Ring Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
+
+                                <!-- Legs -->
                                 <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                 <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                
+                                <!-- Body -->
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
+                                <!-- Highlight minimal di sisi kiri -->
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
+                                
+                                <!-- Chest Light (Pulse) -->
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                
+                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
                                 <g class="animate-wave-arm-left">
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
                                 <g class="animate-wave-arm-right">
                                     <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
+
+                                <!-- Head Wiggle Animation (Lebih Sering) -->
                                 <g class="animate-wiggle-head">
+                                    <!-- Head -->
                                     <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
+                                    
+                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
                                     <g class="animate-blink-eyes">
+                                        <!-- Eye 1 -->
                                         <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
+                                        <!-- Eye 2 -->
                                         <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                     </g>
+
+                                    <!-- Antenna Pulse Animation -->
                                     <g class="animate-pulse-antenna">
                                         <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                         <circle cx="50" cy="5" r="3" fill="#F97316" />
@@ -492,7 +466,7 @@
                         </div>
                     </div>
                     
-                    <!-- Left Content (Sama) -->
+                    <!-- Left Content (Glass Card) -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#BFDBFE]">
