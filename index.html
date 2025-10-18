@@ -10,7 +10,8 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"></noscript>
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -570,6 +571,7 @@
                                 <i data-lucide="user" class="w-20 h-20 text-white opacity-80"></i>
                                 <img 
                                     src="profil.png"
+                                    loading="lazy"
                                     class="w-full h-full object-cover rounded-full"
                                 />
                             </div>
@@ -811,7 +813,8 @@
                                 <!-- QRIS Image -->
                                 <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4"> <!-- Fix border-gray-80 → gray-100 -->
                                     <img 
-                                        src="qris.jpg" 
+                                        src="qris.jpg"
+                                        loading="lazy"
                                         alt="QRIS Raihan Hikmah" 
                                         class="w-full h-auto"
                                     />
