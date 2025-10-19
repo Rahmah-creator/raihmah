@@ -85,6 +85,79 @@
             padding-top: 0.25rem; padding-bottom: 0.25rem;
           }
         }
+
+        /* Tablet (max-1024px): 90% width untuk napas lebih luas */
+        @media (max-width: 1024px) {
+          .max-w-7xl,
+          .hero-grid,
+          .personal-container,
+          .mission-cards-grid,
+          #jadwal-ngonten .max-w-6xl,
+          #support .max-w-6xl,
+          #feedback .max-w-3xl {
+            max-width: 90vw !important;
+            margin: 0 auto !important;
+          }
+          .hero-content-card,
+          .mission-card,
+          .jn-card,
+          .qris-container {
+            max-width: 85vw;  /* Cards sedikit lebih kecil dari container */
+            margin: 0 auto 1rem auto;
+          }
+          .section-padding {
+            padding: 2.5rem 5vw;  /* Horizontal margin efektif ~90% */
+          }
+          .hero-robot-container {
+            max-width: 90vw;
+          }
+        }
+        
+        /* Handphone (max-768px): 85% width untuk compact & rapi */
+        @media (max-width: 768px) {
+          .max-w-7xl,
+          .hero-grid,
+          .personal-container,
+          .mission-cards-grid,
+          #jadwal-ngonten .max-w-6xl,
+          #support .max-w-6xl,
+          #feedback .max-w-3xl {
+            max-width: 85vw !important;
+            margin: 0 auto !important;
+          }
+          .hero-content-card,
+          .mission-card,
+          .jn-card,
+          .qris-container {
+            max-width: 80vw;  /* Lebih ketat di HP */
+            padding: 1.25rem;  /* Kurangi internal padding biar konten fit */
+            margin: 0 auto 0.75rem auto;
+          }
+          .section-padding {
+            padding: 2rem 7.5vw;  /* Efektif ~85% width, dengan ruang samping */
+          }
+          .hero-robot-container {
+            max-width: 85vw;
+            min-width: 280px;  /* Pastiin robot nggak collapse di layar kecil */
+          }
+          /* Extra buat form & buttons di HP: Jangan stretch */
+          #feedback-form,
+          .hero-buttons {
+            max-width: 85vw;
+            margin: 0 auto;
+          }
+        }
+        
+        /* Very small screens (max-480px): Naikkan sedikit biar nggak sempit */
+        @media (max-width: 480px) {
+          .max-w-7xl {
+            max-width: 88vw !important;  /* Adjust ringan buat iPhone SE dll. */
+          }
+          .mission-card,
+          .jn-card {
+            max-width: 85vw;
+          }
+        }
       </style>
     
     <!-- Fonts -->
