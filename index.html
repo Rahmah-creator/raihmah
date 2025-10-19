@@ -186,42 +186,68 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* MISSION SECTION UNIFORM FIX - Tablet/HP (Match AI Itu Wajib) */
+        /* MISSION SECTION UNIFORM FIX v2 - Longer Height, Less Nanggung */
         @media (max-width: 1024px) {
           .mission-cards-grid {
-            gap: 1.5rem; /* Spacing box 3-quote lega */
+            gap: 1.5rem;
           }
           
           .mission-card {
-            height: 220px !important; /* Tablet: Scaled match AI Wajib */
-            width: 85vw !important; /* Uniform width */
+            height: 250px !important; /* Tablet: +30px, lebih penuh */
+            width: 85vw !important;
             display: flex !important;
             flex-direction: column !important;
-            justify-content: space-between !important;
-            padding: 1rem !important;
+            justify-content: flex-start !important; /* Semua konten atas, space bawah natural */
+            padding: 1.25rem !important; /* +0.25rem padding biar airy */
+            position: relative; /* Buat pseudo-element fade */
           }
           
-          /* Quote: Kompres & tone down bg */
+          /* Gratis box: Subtle fade bottom biar space gak kosong */
+          .mission-cards-grid > div:last-child .mission-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 30px;
+            background: linear-gradient(transparent, rgba(255,255,255,0.1)); /* Subtle fade, adjust warna kalau dark mode */
+            pointer-events: none;
+          }
+          
+          /* Quote: Adjust proporsional */
+          .card-blue:nth-child(3) .mission-card {
+            height: 250px !important;
+            padding: 1rem !important;
+            background: rgba(59, 130, 246, 0.20) !important;
+          }
+          .card-blue:nth-child(3) .mission-card h3 {
+            font-size: 1.125rem !important; /* +0.125rem, lebih bold */
+            margin-bottom: 0.75rem !important;
+          }
+          .card-blue:nth-child(3) .mission-card p {
+            font-size: 0.8125rem !important; /* +0.0625rem, tetep dense */
+            line-height: 1.3 !important;
+            margin-bottom: 0 !important;
+          }
+        }
+        
+        /* HP: Skala proporsional */
+        @media (max-width: 768px) {
+          .mission-cards-grid { gap: 1.25rem; }
+          .mission-card {
+            height: 220px !important; /* Mobile: +25px dari 195px, nanggung hilang */
+            width: 80vw !important;
+            padding: 1rem !important;
+          }
           .card-blue:nth-child(3) .mission-card {
             height: 220px !important;
             padding: 0.75rem !important;
-            background: rgba(59, 130, 246, 0.20) !important; /* Subtle blue */
-          }
-          .card-blue:nth-child(3) .mission-card h3 {
-            font-size: 1rem !important;
-            margin-bottom: 0.5rem !important;
           }
           .card-blue:nth-child(3) .mission-card p {
-            font-size: 0.75rem !important;
-            line-height: 1.2 !important;
-            margin-bottom: 0 !important;
+            font-size: 0.75rem !important; /* Balance readability */
           }
-          
-          /* Box Gratis: Match height */
-          .mission-cards-grid > div:last-child .mission-card {
-            height: 220px !important;
-            justify-content: flex-start !important;
-          }
+          /* Fade HP: Lebih pendek */
+          .mission-cards-grid > div:last-child .mission-card::after { height: 20px; }
         }
         
         /* HP Specific: Tighten lebih */
