@@ -186,85 +186,73 @@
             font-family: 'Inter', sans-serif;
         }
 
-         /* MISSION FINAL v6 - Tablet Grid Safe, No Overflow */
+         /* MISSION FINAL v7 - Uniform 3-Col Tablet, No Jagged */
         #mission .mission-cards-grid { 
           gap: 1.5rem !important; 
-          grid-template-columns: 1fr !important; /* Force 1-col di tablet/HP */
+          align-items: start !important; /* Grid align top, no stretch pendek */
         }
         
         #mission .mission-card {
           transition: all 0.3s ease !important;
           position: relative !important;
-          width: 100% !important; /* Full grid cell, no vw force */
-          max-width: 90vw !important; /* Cap biar center */
-          margin: 0 auto !important; /* Center card */
+          display: flex !important;
+          flex-direction: column !important;
+          justify-content: flex-start !important; /* Konten atas, fill bawah */
         }
         
-        @media (min-width: 768px) and (max-width: 1024px) { /* Tablet only: Hybrid */
+        @media (min-width: 768px) and (max-width: 1024px) { /* Tablet: 3-Col Uniform */
           #mission .mission-cards-grid { 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important; /* 2-3 col adaptif, min 300px/card */
-            gap: 1.25rem !important; /* Horz/vert balance */
+            grid-template-columns: repeat(3, 1fr) !important; /* Force 3-col even, no auto-fit */
+            gap: 1.25rem !important;
           }
           
           #mission .mission-card {
-            height: 240px !important; /* Sedikit kurangi dari 250px biar fit 2-col */
+            height: 240px !important; /* Fixed semua box */
             padding: 1.25rem 1rem !important;
-            width: auto !important; /* Ikut grid cell */
+            width: auto !important;
           }
           
-          /* Icon tablet: Maintain spacing */
+          /* Icon: Spacing proporsional */
           #mission .mission-card [data-lucide] {
             margin-top: 0.5rem !important;
             margin-bottom: 0.875rem !important;
           }
           
-          /* Gratis fade */
-          #mission .mission-cards-grid > div:last-child .mission-card::after {
-            content: '' !important;
-            position: absolute !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            height: 25px !important;
-            background: linear-gradient(transparent, rgba(255,255,255,0.1)) !important;
-            pointer-events: none !important;
-          }
-          
-          /* Quote tablet */
-          #mission .card-blue:nth-child(3) .mission-card {
+          /* Quote: Match height di tablet (kalau ada di row bawah) */
+          #mission .card-blue .mission-card {
             height: 240px !important;
-            padding: 1rem 0.875rem !important;
             background: rgba(59, 130, 246, 0.20) !important;
+            padding: 1rem 0.875rem !important;
           }
-          #mission .card-blue:nth-child(3) .mission-card h3 { 
+          #mission .card-blue .mission-card h3 { 
             font-size: 1rem !important; 
             margin-bottom: 0.625rem !important; 
           }
-          #mission .card-blue:nth-child(3) .mission-card p { 
+          #mission .card-blue .mission-card p { 
             font-size: 0.8rem !important; 
             line-height: 1.25 !important; 
             margin-bottom: 0 !important; 
+            flex-grow: 1 !important; /* Fill space kalau text pendek */
           }
         }
         
-        @media (max-width: 768px) { /* HP: Stack full */
+        @media (max-width: 768px) { /* HP: Stack, tetep uniform */
           #mission .mission-cards-grid { 
-            gap: 1.25rem !important; 
             grid-template-columns: 1fr !important; 
+            gap: 1.25rem !important; 
           }
           
           #mission .mission-card {
             height: 220px !important;
-            padding: 1.25rem 1rem !important;
             max-width: 80vw !important;
+            padding: 1.25rem 1rem !important;
           }
           
-          #mission .card-blue:nth-child(3) .mission-card { 
+          #mission .card-blue .mission-card { 
             height: 220px !important; 
             padding: 1rem 0.75rem !important; 
           }
-          #mission .card-blue:nth-child(3) .mission-card p { font-size: 0.75rem !important; }
-          #mission .mission-cards-grid > div:last-child .mission-card::after { height: 20px !important; }
+          #mission .card-blue .mission-card p { font-size: 0.75rem !important; }
           #mission .mission-card [data-lucide] { 
             margin-top: 0.5rem !important; 
             margin-bottom: 0.875rem !important; 
