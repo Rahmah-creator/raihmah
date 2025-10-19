@@ -185,7 +185,64 @@
         .font-handwritten {
             font-family: 'Inter', sans-serif;
         }
+
+        /* MISSION SECTION UNIFORM FIX - Tablet/HP (Match AI Itu Wajib) */
+        @media (max-width: 1024px) {
+          .mission-cards-grid {
+            gap: 1.5rem; /* Spacing box 3-quote lega */
+          }
+          
+          .mission-card {
+            height: 220px !important; /* Tablet: Scaled match AI Wajib */
+            width: 85vw !important; /* Uniform width */
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
+            padding: 1rem !important;
+          }
+          
+          /* Quote: Kompres & tone down bg */
+          .card-blue:nth-child(3) .mission-card {
+            height: 220px !important;
+            padding: 0.75rem !important;
+            background: rgba(59, 130, 246, 0.20) !important; /* Subtle blue */
+          }
+          .card-blue:nth-child(3) .mission-card h3 {
+            font-size: 1rem !important;
+            margin-bottom: 0.5rem !important;
+          }
+          .card-blue:nth-child(3) .mission-card p {
+            font-size: 0.75rem !important;
+            line-height: 1.2 !important;
+            margin-bottom: 0 !important;
+          }
+          
+          /* Box Gratis: Match height */
+          .mission-cards-grid > div:last-child .mission-card {
+            height: 220px !important;
+            justify-content: flex-start !important;
+          }
+        }
         
+        /* HP Specific: Tighten lebih */
+        @media (max-width: 768px) {
+          .mission-cards-grid {
+            gap: 1.25rem;
+          }
+          .mission-card {
+            height: 195px !important; /* Mobile exact match AI Wajib */
+            width: 80vw !important;
+            padding: 0.875rem !important;
+          }
+          .card-blue:nth-child(3) .mission-card {
+            height: 195px !important;
+            padding: 0.625rem !important;
+          }
+          .card-blue:nth-child(3) .mission-card p {
+            font-size: 0.7rem !important; /* Readable, 3-4 baris max */
+          }
+        }
+
         /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
         /* Robot Animations */
         @keyframes float-robot { 
