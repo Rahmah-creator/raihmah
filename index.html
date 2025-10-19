@@ -147,36 +147,6 @@
             margin: 0 auto;
           }
         }
-
-          @media (max-width: 768px) {
-          /* Min-Height untuk Semua Mission Cards: Baseline 180px (Tetep Fleksibel) */
-          .mission-card {
-            min-height: 180px !important;
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: flex-start !important;  /* Konten align top, biar nggak center */
-          }
-        
-          /* Perkecil Quote Box Khusus: Target Card Ke-4 (Quote Biru Terakhir) */
-          .mission-cards-grid > .mission-card:nth-child(4) {  /* Lebih spesifik: Child ke-4 di grid */
-            padding: 1rem 1.25rem !important;  /* Compact padding */
-            max-height: 200px !important;     /* Tambah cap biar nggak kebesaran (opsional, teks tetep full) */
-          }
-          .mission-cards-grid > .mission-card:nth-child(4) p {  /* Teks Quote */
-            font-size: 0.875rem !important;   /* Lebih kecil */
-            line-height: 1.3 !important;      /* Dense */
-            margin-bottom: 0.5rem !important;
-            overflow: hidden !important;      /* Kalau teks masih panjang, potong halus (tapi jarang) */
-          }
-          .mission-cards-grid > .mission-card:nth-child(4) h3 {  /* Title Quote (kalau ada) */
-            font-size: 1.125rem !important;
-            margin-bottom: 0.75rem !important;
-          }
-          .mission-cards-grid > .mission-card:nth-child(4) cite {  /* Cite Andrew Ng */
-            font-size: 0.75rem !important;    /* Lebih kecil biar fit */
-            margin-top: auto !important;      /* Push ke bawah card */
-          }
-        }
       </style>
     
     <!-- Fonts -->
