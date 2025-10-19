@@ -1179,27 +1179,6 @@
                 window.addEventListener('beforeunload', () => clearInterval(timer));
             })();
         });
-        <script>
-         // === NAVBAR AUTO-HIDE ON SCROLL ===
-          const navbar = document.querySelector("nav");
-          let lastScrollY = window.scrollY;
-        
-          window.addEventListener("scroll", () => {
-            const currentScrollY = window.scrollY;
-        
-            if (currentScrollY > lastScrollY && currentScrollY > 80) {
-              // Scroll ke bawah
-              navbar.classList.remove("nav-show");
-              navbar.classList.add("nav-hide");
-            } else {
-              // Scroll ke atas
-              navbar.classList.remove("nav-hide");
-              navbar.classList.add("nav-show");
-            }
-        
-            lastScrollY = currentScrollY;
-          });
-        </script>
     </script>
 </body>
 </html>
