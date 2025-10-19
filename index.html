@@ -186,19 +186,16 @@
             font-family: 'Inter', sans-serif;
         }
 
-         /* MISSION FIX v3 - Force Uniform, Anti-Cache */
-        #mission .mission-cards-grid {
-          gap: 1.5rem !important;
-        }
+         /* MISSION FINAL FIX - Uniform, Icon Spaced, No Nanggung */
+        #mission .mission-cards-grid { gap: 1.5rem !important; }
         
         #mission .mission-card {
-          transition: height 0.3s ease, padding 0.3s ease !important; /* Notice change */
+          transition: padding 0.3s ease !important;
+          position: relative !important;
         }
         
         @media (max-width: 1024px) {
-          #mission .mission-cards-grid {
-            gap: 1.5rem !important;
-          }
+          #mission .mission-cards-grid { gap: 1.5rem !important; }
           
           #mission .mission-card {
             height: 250px !important;
@@ -206,11 +203,16 @@
             display: flex !important;
             flex-direction: column !important;
             justify-content: flex-start !important;
-            padding: 1.25rem !important;
-            position: relative !important;
-            margin: 0 auto !important; /* Center kalau vw */
+            padding: 1.5rem 1.25rem 1.25rem !important; /* Top padding extra buat icon */
           }
           
+          /* Icon: Lepas dari border */
+          #mission .mission-card [data-lucide] {
+            margin-top: 0.75rem !important; /* mt-3: Napas atas */
+            margin-bottom: 1rem !important; /* mb-4: Balance ke title */
+          }
+          
+          /* Gratis: Fade bottom kosong space */
           #mission .mission-cards-grid > div:last-child .mission-card::after {
             content: '' !important;
             position: absolute !important;
@@ -222,9 +224,10 @@
             pointer-events: none !important;
           }
           
+          /* Quote: Kompres proporsional, bg subtle */
           #mission .card-blue:nth-child(3) .mission-card {
             height: 250px !important;
-            padding: 1rem !important;
+            padding: 1.25rem 1rem !important;
             background: rgba(59, 130, 246, 0.20) !important;
           }
           #mission .card-blue:nth-child(3) .mission-card h3 {
@@ -243,16 +246,19 @@
           #mission .mission-card {
             height: 220px !important;
             width: 80vw !important;
-            padding: 1rem !important;
+            padding: 1.25rem 1rem !important;
           }
           #mission .card-blue:nth-child(3) .mission-card {
             height: 220px !important;
-            padding: 0.75rem !important;
+            padding: 1rem 0.75rem !important;
           }
-          #mission .card-blue:nth-child(3) .mission-card p {
-            font-size: 0.75rem !important;
-          }
+          #mission .card-blue:nth-child(3) .mission-card p { font-size: 0.75rem !important; }
           #mission .mission-cards-grid > div:last-child .mission-card::after { height: 20px !important; }
+          /* Icon HP: Proporsional tight */
+          #mission .mission-card [data-lucide] {
+            margin-top: 0.5rem !important;
+            margin-bottom: 0.875rem !important;
+          }
         }
 
         /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
