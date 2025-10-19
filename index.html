@@ -149,36 +149,32 @@
         }
 
           @media (max-width: 768px) {
-          /* Min-Height untuk Semua Mission Cards: Baseline 180px */
+          /* Min-Height untuk Semua Mission Cards: Baseline 180px (Tetep Fleksibel) */
           .mission-card {
-            min-height: 180px !important;  /* Naikkan cards pendek, quote tetep expand kalau butuh */
-            display: flex !important;      /* Pastiin konten vertical align top */
+            min-height: 180px !important;
+            display: flex !important;
             flex-direction: column !important;
+            align-items: flex-start !important;  /* Konten align top, biar nggak center */
           }
         
-          /* Perkecil Quote Box Khusus: Padding & Font Tighter */
-          .card-blue:nth-child(3) .mission-card {  /* Target quote card (biru, child ke-3) */
-            padding: 1rem 1.25rem !important;      /* Dari 48px/32px ke 16px/20px equivalent */
+          /* Perkecil Quote Box Khusus: Target Card Ke-4 (Quote Biru Terakhir) */
+          .mission-cards-grid > .mission-card:nth-child(4) {  /* Lebih spesifik: Child ke-4 di grid */
+            padding: 1rem 1.25rem !important;  /* Compact padding */
+            max-height: 200px !important;     /* Tambah cap biar nggak kebesaran (opsional, teks tetep full) */
           }
-          .card-blue:nth-child(3) .mission-card p {  /* Teks quote: Font lebih kecil & dense */
-            font-size: 0.875rem !important;        /* ~14px, dari 1rem */
-            line-height: 1.3 !important;           /* Dari 1.5, bikin wrap lebih efisien */
+          .mission-cards-grid > .mission-card:nth-child(4) p {  /* Teks Quote */
+            font-size: 0.875rem !important;   /* Lebih kecil */
+            line-height: 1.3 !important;      /* Dense */
             margin-bottom: 0.5rem !important;
+            overflow: hidden !important;      /* Kalau teks masih panjang, potong halus (tapi jarang) */
           }
-          .card-blue:nth-child(3) .mission-card h3 {  /* Title quote: Jaga proporsi */
-            font-size: 1.125rem !important;        /* ~18px, sedikit lebih kecil */
+          .mission-cards-grid > .mission-card:nth-child(4) h3 {  /* Title Quote (kalau ada) */
+            font-size: 1.125rem !important;
             margin-bottom: 0.75rem !important;
           }
-        }
-        
-        /* Very small screens (max-480px): Naikkan sedikit biar nggak sempit */
-        @media (max-width: 480px) {
-          .max-w-7xl {
-            max-width: 88vw !important;  /* Adjust ringan buat iPhone SE dll. */
-          }
-          .mission-card,
-          .jn-card {
-            max-width: 85vw;
+          .mission-cards-grid > .mission-card:nth-child(4) cite {  /* Cite Andrew Ng */
+            font-size: 0.75rem !important;    /* Lebih kecil biar fit */
+            margin-top: auto !important;      /* Push ke bawah card */
           }
         }
       </style>
