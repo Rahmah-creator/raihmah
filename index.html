@@ -12,13 +12,20 @@
       <style>
         /* WhatsApp CTA - minimal & scoped */
         .wa-button{
-          display:inline-flex; align-items:center; gap:10px;
-          padding:10px 16px; border-radius:12px; font-weight:700;
-          background:linear-gradient(90deg,#16A34A,#22C55E);
-          color:#fff; text-decoration:none; max-width:440px;
-          box-shadow:0 10px 30px rgba(16,185,129,0.12);
-          border:1px solid rgba(255,255,255,0.05);
-          transition:transform .18s,box-shadow .18s;
+          display: inline-flex !important;
+          align-items: center;
+          gap: 10px;
+          padding: 10px 16px;
+          border-radius: 12px;
+          font-weight: 700;
+          background: linear-gradient(90deg,#16A34A,#22C55E);
+          color: #fff;
+          text-decoration: none;
+          max-width: 440px !important;  
+          width: 100% !important;      
+          box-shadow: 0 10px 30px rgba(16,185,129,0.12);
+          border: 1px solid rgba(255,255,255,0.05);
+          transition: transform .18s, box-shadow .18s;
         }
         .wa-button:focus,.wa-button:hover{
           transform:translateY(-3px);
@@ -934,6 +941,7 @@
                     <div class="space-y-4">
                         <!-- WhatsApp Button -->
                         <a href="https://wa.me/62895324959492" target="_blank" rel="noopener noreferrer"
+                            target="_blank" rel="noopener noreferrer"
                            class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
                           <span class="wa-icon"><i data-lucide="message-circle"></i></span>
                           <span>Chat via WhatsApp</span>
