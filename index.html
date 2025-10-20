@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -21,8 +22,8 @@
           background: linear-gradient(90deg,#16A34A,#22C55E);
           color: #fff;
           text-decoration: none;
-          max-width: 440px !important;  /* tambahkan !important */
-          width: 100% !important;       /* biar proporsional tapi dibatasi max-width */
+          max-width: 440px !important;
+          width: 100% !important;
           box-shadow: 0 10px 30px rgba(16,185,129,0.12);
           border: 1px solid rgba(255,255,255,0.05);
           transition: transform .18s, box-shadow .18s;
@@ -38,9 +39,7 @@
         @media(max-width:1024px){
           .wa-button{ max-width:100%; padding:12px 14px; }
         }
-        /* Default desktop (biarkan seperti sekarang) */
         .brand-title {
-          /* mempertahankan gaya existing, hanya selector tambahan */
           text-decoration: none;
           display: inline-block;
           line-height: 1;
@@ -62,30 +61,26 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden; /* Prevent horizontal scroll from orbs */
+            overflow-x: hidden;
         }
         .glass-effect {
             background-color: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        /* Text shadow for better contrast on complex backgrounds */
         .text-shadow {
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.2);
             .hero-subtitle { text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
         }
-        /* Soft SVG Shadow for Robot */
         svg.robot-svg {
             filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
         }
         
-        /* === Font Handwritten (Fallback to Inter) === */
         .font-handwritten {
             font-family: 'Inter', sans-serif;
         }
 
-        /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
-        /* Robot Animations */
+        /* KEYFRAMES */
         @keyframes float-robot { 
             0%, 100% { transform: translateY(0); } 
             50% { transform: translateY(-12px); } 
@@ -121,8 +116,6 @@
             0%, 100% { opacity: 0.3; } 
             50% { opacity: 0.6; } 
         }
-
-        /* General Animations */
         @keyframes float-orb { 
             0%, 100% { transform: translate(0, 0) scale(1); } 
             33% { transform: translate(30px, -30px) scale(1.1); } 
@@ -145,15 +138,13 @@
             from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
-
-        /* Jiggle Animation for CTA */
         @keyframes jiggle-button { 
             0%, 100% { transform: scale(1) rotate(0deg); } 
             25% { transform: scale(1.01) rotate(0.5deg); }
             75% { transform: scale(1.01) rotate(-0.5deg); }
         }
         
-        /* --- ANIMATION APPLICATION (Lembut di mobile) --- */
+        /* ANIMATION APPLICATION */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
         .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
@@ -171,7 +162,7 @@
         .animate-rotate-gradient { animation: rotate-gradient 10s linear infinite; }
         .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
 
-        /* --- MISSION CARD STYLING --- */
+        /* MISSION CARD STYLING */
         .mission-card {
             background: white;
             border-radius: 24px;
@@ -195,7 +186,6 @@
             height: 100%;
             opacity: 0.05;
         }
-        /* Specific Card Accents and Hover Shadows */
         .card-blue { border: 2px solid #DBEAFE; }
         .card-blue::before { background: linear-gradient(to right, #0EA5E9, #3B82F6); }
         .card-blue:hover { 
@@ -219,82 +209,74 @@
             transition: transform 0.3s ease; 
         }
         
-        /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
-        /* Tablet & Landscape Mobile (max-1024px) */
+        /* RESPONSIVE ADJUSTMENTS */
         @media (max-width: 1024px) {
             .hero-title { 
-                font-size: clamp(2.5rem, 6vw, 4rem); /* Kurangin dari 3.5-5rem, biar tablet nggak terlalu gede */
+                font-size: clamp(2.5rem, 6vw, 4rem);
             }
             .hero-subtitle { 
-                font-size: clamp(1rem, 2vw, 1.25rem); /* Subtitle lebih kompak */
+                font-size: clamp(1rem, 2vw, 1.25rem);
             }
-            .hero-content-card { padding: 32px 20px; } /* Padding lebih kecil */
+            .hero-content-card { padding: 32px 20px; }
             .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; } /* Button text lebih kecil */
+            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; }
             .hero-grid { flex-direction: column-reverse; } 
-            /* Robot scale lembut di tablet */
-            .hero-robot-container { transform: scale(0.95); } /* Naik dari 0.85, biar nggak terlalu kecil */
+            .hero-robot-container { transform: scale(0.95); }
         }
 
-        /* Mobile HP (max-768px) */
         @media (max-width: 768px) {
-            .section-padding { padding: 60px 20px; } /* Kurangin dari 80px */
+            .section-padding { padding: 60px 20px; }
             .personal-container { flex-direction: column; text-align: center; }
             .mission-cards-grid { grid-template-columns: 1fr; }
             .qris-container { width: 90%; max-width: 320px; height: 320px; } 
             .qris-text { font-size: 90px !important; }
-            /* Hero spesifik HP: Font lebih kecil */
             .hero-title { 
-                font-size: clamp(2rem, 5vw, 3.5rem); /* Max 3.5rem = ~56px, min 2rem=32px → pas di HP */
-                line-height: 1.1; /* Rapetin line-height biar nggak terlalu tinggi */
+                font-size: clamp(2rem, 5vw, 3.5rem);
+                line-height: 1.1;
             }
             .hero-subtitle { 
-                font-size: clamp(0.875rem, 1.5vw, 1.125rem); /* ~14-18px, mudah dibaca tanpa dominan */
+                font-size: clamp(0.875rem, 1.5vw, 1.125rem);
             }
             .hero-content-card { 
                 padding: 24px 16px; 
-                border-radius: 24px; /* Biar lebih compact */
+                border-radius: 24px;
             }
-            /* Robot lebih aman di HP - Naik scale, tambah min-width */
             .hero-robot-container { 
-                transform: scale(0.9); /* Naik dari 0.75, biar keliatan jelas */
-                min-width: 250px; /* Pastikan nggak hilang di layar kecil */
+                transform: scale(0.9);
+                min-width: 250px;
             }
             .hero-robot-container svg.robot-svg { 
                 width: 100%; 
                 height: auto; 
-                min-height: 200px; /* Fallback height biar nggak collapse */
+                min-height: 200px;
             }
-            /* Animasi lebih lambat di mobile buat performa */
             .animate-wiggle-head, .animate-wave-arm-left, .animate-wave-arm-right { 
-                animation-duration: 2s; /* Dari 1.5s/1.2s → lebih smooth di HP */
+                animation-duration: 2s;
             }
-            /* Buttons & Cards di mobile */
             .hero-buttons a { 
                 padding: 12px 20px; 
-                font-size: 0.875rem; /* Text button lebih kecil */
+                font-size: 0.875rem;
             }
             .mission-card { 
                 padding: 32px 24px; 
                 border-radius: 20px; 
             }
-            .mission-card h3 { font-size: 1.5rem; } /* Judul card lebih kecil */
+            .mission-card h3 { font-size: 1.5rem; }
         }
 
-        /* Extra Kecil untuk Very Small Screens (max-480px, misal iPhone SE) */
         @media (max-width: 480px) {
-            body { font-size: 0.875rem; } /* Base font lebih kecil secara global */
-            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); } /* Max ~48px, aman */
+            body { font-size: 0.875rem; }
+            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); }
             .section-padding { padding: 48px 16px; }
             .hero-content-card { padding: 20px 12px; }
             .mission-card { padding: 24px 16px; }
             .hero-robot-container { 
-                transform: scale(0.85); /* Masih keliatan, tapi compact */
+                transform: scale(0.85);
                 min-width: 220px; 
             }
         }
 
-        /* --- JADWAL NGONTEN SCOPED STYLING --- */
+        /* JADWAL NGONTEN SCOPED STYLING */
         #jadwal-ngonten * { box-sizing: border-box; }
         .jn-card { transition: transform .25s ease, box-shadow .3s ease; }
         .jn-card:hover { transform: translateY(-8px);
@@ -371,7 +353,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
-    <!-- NAVIGATION (Fixed and Responsive) -->
+    <!-- NAVIGATION -->
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-14">
@@ -406,108 +388,95 @@
     </nav>
 
     <main>
-        <!-- 1. HERO SECTION -->
-        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
-            bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
+        <!-- GLOBAL SEAMLESS BACKGROUND ORBS -->
+        <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+            <!-- Orb 1: Top Left - Blue -->
+            <div class="absolute w-[500px] h-[500px] bg-gradient-to-br from-blue-400/20 to-blue-600/15 rounded-full blur-[120px] animate-float-orb-1" style="top: -10%; left: -5%;"></div>
             
-            <!-- Background Orbs -->
-            <div class="absolute top-0 left-0 w-full h-full">
-                <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
-                <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
-                <div class="absolute w-56 h-56 bg-gradient-to-br from-[#F59E0B]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-3" style="top: 40%; right: 5%;"></div>
-            </div>
+            <!-- Orb 2: Top Right - Purple -->
+            <div class="absolute w-[600px] h-[600px] bg-gradient-to-br from-purple-400/18 to-purple-600/12 rounded-full blur-[130px] animate-float-orb-2" style="top: 5%; right: -8%;"></div>
+            
+            <!-- Orb 3: Middle Left - Cyan -->
+            <div class="absolute w-[450px] h-[450px] bg-gradient-to-br from-cyan-400/15 to-blue-500/18 rounded-full blur-[110px] animate-float-orb-3" style="top: 35%; left: -10%;"></div>
+            
+            <!-- Orb 4: Middle Right - Orange -->
+            <div class="absolute w-[550px] h-[550px] bg-gradient-to-br from-orange-400/16 to-pink-500/14 rounded-full blur-[125px] animate-float-orb-1" style="top: 50%; right: -12%; animation-duration: 18s;"></div>
+            
+            <!-- Orb 5: Lower Left - Pink -->
+            <div class="absolute w-[500px] h-[500px] bg-gradient-to-br from-pink-400/17 to-purple-500/15 rounded-full blur-[115px] animate-float-orb-2" style="top: 70%; left: -8%; animation-duration: 20s;"></div>
+            
+            <!-- Orb 6: Bottom Right - Indigo -->
+            <div class="absolute w-[580px] h-[580px] bg-gradient-to-br from-indigo-400/16 to-blue-600/13 rounded-full blur-[135px] animate-float-orb-3" style="top: 85%; right: -10%; animation-duration: 22s;"></div>
+            
+            <!-- Orb 7: Bottom Center - Yellow/Orange -->
+            <div class="absolute w-[520px] h-[520px] bg-gradient-to-br from-yellow-400/12 to-orange-500/16 rounded-full blur-[120px] animate-float-orb-1" style="bottom: -15%; left: 40%; animation-duration: 19s;"></div>
+        </div>
 
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden bg-white md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 z-10">
+            
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
+                    <!-- Right Visual (Robot SVG) -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-                            <!-- Teks "Halo!" yang mengikuti robot -->
+                            <!-- Teks "Halo!" -->
                             <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
-                                    <!-- Speech Bubble Background dengan Glass Effect -->
                                     <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
                                         <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
-                                    <!-- Speech Bubble Tail dengan gradient -->
                                     <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
                                     <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
-                            <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
+                            <!-- Robot SVG -->
                             <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
-                                    <!-- Cahaya pulsasi di belakang robot -->
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                                         <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
                                         <stop offset="100%" stop-color="transparent" stop-opacity="0" />
                                     </radialGradient>
-                                
-                                    <!-- Kepala: gradasi ungu lembut -->
                                     <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
                                         <stop offset="0%" stop-color="#6366F1" />
                                         <stop offset="100%" stop-color="#8B5CF6" />
                                     </linearGradient>
-                                
-                                    <!-- Badan: biru cerah harmonis -->
                                     <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
                                         <stop offset="0%" stop-color="#3B82F6" />
                                         <stop offset="100%" stop-color="#0EA5E9" />
                                     </linearGradient>
-                                
-                                    <!-- Tangan & kaki: putih kebiruan lembut -->
                                     <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
                                         <stop offset="0%" stop-color="#E0F2FE" />
                                         <stop offset="100%" stop-color="#BFDBFE" />
                                     </linearGradient>
-                                
-                                    <!-- Highlight lembut di sisi kiri badan -->
                                     <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
                                         <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
                                         <stop offset="100%" stop-color="transparent" />
                                     </linearGradient>
                                 </defs>
-                                <!-- Glowing Pulse Ring Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
-
-                                <!-- Legs -->
                                 <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                 <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                                
-                                <!-- Body -->
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
-                                <!-- Highlight minimal di sisi kiri -->
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
-                                
-                                <!-- Chest Light (Pulse) -->
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
-                                
-                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
                                 <g class="animate-wave-arm-left">
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
                                 <g class="animate-wave-arm-right">
                                     <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
-
-                                <!-- Head Wiggle Animation (Lebih Sering) -->
                                 <g class="animate-wiggle-head">
-                                    <!-- Head -->
                                     <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
-                                    
-                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
                                     <g class="animate-blink-eyes">
-                                        <!-- Eye 1 -->
                                         <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
-                                        <!-- Eye 2 -->
                                         <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                     </g>
 
-                                    <!-- Antenna Pulse Animation -->
+
                                     <g class="animate-pulse-antenna">
                                         <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                         <circle cx="50" cy="5" r="3" fill="#F97316" />
@@ -520,11 +489,11 @@
                     <!-- Left Content (Glass Card) -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
-                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#BFDBFE]">
+                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700">
                                 Dikasih Info Mase
                             </span>
                         </h1>
-                        <p class="text-lg md:text-xl text-white font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
+                        <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
                             Belajar AI itu gampang kok! Yuk, mulai dari dasar bareng aku.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
@@ -533,7 +502,7 @@
                                 Kenalan Dulu Yuk
                             </a>
                             <a href="#support"
-                               class="text-white font-bold py-3 px-8 rounded-full border border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 flex items-center justify-center whitespace-nowrap">
+                               class="text-gray-700 font-bold py-3 px-8 rounded-full border-2 border-gray-300 backdrop-blur-sm bg-white/80 hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 flex items-center justify-center whitespace-nowrap shadow-md hover:shadow-lg">
                                   Support Konten <i data-lucide="smile" class="w-5 h-5 ml-2"></i>
                             </a>
                         </div>
@@ -543,7 +512,7 @@
         </section>
 
         <!-- 2. MISSION/TUJUAN SECTION -->
-        <section id="mission" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] px-4 sm:px-6 lg:px-8">
+        <section id="mission" class="py-24 md:py-32 section-padding bg-white relative z-10 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <i data-lucide="target" class="w-8 h-8 text-[#3B82F6] mx-auto mb-4"></i>
@@ -585,7 +554,7 @@
 
                 <!-- Andrew Ng Quote Box -->
                 <div class="relative p-6 md:p-10 lg:p-12 rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto
-                    bg-gradient-to-br from-[#0EA5E9]/90 to-[#3B82F6]/90">
+                    bg-gradient-to-br from-blue-500/90 to-indigo-600/90 backdrop-blur-sm">
                     
                     <!-- Floating Orb -->
                     <div class="absolute w-40 h-40 bg-white/20 rounded-full blur-2xl animate-float-orb-1" style="top: -10%; right: -10%; animation-duration: 6s;"></div>
@@ -595,22 +564,15 @@
                         <blockquote class="italic text-lg md:text-2xl lg:text-3xl font-light leading-snug mb-4">
                             "AI nggak sepenuhnya gantiin kerjaan manusia. Tapi, manusia yang punya skill AI akan gantiin yang nggak punya skilnya"
                         </blockquote>
-                        <footer class="text-right text-sm md:text-base text-[#BFDBFE] font-medium">— Andrew Ng </footer>
+                        <footer class="text-right text-sm md:text-base text-blue-100 font-medium">— Andrew Ng </footer>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 3. PERSONAL SECTION -->
-        <section id="personal" class="py-24 md:py-32 section-padding relative overflow-hidden 
-            bg-gradient-to-br from-[#FDF4FF] via-[#FCE7F3] to-[#FEF3C7] px-4 sm:px-6 lg:px-8">
+        <section id="personal" class="py-24 md:py-32 section-padding relative overflow-hidden bg-white z-10 px-4 sm:px-6 lg:px-8">
             
-            <!-- Background Orbs -->
-            <div class="absolute top-0 left-0 w-full h-full">
-                <div class="absolute w-80 h-80 bg-pink-300/30 rounded-full blur-[60px] opacity-50 animate-float-orb-1" style="top: 60%; left: -10%; animation-duration: 4s;"></div>
-                <div class="absolute w-60 h-60 bg-purple-200/50 rounded-full blur-[60px] opacity-60 animate-float-orb-2" style="top: 15%; right: 5%; animation-duration: 5s;"></div>
-            </div>
-        
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto items-start personal-container">
                     
@@ -637,30 +599,30 @@
                     <!-- Right: Story -->
                     <div class="w-full lg:w-2/3 space-y-6 text-left px-2 sm:px-4 md:px-6 lg:px-0">
                         <h2 class="text-3xl md:text-4xl font-extrabold mb-8 personal-title 
-                            bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-center lg:text-left">
+                            bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600 text-center lg:text-left">
                             Halo, Aku Raihan! 🙋‍♂️
-                            <span class="block text-lg md:text-xl font-semibold mt-2 text-gray-700">
+                            <span class="block text-lg md:text-xl font-semibold mt-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-pink-500">
                                 Bahas Yang Susah, Jadi Gampang.
                             </span>
                         </h2>
         
                         <!-- Body Paragraf -->
                         <p class="text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-700">
-                            <span class="bg-yellow-100/70 p-1 rounded font-semibold inline-block mb-1">Aku belum ahli di bidang AI, aku masih terus belajar.</span>
+                            <span class="bg-yellow-100/70 px-2 py-1 rounded font-semibold inline-block mb-1">Aku belum ahli di bidang AI, aku masih terus belajar.</span>
                             <br>
-                            Terkadang aku kesulitan belajar materi AI, karena <span class="font-bold text-[#EC4899]">penjelasannya terlalu teknis buat pemula.</span> Jadi, aku harus luangin waktu ekstra buat mahamin bahasanya.
+                            Terkadang aku kesulitan belajar materi AI, karena <span class="font-bold text-pink-600">penjelasannya terlalu teknis buat pemula.</span> Jadi, aku harus luangin waktu ekstra buat mahamin bahasanya.
                         </p>
         
                         <p class="text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-700">
-                            Dari pengalaman itu aku sadar, <span class="italic font-semibold text-[#8B5CF6] inline-block mb-1">belajar AI sebenernya bisa kok dibuat gampang.</span>
+                            Dari pengalaman itu aku sadar, <span class="italic font-semibold text-purple-600 inline-block mb-1">belajar AI sebenernya bisa kok dibuat gampang.</span>
                             <br>
                             Lewat konten ini, aku pengen kita belajar bareng pakai bahasa yang ringan, santai, tapi tetep berkualitas.
                         </p>
                         
                         <!-- Quote Box -->
-                        <div class="relative p-3 md:p-4 lg:p-6 rounded-lg shadow-md border-l-4 border-[#EC4899] bg-white/80 backdrop-blur-sm">
+                        <div class="relative p-3 md:p-4 lg:p-6 rounded-lg shadow-md border-l-4 border-pink-500 bg-white/80 backdrop-blur-sm">
                             <div class="flex items-start text-left gap-2 md:gap-3">
-                                <i data-lucide="heart" fill="#EC4899" class="w-5 h-5 md:w-6 md:h-6 text-[#EC4899] mt-0.5 animate-heartbeat flex-shrink-0"></i>
+                                <i data-lucide="heart" fill="#EC4899" class="w-5 h-5 md:w-6 md:h-6 text-pink-500 mt-0.5 animate-heartbeat flex-shrink-0"></i>
                                 <div class="flex-1">
                                     <p class="text-sm md:text-base font-medium text-gray-800 text-justify leading-relaxed">
                                         "Ilmu kalau dibagi bakal lebih berkah. Dan jujur aja, cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi... sekalian aja kita belajar bareng di sini, hehe. 😄"
@@ -674,15 +636,7 @@
         </section>
 
         <!-- 4. JADWAL NGONTEN SECTION -->
-        <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            
-            <!-- Background Gradient -->
-            <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50"></div>
-            
-            <!-- Floating Orbs Background -->
-            <div class="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl animate-float-orb-1"></div>
-            <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl animate-float-orb-2"></div>
-            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-100/20 to-yellow-100/20 rounded-full blur-3xl animate-float-orb-3"></div>
+        <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-white z-10">
             
             <div class="max-w-6xl mx-auto relative z-10">
                 
@@ -702,7 +656,7 @@
                     
                     <!-- Subtitle -->
                     <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-                        ‼️ Pantau biar nggak ketinggalan materi baru ‼️
+                        ❗️ Pantau biar nggak ketinggalan materi baru ❗️
                     </p>
                 </div>
                 
@@ -851,8 +805,6 @@
                     </div>
                 </div>
                 
-        
-                
                 <!-- Countdown Dashboard -->
                 <div class="max-w-3xl mx-auto">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
@@ -873,7 +825,7 @@
                                         <span>Upload Berikutnya</span>
                                     </div>
                                     <div id="jn-next-day" class="text-3xl md:text-4xl font-black text-gray-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        â€”
+                                        —
                                     </div>
                                     <div class="flex items-center gap-2 text-gray-600 text-sm justify-center md:justify-start">
                                         <i data-lucide="clock" class="w-4 h-4"></i>
@@ -908,35 +860,27 @@
             </div>
         </section>
 
-
         <!-- 5. FEEDBACK SECTION -->
-        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
-            bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
-
-            <!-- Radial Light Effect -->
-            <div class="absolute w-full h-full top-0 left-0 opacity-50">
-                <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
-                <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
-            </div>
+        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden bg-white z-10 px-4 sm:px-6 lg:px-8">
 
             <div class="max-w-3xl mx-auto relative z-10">
                 <div class='text-center mb-12'>
-                    <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
+                    <i data-lucide="message-square" class="w-8 h-8 text-orange-500 mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-pink-600">
                         Yuk, Evaluasi! 🚀
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <p class="text-lg text-gray-300 text-center">
+                    <p class="text-lg text-gray-600 text-center">
                         Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
 
                 <!-- Glass-morphism Form Card -->
-                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
+                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl shadow-xl border border-gray-200 bg-white/80 backdrop-blur-sm">
 
                     <!-- Asal Kota Input -->
                     <div class="mb-6">
-                        <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
+                        <label for="city" class="text-lg text-gray-700 font-semibold mb-2 block flex items-center">
                             <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
                         </label>
                         <input 
@@ -945,22 +889,22 @@
                             name="city"
                             placeholder="Dari kota mana nih? 📍" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
+                            class="w-full p-4 rounded-xl bg-white border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-sm transition-all"
                         />
                     </div>
 
                     <!-- Evaluasi / Saran Topik Textarea -->
                     <div class="mb-8">
-                        <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
+                        <label for="feedback-text" class="text-lg text-gray-700 font-semibold mb-2 block flex items-center">
                             <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
                         </label>
                         <textarea 
                             id="feedback-text" 
                             name="evaluation_or_topic"
                             rows="6" 
-                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
+                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 💬✨" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
+                            class="w-full p-4 rounded-xl bg-white border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-sm resize-none transition-all"
                         ></textarea>
                     </div>
 
@@ -977,11 +921,11 @@
         </section>
 
         <!-- 6. SUPPORT SECTION -->
-        <section id="support" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#F0F9FF] via-[#DBEAFE] to-[#BFDBFE] px-4 sm:px-6 lg:px-8">
+        <section id="support" class="py-24 md:py-32 section-padding bg-white relative z-10 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto text-center">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <i data-lucide="coffee" class="w-8 h-8 text-[#8B5CF6] mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">
+                    <i data-lucide="coffee" class="w-8 h-8 text-purple-600 mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
                         Support Konten 
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
@@ -995,23 +939,23 @@
                     <!-- Benefits Column (Left) -->
                     <div class="space-y-6">
                         <!-- Benefit 1 -->
-                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                        <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer">
                             <div class="flex items-center space-x-3">
-                                <i data-lucide="gift" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <i data-lucide="gift" class="w-7 h-7 text-purple-600"></i>
                                 <p class="font-bold text-gray-800">Dukung konten gratis berkualitas</p>
                             </div>
                         </div>
                         <!-- Benefit 2 -->
-                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                        <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer">
                             <div class="flex items-center space-x-3">
-                                <i data-lucide="heart" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <i data-lucide="heart" class="w-7 h-7 text-purple-600"></i>
                                 <p class="font-bold text-gray-800">Jadi bagian dari perjalanan ini</p>
                             </div>
                         </div>
                         <!-- Benefit 3 -->
-                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                        <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer">
                             <div class="flex items-center space-x-3">
-                                <i data-lucide="zap" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <i data-lucide="zap" class="w-7 h-7 text-purple-600"></i>
                                 <p class="font-bold text-gray-800">Bonus: Nomor WA buat ngobrol</p>
                             </div>
                         </div>
@@ -1019,15 +963,15 @@
 
                     <!-- QRIS Container (Right) -->
                     <div class="flex justify-center items-center">
-                        <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-200">
+                        <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-300">
                             <div class="relative z-10 flex flex-col items-center justify-center">
                                 <!-- Title -->
                                 <div class="mb-4 text-center">
-                                    <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                                    <h3 class="text-2xl font-black bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">Scan QRIS</h3>
                                 </div>
                             
                                 <!-- QRIS Image -->
-                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4"> <!-- Fix border-gray-80 → gray-100 -->
+                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-200 mb-4">
                                     <img 
                                         src="qris.jpg"
                                         loading="lazy"
@@ -1048,14 +992,14 @@
                 
                 <!-- Note Box -->
                 <p class="text-base text-gray-700 font-medium mt-16 sm:mt-20 md:mt-24 lg:mt-28 text-center">
-                    Upload bukti transfer <span class="font-bold text-[#8B5CF6]">buat akses BONUS! 💬 </span>
+                    Upload bukti transfer <span class="font-bold text-purple-600">buat akses BONUS! 💬 </span>
                 </p>
                 <div class="mt-6 flex justify-center">
                     <a 
                         href="https://forms.gle/41Tb488BMszWqg267" 
                         target="_blank"
                         class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg text-white 
-                               bg-gradient-to-r from-[#8B5CF6] via-[#A855F7] to-[#F97316] 
+                               bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 
                                shadow-lg hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] 
                                hover:scale-[1.03] transition-all duration-300 ease-in-out 
                                backdrop-blur-md border border-white/20"
@@ -1069,7 +1013,7 @@
         </section>
         
         <!-- 7. FOOTER -->
-        <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8">
+        <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-7xl mx-auto">
                 
                 <!-- Footer Content Grid -->
@@ -1100,7 +1044,7 @@
                     
                     <!-- Column 2 - Social -->
                     <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-gray-200 mb-4">Follow! </h4>
+                        <h4 class="text-xl font-bold text-gray-200 mb-4">Follow! 🚀</h4>
                         <div class="space-y-3">
                             <a href="#" class="flex items-center p-3 rounded-xl transition-all duration-300 glass-effect hover:bg-orange-500/20 hover:-translate-y-1">
                                 <i data-lucide="instagram" class="w-6 h-6 mr-3 text-pink-400"></i>
@@ -1119,17 +1063,17 @@
 
                     <!-- Column 3 - Kerjasama -->
                     <div class="md:col-span-1">
-                    <h4 class="text-xl font-bold text-gray-200 mb-4">Kerjasama?</h4>
-                    <div class="space-y-4">
-                        <!-- WhatsApp Button -->
-                        <a href="https://wa.me/62895324959492" 
-                           target="_blank" rel="noopener noreferrer"
-                           class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
-                          <span class="wa-icon"><i data-lucide="message-circle"></i></span>
-                          <span>Chat via WhatsApp</span>
-                        </a>
+                        <h4 class="text-xl font-bold text-gray-200 mb-4">Kerjasama?</h4>
+                        <div class="space-y-4">
+                            <!-- WhatsApp Button -->
+                            <a href="https://wa.me/62895324959492" 
+                               target="_blank" rel="noopener noreferrer"
+                               class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
+                              <span class="wa-icon"><i data-lucide="message-circle"></i></span>
+                              <span>Chat via WhatsApp</span>
+                            </a>
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <!-- Bottom Copyright -->
