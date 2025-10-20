@@ -219,6 +219,375 @@
             transition: transform 0.3s ease; 
         }
 
+        /* ==========================================
+   ENHANCED FEEDBACK SECTION STYLES - START
+   ========================================== */
+
+        /* Animated Gradient Background with Smooth Top Transition */
+        .feedback-bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(180deg, 
+                    rgba(239, 246, 255, 0.3) 0%,
+                    rgba(219, 234, 254, 0.2) 5%,
+                    transparent 15%
+                ),
+                linear-gradient(135deg, 
+                    #1a0b2e 0%,
+                    #2d1b4e 25%,
+                    #4a2c6d 50%,
+                    #6b3fa0 75%,
+                    #8b5cf6 100%
+                );
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        .feedback-bg-gradient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            mix-blend-mode: overlay;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { filter: hue-rotate(0deg) brightness(0.95); }
+            50% { filter: hue-rotate(10deg) brightness(1.05); }
+        }
+        
+        /* Floating Decorative Bubbles */
+        .float-bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: floatBubble 20s infinite ease-in-out;
+        }
+        
+        @keyframes floatBubble {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(30px, -40px) scale(1.1); }
+            50% { transform: translate(-20px, -80px) scale(0.9); }
+            75% { transform: translate(40px, -40px) scale(1.05); }
+        }
+        
+        .bubble-1 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, #f59e0b, transparent);
+            top: 10%;
+            left: 5%;
+            animation-duration: 18s;
+        }
+        
+        .bubble-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, #ec4899, transparent);
+            bottom: 5%;
+            right: 8%;
+            animation-duration: 22s;
+            animation-delay: -5s;
+        }
+        
+        .bubble-3 {
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #f97316, transparent);
+            top: 40%;
+            right: 10%;
+            animation-duration: 16s;
+            animation-delay: -10s;
+        }
+        
+        .bubble-4 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #a855f7, transparent);
+            bottom: 30%;
+            left: 15%;
+            animation-duration: 20s;
+            animation-delay: -7s;
+        }
+        
+        /* Floating Chat Bubble Icons */
+        .chat-bubble-float {
+            position: absolute;
+            opacity: 0.2;
+            animation: floatUpDown 8s ease-in-out infinite;
+        }
+        
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+        
+        /* Enhanced Sparkle Particles */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, #ffffff, #fbbf24);
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkleAnim 2.5s ease-in-out infinite;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+        }
+        
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0) translateY(0) rotate(0deg); }
+            50% { opacity: 0.8; transform: scale(1.2) translateY(-25px) rotate(180deg); }
+        }
+        
+        /* Enhanced Form Card with Multi-layer Glass Effect */
+        .feedback-form-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            border-radius: 32px;
+            padding: 3rem;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 80px rgba(249, 115, 22, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .feedback-form-card::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            background: linear-gradient(135deg, 
+                rgba(249, 115, 22, 0.5),
+                rgba(236, 72, 153, 0.5),
+                rgba(139, 92, 246, 0.5),
+                rgba(249, 115, 22, 0.5)
+            );
+            background-size: 200% 200%;
+            border-radius: 33px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            filter: blur(20px);
+            animation: gradientRotate 8s ease infinite;
+        }
+        
+        @keyframes gradientRotate {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .feedback-form-card:hover::before {
+            opacity: 1;
+        }
+        
+        .feedback-form-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 40px 100px rgba(0, 0, 0, 0.4),
+                0 0 120px rgba(249, 115, 22, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Enhanced Input Fields with Multi-layer Glow */
+        .feedback-input {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(249, 115, 22, 0.2);
+            color: #1f2937;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            outline: none;
+            will-change: transform, box-shadow;
+        }
+        
+        .feedback-input:focus {
+            background: rgba(255, 255, 255, 1);
+            border-color: #f97316;
+            box-shadow: 
+                0 0 0 4px rgba(249, 115, 22, 0.15),
+                0 0 0 8px rgba(249, 115, 22, 0.08),
+                0 8px 24px rgba(249, 115, 22, 0.25),
+                0 16px 48px rgba(249, 115, 22, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            transform: translateY(-3px) scale(1.01);
+        }
+        
+        .feedback-input:hover:not(:focus) {
+            border-color: rgba(249, 115, 22, 0.4);
+            transform: translateY(-1px);
+        }
+        
+        .feedback-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        /* Enhanced Labels with Shadow */
+        .feedback-label {
+            display: flex;
+            align-items: center;
+            font-size: 1.125rem;
+            color: #fef3c7;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feedback-label i {
+            margin-right: 0.5rem;
+            filter: drop-shadow(0 2px 4px rgba(249, 115, 22, 0.5));
+        }
+        
+        /* Enhanced Submit Button with Pulse Animation */
+        .feedback-submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, #f97316, #ea580c, #dc2626);
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 
+                0 10px 30px rgba(249, 115, 22, 0.4),
+                0 0 40px rgba(220, 38, 38, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            will-change: transform;
+        }
+        
+        .feedback-submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #fbbf24, #f59e0b, #f97316);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feedback-submit-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.3), transparent 70%);
+            opacity: 0;
+            animation: buttonPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes buttonPulse {
+            0%, 100% { opacity: 0; transform: scale(0.8); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .feedback-submit-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .feedback-submit-btn:hover::after {
+            animation: buttonPulse 1s ease-in-out infinite;
+        }
+        
+        .feedback-submit-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 
+                0 20px 50px rgba(249, 115, 22, 0.5),
+                0 0 80px rgba(220, 38, 38, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+        
+        .feedback-submit-btn:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+        
+        .feedback-submit-btn span,
+        .feedback-submit-btn i {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Decorative Message Icons */
+        .message-icon-deco {
+            position: absolute;
+            opacity: 0.1;
+            color: white;
+            animation: floatRotate 10s ease-in-out infinite;
+        }
+        
+        @keyframes floatRotate {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, -20px) rotate(15deg); }
+        }
+        
+        /* Header Icon Pulse */
+        .feedback-header-icon {
+            display: inline-block;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* Responsive Optimization for Mobile */
+        @media (max-width: 768px) {
+            .feedback-form-card {
+                padding: 2rem 1.5rem;
+                backdrop-filter: blur(20px) saturate(140%);
+                -webkit-backdrop-filter: blur(20px) saturate(140%);
+            }
+            
+            .float-bubble {
+                opacity: 0.08;
+            }
+            
+            .chat-bubble-float,
+            .message-icon-deco {
+                display: none;
+            }
+            
+            .feedback-input:focus {
+                box-shadow: 
+                    0 0 0 3px rgba(249, 115, 22, 0.15),
+                    0 8px 20px rgba(249, 115, 22, 0.2);
+            }
+            
+            .feedback-submit-btn {
+                font-size: 1.125rem;
+                padding: 1rem 1.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .feedback-form-card {
+                padding: 1.75rem 1.25rem;
+            }
+            
+            .sparkle {
+                width: 4px;
+                height: 4px;
+            }
+        }
+        
+        /* ==========================================
+           ENHANCED FEEDBACK SECTION STYLES - END
+           ========================================== */
+
         /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
         /* Tablet & Landscape Mobile (max-1024px) */
         @media (max-width: 1024px) {
@@ -908,35 +1277,74 @@
             </div>
         </section>
 
-        <!-- 5. FEEDBACK SECTION -->
-        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
-            bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
+        <!-- 5. ENHANCED FEEDBACK SECTION -->
+        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
             
-            <!-- Radial Light Effect -->
-            <div class="absolute w-full h-full top-0 left-0 opacity-50">
-                <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
-                <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
+            <!-- Animated Gradient Background -->
+            <div class="feedback-bg-gradient"></div>
+            
+            <!-- Floating Gradient Bubbles -->
+            <div class="float-bubble bubble-1"></div>
+            <div class="float-bubble bubble-2"></div>
+            <div class="float-bubble bubble-3"></div>
+            <div class="float-bubble bubble-4"></div>
+            
+            <!-- Decorative Chat Bubbles (Icons) -->
+            <div class="chat-bubble-float" style="top: 15%; left: 10%;">
+                <i data-lucide="message-circle" class="w-16 h-16 text-orange-300"></i>
             </div>
-
+            <div class="chat-bubble-float" style="top: 60%; right: 12%; animation-delay: -3s;">
+                <i data-lucide="heart" class="w-20 h-20 text-pink-300"></i>
+            </div>
+            <div class="chat-bubble-float" style="bottom: 20%; left: 15%; animation-delay: -6s;">
+                <i data-lucide="star" class="w-14 h-14 text-yellow-300"></i>
+            </div>
+            <div class="chat-bubble-float" style="top: 30%; right: 20%; animation-delay: -4s;">
+                <i data-lucide="send" class="w-12 h-12 text-purple-300"></i>
+            </div>
+            
+            <!-- Sparkle Particles (Enhanced - 10 particles) -->
+            <div class="sparkle" style="top: 15%; left: 25%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 35%; left: 65%; animation-delay: 0.8s;"></div>
+            <div class="sparkle" style="top: 55%; left: 15%; animation-delay: 1.6s;"></div>
+            <div class="sparkle" style="top: 25%; left: 75%; animation-delay: 0.4s;"></div>
+            <div class="sparkle" style="top: 70%; left: 40%; animation-delay: 2s;"></div>
+            <div class="sparkle" style="top: 45%; left: 85%; animation-delay: 1.2s;"></div>
+            <div class="sparkle" style="top: 65%; left: 55%; animation-delay: 1.8s;"></div>
+            <div class="sparkle" style="top: 80%; left: 30%; animation-delay: 2.4s;"></div>
+            <div class="sparkle" style="top: 20%; left: 50%; animation-delay: 0.6s;"></div>
+            <div class="sparkle" style="top: 50%; left: 10%; animation-delay: 1.4s;"></div>
+        
             <div class="max-w-3xl mx-auto relative z-10">
+                <!-- Header -->
                 <div class='text-center mb-12'>
-                    <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
+                    <div class="feedback-header-icon mb-4">
+                        <i data-lucide="message-square" class="w-12 h-12 text-orange-400 mx-auto block" style="filter: drop-shadow(0 4px 12px rgba(249, 115, 22, 0.6));"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white" style="text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);">
                         Yuk, Evaluasi! 🚀
                     </h2>
-                    <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <p class="text-lg text-gray-300 text-center">
-                        Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
+                    <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 via-pink-400 to-red-500" style="box-shadow: 0 4px 20px rgba(249, 115, 22, 0.5);"></div>
+                    <p class="text-lg md:text-xl text-gray-100 text-center max-w-2xl mx-auto" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);">
+                        Konten ini <strong class="text-orange-300">buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong class="text-pink-300">ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
-
-                <!-- Glass-morphism Form Card -->
-                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
+        
+                <!-- Message Icon Decorations near form -->
+                <div class="message-icon-deco" style="top: 10%; right: -5%;">
+                    <i data-lucide="mail" class="w-24 h-24"></i>
+                </div>
+                <div class="message-icon-deco" style="bottom: 15%; left: -5%; animation-delay: -5s;">
+                    <i data-lucide="pen-tool" class="w-20 h-20"></i>
+                </div>
+        
+                <!-- Enhanced Form Card -->
+                <form id="feedback-form" class="feedback-form-card">
                   
                     <!-- Asal Kota Input -->
                     <div class="mb-6">
-                        <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
-                            <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
+                        <label for="city" class="feedback-label">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i> Asal Kota
                         </label>
                         <input 
                             type="text" 
@@ -944,32 +1352,33 @@
                             name="city"
                             placeholder="Dari kota mana nih? 📍" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
+                            class="feedback-input"
                         />
                     </div>
-
+        
                     <!-- Evaluasi / Saran Topik Textarea -->
                     <div class="mb-8">
-                        <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
-                            <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
+                        <label for="feedback-text" class="feedback-label">
+                            <i data-lucide="message-square" class="w-5 h-5"></i> Evaluasi / Saran Topik
                         </label>
                         <textarea 
                             id="feedback-text" 
                             name="evaluation_or_topic"
                             rows="6" 
-                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
+                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 💬✨" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
+                            class="feedback-input resize-none"
                         ></textarea>
                     </div>
-
+        
                     <!-- Submit Button -->
                     <button 
                         type="submit" 
                         id="submit-feedback-btn"
-                        class="w-full text-xl bg-gradient-to-r from-orange-500 to-red-600 hover:from-red-600 hover:to-orange-500 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(245,158,11,0.5)] flex items-center justify-center"
+                        class="feedback-submit-btn"
                     >
-                        Kirim Sekarang! <i data-lucide="send" class="w-5 h-5 ml-2"></i>
+                        <span>Kirim Sekarang!</span>
+                        <i data-lucide="send" class="w-5 h-5"></i>
                     </button>
                 </form>
             </div>
