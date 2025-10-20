@@ -505,7 +505,53 @@
                 font-size: 0.9375rem;
             }
         }
+
+                /* Icon Container 3D Effect (Match Jadwal Style) */
+        .feedback-icon-container {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, #a855f7, #ec4899);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 8px 24px rgba(168, 85, 247, 0.3),
+                0 4px 12px rgba(236, 72, 153, 0.2);
+            transition: all 0.3s ease;
+            margin: 0 auto 1.5rem;
+        }
         
+        .feedback-icon-container:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 
+                0 12px 32px rgba(168, 85, 247, 0.4),
+                0 6px 16px rgba(236, 72, 153, 0.3);
+        }
+        
+        .feedback-icon-container i {
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+        
+        /* Label Icon 3D Glow */
+        .feedback-label i {
+            margin-right: 0.5rem;
+            color: #a855f7;
+            filter: drop-shadow(0 2px 6px rgba(168, 85, 247, 0.5));
+            transition: all 0.3s ease;
+        }
+        
+        .feedback-label:hover i {
+            transform: scale(1.15);
+            filter: drop-shadow(0 4px 8px rgba(168, 85, 247, 0.6));
+        }
+        
+        /* Button Icon Glow Enhancement */
+        .feedback-submit-btn i {
+            filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
+        }
+                
         /* ==========================================
            FEEDBACK SECTION - END
            ========================================== */
@@ -1217,9 +1263,11 @@
                 
                 <!-- Header -->
                 <div class='text-center mb-12'>
-                    <div class="feedback-header-icon mb-4">
-                        <i data-lucide="message-square" class="w-10 h-10 text-purple-600 mx-auto block" style="filter: drop-shadow(0 4px 12px rgba(168, 85, 247, 0.4));"></i>
+                    <!-- 3D Icon Container (Match Jadwal Style) -->
+                    <div class="feedback-icon-container">
+                        <i data-lucide="message-square" class="w-10 h-10"></i>
                     </div>
+                    
                     <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-gray-900">
                         Yuk, Evaluasi! 🚀
                     </h2>
@@ -1228,7 +1276,7 @@
                         Konten ini <strong class="text-purple-700">buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong class="text-pink-600">ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
-        
+                        
                 <!-- Form Card (Glass Morphism - Match Jadwal) -->
                 <form id="feedback-form" class="feedback-form-card">
                   
