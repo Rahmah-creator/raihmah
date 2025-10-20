@@ -220,61 +220,94 @@
         }
 
         /* ==========================================
-           CLEAN FEEDBACK SECTION - READABLE & PERFORMANT
+           FEEDBACK SECTION - WEBSITE CONSISTENT
            ========================================== */
         
-        /* Smooth Gradient Background - Sunset Theme */
+        /* Soft Gradient Background - Matches Personal + Jadwal Vibe */
         .feedback-bg-gradient {
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, 
-                #be123c 0%,      /* Deep rose */
-                #db2777 20%,     /* Rose pink */
-                #ec4899 40%,     /* Hot pink */
-                #fb923c 65%,     /* Orange warm */
-                #fbbf24 85%,     /* Golden */
-                #fcd34d 100%     /* Yellow light */
+                #fdf4ff 0%,      /* Soft purple (dari Personal) */
+                #fce7f3 15%,     /* Soft pink (dari Personal) */
+                #f5f3ff 35%,     /* Lavender soft (bridge) */
+                #eff6ff 55%,     /* Blue soft (dari Jadwal) */
+                #e0f2fe 75%,     /* Sky soft */
+                #dbeafe 100%     /* Blue-100 (bridge ke Support) */
             );
         }
         
-        /* Subtle Texture Overlay */
+        /* Subtle Noise Texture (Consistent dengan sections lain) */
         .feedback-bg-gradient::after {
             content: '';
             position: absolute;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.015;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
             mix-blend-mode: overlay;
         }
         
-        /* Minimal Decorative Sparkles (Only 3!) */
+        /* Floating Orbs (Consistent dengan Hero & Personal style) */
+        .float-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: floatOrb 20s ease-in-out infinite;
+        }
+        
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+        
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25), transparent);
+            top: -10%;
+            left: -5%;
+            animation-duration: 25s;
+        }
+        
+        .orb-2 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.25), transparent);
+            bottom: -10%;
+            right: -5%;
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+        
+        /* Minimal Sparkle (Subtle & Soft) */
         .sparkle {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(251, 191, 36, 0.7));
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.8), rgba(59, 130, 246, 0.6));
             border-radius: 50%;
             opacity: 0;
-            animation: sparkleAnim 3s ease-in-out infinite;
-            will-change: transform, opacity;
+            animation: sparkleAnim 4s ease-in-out infinite;
         }
         
         @keyframes sparkleAnim {
             0%, 100% { opacity: 0; transform: scale(0) translateY(0); }
-            50% { opacity: 0.7; transform: scale(1.2) translateY(-25px); }
+            50% { opacity: 0.5; transform: scale(1) translateY(-20px); }
         }
         
-        /* Enhanced Form Card - Semi-Solid with Better Contrast */
+        /* Form Card - Glass Morphism (Match Jadwal Style) */
         .feedback-form-card {
             position: relative;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(20px) saturate(140%);
-            -webkit-backdrop-filter: blur(20px) saturate(140%);
-            border: 3px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(24px) saturate(140%);
+            -webkit-backdrop-filter: blur(24px) saturate(140%);
+            border: 2px solid rgba(255, 255, 255, 0.8);
             border-radius: 32px;
             padding: 2.5rem;
             box-shadow: 
-                0 20px 60px rgba(190, 18, 60, 0.2),
+                0 20px 60px rgba(168, 85, 247, 0.12),
+                0 8px 24px rgba(59, 130, 246, 0.08),
                 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
             transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -282,17 +315,17 @@
         .feedback-form-card::before {
             content: '';
             position: absolute;
-            inset: -3px;
+            inset: -2px;
             background: linear-gradient(135deg, 
-                rgba(249, 115, 22, 0.4),
-                rgba(236, 72, 153, 0.4),
-                rgba(251, 191, 36, 0.3)
+                rgba(168, 85, 247, 0.2),
+                rgba(59, 130, 246, 0.2),
+                rgba(236, 72, 153, 0.15)
             );
-            border-radius: 35px;
+            border-radius: 34px;
             z-index: -1;
             opacity: 0;
             transition: opacity 0.4s ease;
-            filter: blur(16px);
+            filter: blur(12px);
         }
         
         .feedback-form-card:hover::before {
@@ -302,37 +335,38 @@
         .feedback-form-card:hover {
             transform: translateY(-4px);
             box-shadow: 
-                0 30px 70px rgba(190, 18, 60, 0.25),
+                0 30px 70px rgba(168, 85, 247, 0.15),
+                0 12px 32px rgba(59, 130, 246, 0.1),
                 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
-            border-color: rgba(255, 255, 255, 0.85);
+            border-color: rgba(255, 255, 255, 0.9);
         }
         
-        /* Input Fields - Solid & Readable */
+        /* Input Fields - Solid & Clean */
         .feedback-input {
             width: 100%;
             padding: 1rem 1.25rem;
             border-radius: 16px;
-            background: rgba(255, 255, 255, 0.98);
-            border: 2px solid rgba(249, 115, 22, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(168, 85, 247, 0.25);
             color: #1f2937;
             font-size: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
             outline: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
         
         .feedback-input:focus {
             background: #ffffff;
-            border-color: #f97316;
+            border-color: #a855f7;
             box-shadow: 
-                0 0 0 4px rgba(249, 115, 22, 0.15),
-                0 8px 24px rgba(249, 115, 22, 0.2);
+                0 0 0 4px rgba(168, 85, 247, 0.12),
+                0 8px 24px rgba(168, 85, 247, 0.15);
             transform: translateY(-2px);
         }
         
         .feedback-input:hover:not(:focus) {
-            border-color: rgba(249, 115, 22, 0.5);
+            border-color: rgba(168, 85, 247, 0.4);
         }
         
         .feedback-input::placeholder {
@@ -340,40 +374,39 @@
             font-weight: 400;
         }
         
-        /* Labels - Dark Color for Better Contrast */
+        /* Labels - Dark for Readability (Consistent dengan body text di sections lain) */
         .feedback-label {
             display: flex;
             align-items: center;
             font-size: 1.125rem;
-            color: rgba(15, 23, 42, 0.95);
+            color: #1f2937;
             font-weight: 700;
             margin-bottom: 0.75rem;
-            text-shadow: 
-                0 1px 2px rgba(255, 255, 255, 0.9),
-                0 2px 4px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
         }
         
         .feedback-label i {
             margin-right: 0.5rem;
-            color: #f97316;
-            filter: drop-shadow(0 2px 4px rgba(249, 115, 22, 0.4));
+            color: #a855f7;
+            filter: drop-shadow(0 2px 4px rgba(168, 85, 247, 0.3));
         }
         
-        /* Submit Button - Clean Gradient */
+        /* Submit Button - Gradient Match Website Theme */
         .feedback-submit-btn {
             width: 100%;
             padding: 1.125rem 2rem;
             font-size: 1.25rem;
             font-weight: 700;
             color: white;
-            background: linear-gradient(135deg, #be123c 0%, #ec4899 50%, #f97316 100%);
+            background: linear-gradient(135deg, #a855f7 0%, #ec4899 50%, #3b82f6 100%);
             border: none;
             border-radius: 9999px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 
-                0 10px 30px rgba(190, 18, 60, 0.35),
-                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+                0 10px 30px rgba(168, 85, 247, 0.25),
+                0 4px 12px rgba(236, 72, 153, 0.15),
+                0 0 0 1px rgba(255, 255, 255, 0.1) inset;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -386,7 +419,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, #fbbf24, #fb923c, #f97316);
+            background: linear-gradient(135deg, #8b5cf6, #a855f7, #ec4899);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -398,8 +431,9 @@
         .feedback-submit-btn:hover {
             transform: translateY(-3px) scale(1.02);
             box-shadow: 
-                0 20px 45px rgba(190, 18, 60, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+                0 20px 45px rgba(168, 85, 247, 0.3),
+                0 8px 20px rgba(236, 72, 153, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.2) inset;
         }
         
         .feedback-submit-btn:active {
@@ -412,7 +446,7 @@
             z-index: 1;
         }
         
-        /* Header Icon Animation */
+        /* Header Icon Float (Consistent dengan animations di website) */
         .feedback-header-icon {
             display: inline-block;
             animation: iconFloat 3s ease-in-out infinite;
@@ -427,9 +461,13 @@
         @media (max-width: 768px) {
             .feedback-form-card {
                 padding: 2rem 1.5rem;
-                backdrop-filter: blur(16px) saturate(130%);
-                -webkit-backdrop-filter: blur(16px) saturate(130%);
-                background: rgba(255, 255, 255, 0.45);
+                backdrop-filter: blur(20px) saturate(130%);
+                -webkit-backdrop-filter: blur(20px) saturate(130%);
+                background: rgba(255, 255, 255, 0.75);
+            }
+            
+            .float-orb {
+                opacity: 0.2;
             }
             
             .feedback-label {
@@ -443,8 +481,8 @@
             
             .feedback-input:focus {
                 box-shadow: 
-                    0 0 0 3px rgba(249, 115, 22, 0.15),
-                    0 8px 20px rgba(249, 115, 22, 0.2);
+                    0 0 0 3px rgba(168, 85, 247, 0.12),
+                    0 8px 20px rgba(168, 85, 247, 0.12);
                 transform: translateY(-1px);
             }
             
@@ -469,7 +507,7 @@
         }
         
         /* ==========================================
-           CLEAN FEEDBACK SECTION - END
+           FEEDBACK SECTION - END
            ========================================== */
         
         /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
@@ -1161,33 +1199,37 @@
             </div>
         </section>
 
-        <!-- 5. CLEAN FEEDBACK SECTION -->
+        <!-- 5. FEEDBACK SECTION - WEBSITE CONSISTENT -->
         <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
             
-            <!-- Clean Gradient Background -->
+            <!-- Soft Gradient Background (Match Personal + Jadwal) -->
             <div class="feedback-bg-gradient"></div>
             
-            <!-- Minimal Sparkles (Only 3!) -->
-            <div class="sparkle" style="top: 20%; left: 15%; animation-delay: 0s;"></div>
-            <div class="sparkle" style="top: 65%; left: 75%; animation-delay: 1.2s;"></div>
-            <div class="sparkle" style="top: 45%; left: 85%; animation-delay: 2.4s;"></div>
+            <!-- Floating Orbs (Consistent dengan Hero & Personal) -->
+            <div class="float-orb orb-1"></div>
+            <div class="float-orb orb-2"></div>
+            
+            <!-- Minimal Sparkles (Subtle, only 2) -->
+            <div class="sparkle" style="top: 25%; left: 20%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 60%; right: 25%; animation-delay: 2s;"></div>
         
             <div class="max-w-3xl mx-auto relative z-10">
+                
                 <!-- Header -->
                 <div class='text-center mb-12'>
                     <div class="feedback-header-icon mb-4">
-                        <i data-lucide="message-square" class="w-12 h-12 text-white mx-auto block" style="filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));"></i>
+                        <i data-lucide="message-square" class="w-10 h-10 text-purple-600 mx-auto block" style="filter: drop-shadow(0 4px 12px rgba(168, 85, 247, 0.4));"></i>
                     </div>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white" style="text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-gray-900">
                         Yuk, Evaluasi! 🚀
                     </h2>
-                    <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-white/80" style="box-shadow: 0 4px 16px rgba(255, 255, 255, 0.5);"></div>
-                    <p class="text-lg md:text-xl text-white text-center max-w-2xl mx-auto font-medium" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">
-                        Konten ini <strong class="text-yellow-100">buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong class="text-yellow-100">ide materi lain</strong>, beri tau ya! 😊
+                    <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500"></div>
+                    <p class="text-lg md:text-xl text-gray-700 text-center max-w-2xl mx-auto font-medium">
+                        Konten ini <strong class="text-purple-700">buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong class="text-pink-600">ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
         
-                <!-- Clean Form Card -->
+                <!-- Form Card (Glass Morphism - Match Jadwal) -->
                 <form id="feedback-form" class="feedback-form-card">
                   
                     <!-- Asal Kota Input -->
