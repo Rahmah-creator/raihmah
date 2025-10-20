@@ -673,13 +673,13 @@
             </div>
         </section>
 
-        <!-- 4. JADWAL NGONTEN SECTION - FINAL REVISED -->
+        <!-- 4. JADWAL NGONTEN SECTION -->
         <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             
             <!-- Background Gradient -->
             <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50"></div>
             
-            <!-- Floating Orbs Background (Responsive Sized) -->
+            <!-- Floating Orbs Background -->
             <div class="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl animate-float-orb-1"></div>
             <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl animate-float-orb-2"></div>
             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-100/20 to-yellow-100/20 rounded-full blur-3xl animate-float-orb-3"></div>
@@ -702,19 +702,18 @@
                     
                     <!-- Subtitle -->
                     <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-                        Pantau terus jadwal upload, biar gak ketinggalan materi baru! 🚀
+                        Pantau terus jadwal upload, biar gak ketinggalan materi baru! ðŸš€
                     </p>
                 </div>
                 
-                <!-- Cards Grid (FIX #2: Changed md:grid-cols-3 to lg:grid-cols-3) -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+                <!-- Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     
-                    <!-- Card Senin (Blue) - FIX #7: Added tabindex & role -->
-                    <div id="card-mon" data-day="1" class="jn-card w-[90%] mx-auto lg:mx-0 lg:w-full" aria-label="Senin - Video Materi" tabindex="0" role="article">
-                        <!-- FIX #1: Moved 'group' class here for proper badge functionality -->
-                        <div class="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
-                            <!-- Gradient Border Effect (FIX #10: Changed inset-0 to -inset-1) -->
-                            <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                    <!-- Card Senin (Blue) -->
+                    <div id="card-mon" data-day="1" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Senin - Video Materi">
+                        <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
                             <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-blue-100 hover:border-blue-300 transition-all duration-300">
@@ -736,9 +735,9 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Active Badge (FIX #1: Using new class for proper visibility) -->
-                                    <span class="jn-active-badge px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡
+                                    <!-- Active Badge (Hidden by default, shown when .jn-active) -->
+                                    <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
@@ -757,11 +756,11 @@
                         </div>
                     </div>
                     
-                    <!-- Card Kamis (Orange) - FIX #7: Added tabindex & role, FIX #9: Darker orange gradient -->
-                    <div id="card-thu" data-day="4" class="jn-card w-[90%] mx-auto lg:mx-0 lg:w-full" aria-label="Kamis - Carousel" tabindex="0" role="article">
-                        <div class="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
-                            <!-- Gradient Border Effect (FIX #10: Changed inset-0 to -inset-1) -->
-                            <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                    <!-- Card Kamis (Orange) -->
+                    <div id="card-thu" data-day="4" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Kamis - Carousel">
+                        <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
                             <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-orange-100 hover:border-orange-300 transition-all duration-300">
@@ -769,8 +768,8 @@
                                 <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
-                                        <!-- Icon Container with Gradient (FIX #9: Darker gradient for better contrast) -->
-                                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-700 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                                        <!-- Icon Container with Gradient -->
+                                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
                                         </div>
                                         <!-- Day + Time -->
@@ -784,8 +783,8 @@
                                     </div>
                                     
                                     <!-- Active Badge -->
-                                    <span class="jn-active-badge px-3 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡
+                                    <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
@@ -799,16 +798,16 @@
                                 </div>
                                 
                                 <!-- Decorative Bottom Accent -->
-                                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-orange-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Card Sabtu (Purple) - FIX #3: Changed icon to sparkles, FIX #7: Added tabindex & role -->
-                    <div id="card-sat" data-day="6" class="jn-card w-[90%] mx-auto lg:mx-0 lg:w-full" aria-label="Sabtu - Tips & Trik" tabindex="0" role="article">
-                        <div class="group relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
-                            <!-- Gradient Border Effect (FIX #10: Changed inset-0 to -inset-1) -->
-                            <div class="absolute -inset-1 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                    <!-- Card Sabtu (Purple) -->
+                    <div id="card-sat" data-day="6" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Sabtu - Tips & Trik">
+                        <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
                             <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-purple-100 hover:border-purple-300 transition-all duration-300">
@@ -816,9 +815,9 @@
                                 <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
-                                        <!-- Icon Container with Gradient (FIX #3: Changed to sparkles) -->
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
-                                            <i data-lucide="sparkles" class="w-7 h-7 text-white"></i>
+                                            <i data-lucide="video" class="w-7 h-7 text-white"></i>
                                         </div>
                                         <!-- Day + Time -->
                                         <div>
@@ -831,8 +830,8 @@
                                     </div>
                                     
                                     <!-- Active Badge -->
-                                    <span class="jn-active-badge px-3 py-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡
+                                    <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
@@ -852,6 +851,8 @@
                     </div>
                 </div>
                 
+        
+                
                 <!-- Countdown Dashboard -->
                 <div class="max-w-3xl mx-auto">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
@@ -861,18 +862,18 @@
                         <!-- Gradient Border Glow -->
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl"></div>
                         
-                        <!-- Content (FIX #11: Responsive padding) -->
-                        <div class="relative p-6 md:p-8 border-2 border-white/40">
+                        <!-- Content -->
+                        <div class="relative p-8 border-2 border-white/40">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
                                 
-                                <!-- Left: Next Upload Info (FIX #6: Changed calendar-clock to calendar) -->
+                                <!-- Left: Next Upload Info -->
                                 <div class="text-center md:text-left">
                                     <div class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider font-semibold mb-2 justify-center md:justify-start">
-                                        <i data-lucide="calendar" class="w-4 h-4"></i>
+                                        <i data-lucide="calendar-clock" class="w-4 h-4"></i>
                                         <span>Upload Berikutnya</span>
                                     </div>
                                     <div id="jn-next-day" class="text-3xl md:text-4xl font-black text-gray-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        —
+                                        â€”
                                     </div>
                                     <div class="flex items-center gap-2 text-gray-600 text-sm justify-center md:justify-start">
                                         <i data-lucide="clock" class="w-4 h-4"></i>
@@ -883,15 +884,15 @@
                                 <!-- Divider (Hidden on Mobile) -->
                                 <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
                                 
-                                <!-- Right: Countdown Timer (FIX #4: Updated label) -->
+                                <!-- Right: Countdown Timer -->
                                 <div class="text-center">
                                     <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-100 shadow-inner">
                                         <div id="jn-countdown" class="text-4xl md:text-5xl font-black text-gray-900 font-mono tracking-tight mb-2 jn-countdown">
-                                            0d 00:00:00
+                                            00:00:00
                                         </div>
                                         <div class="flex items-center justify-center gap-2 text-gray-500 text-xs uppercase tracking-widest font-semibold">
-                                            <i data-lucide="clock" class="w-3 h-3"></i>
-                                            <span>D : H : M : S</span>
+                                            <i data-lucide="timer" class="w-3 h-3"></i>
+                                            <span>Hari : Jam : Menit : Detik</span>
                                         </div>
                                     </div>
                                 </div>
@@ -906,6 +907,7 @@
                 </p>
             </div>
         </section>
+
 
         <!-- 5. FEEDBACK SECTION -->
         <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
@@ -1260,90 +1262,9 @@
                 }
             });
 
-            <!-- CSS UPDATE for Jadwal Ngonten - ALL FIXES APPLIED -->
-            <style>
-            /* FIX #1: Active card badge visibility with new selector */
-            .jn-active-badge {
-                display: none;
-            }
-            
-            .jn-active .jn-active-badge {
-                display: inline-block;
-            }
-            
-            /* FIX #8: Reduced hover lift from -8px to -6px */
-            .jn-card:hover {
-                transform: translateY(-6px);
-                transition: transform 0.3s ease;
-            }
-            
-            /* Enhanced active card styling */
-            .jn-active .relative.bg-white {
-                background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08));
-                border: 2px solid rgba(99,102,241,0.4) !important;
-                box-shadow: 0 0 25px rgba(99,102,241,0.25), 0 8px 16px rgba(0,0,0,0.1);
-                transform: scale(1.02);
-                transition: all 0.3s ease;
-            }
-            
-            /* FIX #7: Keyboard focus state for accessibility */
-            .jn-card:focus {
-                outline: 3px solid #3B82F6;
-                outline-offset: 4px;
-                border-radius: 1.5rem;
-            }
-            
-            .jn-card:focus-visible {
-                outline: 3px solid #3B82F6;
-                outline-offset: 4px;
-                border-radius: 1.5rem;
-            }
-            
-            /* Countdown tick animation */
-            .jn-tick {
-                animation: jn-tick 1s steps(1,end) infinite;
-            }
-            
-            @keyframes jn-tick {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-2px); }
-            }
-            
-            /* FIX #5: Responsive orbs sizing for better mobile performance */
-            @media (max-width: 768px) {
-                #jadwal-ngonten .animate-float-orb-1,
-                #jadwal-ngonten .animate-float-orb-2,
-                #jadwal-ngonten .animate-float-orb-3 {
-                    width: 150px !important;
-                    height: 150px !important;
-                }
-            }
-            
-            /* FIX #5: Scale up orbs for large desktop */
-            @media (min-width: 1536px) {
-                #jadwal-ngonten .animate-float-orb-1 { 
-                    width: 350px !important; 
-                    height: 350px !important; 
-                }
-                #jadwal-ngonten .animate-float-orb-2 { 
-                    width: 450px !important; 
-                    height: 450px !important; 
-                }
-                #jadwal-ngonten .animate-float-orb-3 { 
-                    width: 420px !important; 
-                    height: 420px !important; 
-                }
-            }
-            </style>
-            
-            <!-- JavaScript UPDATE for Countdown - FIX #4: Consistent format with days -->
-            <script>
-            // This script should REPLACE the existing JADWAL NGONTEN SCRIPT in your main HTML
-            // (Located around line 1190 in your original file)
-            
+            // JADWAL NGONTEN SCRIPT
             (function(){
-                const SCHEDULE = [1,4,6]; 
-                const UPLOAD_HOUR = 19;
+                const SCHEDULE = [1,4,6]; const UPLOAD_HOUR = 19;
                 const pad = n => String(n).padStart(2,'0');
                 const elDay = document.getElementById('jn-next-day');
                 const elCount = document.getElementById('jn-countdown');
@@ -1351,8 +1272,7 @@
                 function nextUpload(now = new Date()){
                     for(let i = 0; i < 14; i++){
                         const d = new Date(now);
-                        d.setDate(now.getDate() + i); 
-                        d.setHours(UPLOAD_HOUR, 0, 0, 0);
+                        d.setDate(now.getDate() + i); d.setHours(UPLOAD_HOUR, 0, 0, 0);
                         if(SCHEDULE.includes(d.getDay()) && d > now) return d;
                     }
                     return new Date(now.getTime() + 86400000 * 7);
@@ -1369,19 +1289,13 @@
                     if(!window.jn_next || window.jn_next <= now) window.jn_next = nextUpload(now);
                     const diff = window.jn_next - now;
                     const {d, h, m, s} = format(diff);
-                    
                     elDay.textContent = window.jn_next.toLocaleDateString(undefined, {weekday:'long', day:'numeric', month:'short'});
-                    
-                    // FIX #4: Always show days for consistent format
-                    elCount.textContent = `${d}d ${pad(h)}:${pad(m)}:${pad(s)}`;
-                    
+                    elCount.textContent = `${d > 0 ? d + 'd ' : ''}${pad(h)}:${pad(m)}:${pad(s)}`;
                     elCount.classList.add('jn-tick');
             
                     document.querySelectorAll('#jadwal-ngonten [data-day]').forEach(card => {
                         card.classList.remove('jn-active');
-                        if(Number(card.dataset.day) === window.jn_next.getDay()) {
-                            card.classList.add('jn-active');
-                        }
+                        if(Number(card.dataset.day) === window.jn_next.getDay()) card.classList.add('jn-active');
                     });
                 }
             
@@ -1389,6 +1303,7 @@
                 const timer = setInterval(update, 1000);
                 window.addEventListener('beforeunload', () => clearInterval(timer));
             })();
-            </script>
+        });
+    </script>
 </body>
 </html>
