@@ -133,14 +133,6 @@
         }
 
         /* Personal Section - Enhanced Animations */
-        @keyframes confetti-fall { 
-            0% { transform: translateY(-100%) rotate(0deg); opacity: 1; } 
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } 
-        }
-        @keyframes sparkle-twinkle { 
-            0%, 100% { opacity: 0; transform: scale(0.8); } 
-            50% { opacity: 1; transform: scale(1.2); } 
-        }
         @keyframes avatar-glow-pulse {
             0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(139, 92, 246, 0.2); }
             50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), 0 0 60px rgba(139, 92, 246, 0.4); }
@@ -154,6 +146,11 @@
             33% { transform: translate(20px, -20px) rotate(120deg); }
             66% { transform: translate(-15px, 15px) rotate(240deg); }
         }
+        
+        /* Animation Classes */
+        .animate-avatar-glow { animation: avatar-glow-pulse 3s ease-in-out infinite; }
+        .animate-rotate-ring { animation: rotate-ring 20s linear infinite; }
+        .animate-float-shape-personal { animation: float-shape-personal 15s ease-in-out infinite; }
 
         /* Jadwal Section - Circuit Pattern */
         @keyframes circuit-pulse { 
@@ -638,7 +635,7 @@
         <!-- ============================================
              3. PERSONAL SECTION - OPTIMIZED PERFECT
         ============================================ -->
-        <section id="personal" class="py-20 sm:py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8" style="background: #FAFBFC;">
+        <section id="personal" class="py-10 sm:py-12 md:py-16 lg:py-20 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8" style="background: #FAFBFC;">
             
             <!-- Ambient Light Glows (Optimized) -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -677,7 +674,7 @@
             </div>
 
             <div class="max-w-7xl mx-auto relative z-10">
-                <div class="flex flex-col lg:flex-row gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto items-center lg:items-start personal-container">
+                <div class="flex flex-col lg:flex-row gap-5 sm:gap-6 md:gap-8 lg:gap-10 max-w-6xl mx-auto items-center lg:items-start personal-container">
                     
                     <!-- Left: Enhanced Avatar -->
                     <div class="w-full lg:w-1/3 flex justify-center relative flex-shrink-0">
@@ -691,7 +688,7 @@
                                  style="animation: rotate-ring 15s linear infinite reverse; transform: scale(1.06);"></div>
                             
                             <!-- Avatar Container with Glow -->
-                            <div class="w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-52 lg:h-52 xl:w-56 xl:h-56 rounded-full relative p-2 
+                            <div class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52 rounded-full relative p-2 
                                 bg-gradient-to-br from-[#EC4899] to-[#8B5CF6] animate-float-avatar animate-avatar-glow">
                                 <div class="w-full h-full rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
                                     <img 
@@ -702,11 +699,11 @@
                                     />
                                 </div>
                                 
-                                <!-- Enhanced Star Badge -->
-                                <div class="absolute bottom-2 right-2 sm:bottom-3 sm:right-3 p-2 sm:p-2.5 rounded-full 
+                                <!-- Enhanced Star Badge (Touch Target Optimized) -->
+                                <div class="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-11 h-11 rounded-full 
                                     bg-gradient-to-r from-[#F59E0B] to-[#F97316] border-2 sm:border-3 border-white shadow-2xl 
-                                    animate-pulse-antenna hover:scale-110 transition-transform duration-300">
-                                    <i data-lucide="star" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                                    animate-pulse-antenna hover:scale-110 transition-transform duration-300 flex items-center justify-center">
+                                    <i data-lucide="star" class="w-5 h-5 text-white"></i>
                                 </div>
                             </div>
                         </div>
@@ -714,22 +711,21 @@
         
                     <!-- Right: Enhanced Content Card -->
                     <div class="w-full lg:w-2/3 relative">
-                        <!-- Glass-morphism Card Wrapper -->
-                        <div class="relative p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl 
+                        <!-- Glass-morphism Card Wrapper with Shadow -->
+                        <div class="relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-2xl sm:rounded-3xl 
                             bg-white/95 backdrop-blur-lg 
-                            border-2 border-transparent 
-                            shadow-[0_20px_50px_rgba(0,0,0,0.06)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.10)]
                             transition-all duration-500
-                            animate-fadeInUp"
-                            style="background: linear-gradient(white, white) padding-box, 
-                                   linear-gradient(135deg, rgba(236, 72, 153, 0.30), rgba(139, 92, 246, 0.30)) border-box;">
+                            animate-fadeInUp card-with-accent"
+                            style="box-shadow: 0 20px 60px rgba(0,0,0,0.06), 
+                                              0 8px 25px rgba(236,72,153,0.08), 
+                                              0 2px 10px rgba(139,92,246,0.06);">
                             
                             <!-- Content -->
-                            <div class="space-y-3 sm:space-y-4 md:space-y-5 text-left">
+                            <div class="space-y-2.5 sm:space-y-3 md:space-y-4 text-left">
                                 
                                 <!-- Title with Gradient -->
-                                <div class="mb-3 sm:mb-4 md:mb-5 text-center lg:text-left">
-                                    <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2 sm:mb-3">
+                                <div class="mb-2 sm:mb-3 md:mb-4 text-center lg:text-left">
+                                    <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2">
                                         <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600">
                                             Halo, Aku Raihan! 🙋‍♂️
                                         </span>
@@ -756,10 +752,10 @@
                                     </p>
                                 </div>
         
-                                <!-- Paragraph 2 with Icon Bullet -->
+                                <!-- Paragraph 2 with Icon Bullet (Touch Target Optimized) -->
                                 <div class="flex items-start gap-2.5 sm:gap-3">
-                                    <div class="flex-shrink-0 w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mt-0.5">
-                                        <i data-lucide="lightbulb" class="w-4 h-4 text-white"></i>
+                                    <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mt-0.5">
+                                        <i data-lucide="lightbulb" class="w-5 h-5 text-white"></i>
                                     </div>
                                     <p class="text-sm sm:text-base leading-relaxed text-gray-700 flex-1">
                                         Dari pengalaman itu aku sadar, 
@@ -771,8 +767,8 @@
                                     </p>
                                 </div>
                                 
-                                <!-- Enhanced Quote Box -->
-                                <div class="relative mt-4 sm:mt-5 md:mt-6 p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl shadow-md
+                                <!-- Enhanced Quote Box (Text Size Fixed) -->
+                                <div class="relative mt-3 sm:mt-4 md:mt-5 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md
                                     bg-gradient-to-br from-pink-50/90 to-purple-50/90 backdrop-blur-sm
                                     border-l-4 border-pink-500
                                     hover:shadow-lg hover:scale-[1.01]
@@ -785,18 +781,22 @@
                                     
                                     <div class="flex items-start gap-2.5 sm:gap-3 relative z-10">
                                         <div class="flex-shrink-0">
-                                            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center animate-heartbeat">
-                                                <i data-lucide="heart" fill="#FFFFFF" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center animate-heartbeat">
+                                                <i data-lucide="heart" fill="#FFFFFF" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
                                             </div>
                                         </div>
                                         <div class="flex-1">
-                                            <p class="text-xs sm:text-sm md:text-base font-semibold text-gray-800 leading-relaxed">
+                                            <p class="text-sm sm:text-base font-semibold text-gray-800 leading-relaxed">
                                                 "Ilmu kalau dibagi bakal lebih berkah. Dan jujur aja, cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi... sekalian aja kita belajar bareng di sini, hehe. 😄"
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <!-- Gradient Accent Line (Bottom) -->
+                            <div class="absolute -bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-[3px] rounded-full opacity-60 hover:opacity-100 transition-opacity duration-300"
+                                 style="background: linear-gradient(90deg, #EC4899, #8B5CF6);"></div>
                         </div>
                     </div>
                 </div>
