@@ -318,10 +318,33 @@
             }
         }
 
-        /* JADWAL NGONTEN SCOPED STYLING */
+        /* --- JADWAL NGONTEN SCOPED STYLING --- */
         #jadwal-ngonten * { box-sizing: border-box; }
         .jn-card { transition: transform .25s ease, box-shadow .3s ease; }
-        .jn-card:hover { transform: translateY(-8px); }
+        .jn-card:hover { transform: translateY(-8px);
+            transition: transform 0.3s ease;
+        }
+        .jn-glass {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px) saturate(140%);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .jn-neon {
+            position: relative;
+            border-radius: 1.25rem;
+        }
+        .jn-neon::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 1.5rem;
+            background: linear-gradient(90deg,#6366f1,#0ea5e9,#a855f7);
+            opacity: .15;
+            filter: blur(10px);
+            z-index: -1;
+        }
         .jn-active .relative.bg-white {
             background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08));
             border: 2px solid rgba(99,102,241,0.4) !important;
@@ -329,12 +352,39 @@
             transform: scale(1.02);
             transition: all 0.3s ease;
         }
+        .jn-count-box {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .jn-count-box::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(90deg,rgba(99,102,241,0.1),rgba(14,165,233,0.1));
+            opacity: 0.4;
+            pointer-events: none;
+        }
         .jn-countdown { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
         @keyframes jn-tick { 
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-2px); }
         }
-        .jn-tick { animation: jn-tick 1s steps(1,end) infinite; }
+        .jn-tick { animation: jn-tick 1s steps(1,end) infinite;
+        }
+        .jn-follow-btn {
+            background: linear-gradient(90deg,#6366f1,#8b5cf6);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: transform .25s ease;
+        }
+        .jn-follow-btn:hover { transform: scale(1.03); }
         @media (max-width:768px){
             .jn-card h3 { font-size: 1.125rem; }
         }
@@ -635,31 +685,17 @@
             </div>
         </section>
 
-        <!-- ============================================
-             4. JADWAL NGONTEN SECTION - CIRCUIT PATTERN
-        ============================================ -->
-        <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-gradient-to-b from-pink-50/20 to-cyan-50/30">
-            <!-- Circuit Pattern Background -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
-                <svg class="w-full h-full" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Horizontal Lines -->
-                    <line x1="0" y1="200" x2="1000" y2="200" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 4s ease-in-out infinite;"/>
-                    <line x1="0" y1="400" x2="1000" y2="400" stroke="#6366F1" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 5s ease-in-out infinite; animation-delay: 1s;"/>
-                    <line x1="0" y1="600" x2="1000" y2="600" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 4.5s ease-in-out infinite; animation-delay: 2s;"/>
-                    <line x1="0" y1="800" x2="1000" y2="800" stroke="#14B8A6" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 5.5s ease-in-out infinite; animation-delay: 0.5s;"/>
-                    
-                    <!-- Vertical Lines -->
-                    <line x1="200" y1="0" x2="200" y2="1000" stroke="#0EA5E9" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 6s ease-in-out infinite;"/>
-                    <line x1="500" y1="0" x2="500" y2="1000" stroke="#6366F1" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 5s ease-in-out infinite; animation-delay: 1.5s;"/>
-                    <line x1="800" y1="0" x2="800" y2="1000" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="10,5" style="animation: circuit-pulse 5.5s ease-in-out infinite; animation-delay: 0.8s;"/>
-                    
-                    <!-- Nodes -->
-                    <circle cx="200" cy="200" r="8" fill="#0EA5E9" style="animation: circuit-pulse 3s ease-in-out infinite;"/>
-                    <circle cx="500" cy="400" r="8" fill="#6366F1" style="animation: circuit-pulse 3.5s ease-in-out infinite; animation-delay: 1s;"/>
-                    <circle cx="800" cy="600" r="8" fill="#8B5CF6" style="animation: circuit-pulse 4s ease-in-out infinite; animation-delay: 2s;"/>
-                </svg>
-            </div>
-
+        <!-- 4. JADWAL NGONTEN SECTION -->
+        <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            
+            <!-- Background Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50"></div>
+            
+            <!-- Floating Orbs Background -->
+            <div class="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl animate-float-orb-1"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl animate-float-orb-2"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-100/20 to-yellow-100/20 rounded-full blur-3xl animate-float-orb-3"></div>
+            
             <div class="max-w-6xl mx-auto relative z-10">
                 
                 <!-- Header with Badge -->
@@ -678,7 +714,7 @@
                     
                     <!-- Subtitle -->
                     <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-                        ⚠️ Pantau biar nggak ketinggalan materi baru ⚠️
+                        ‼️ Pantau biar nggak ketinggalan materi baru ‼️
                     </p>
                 </div>
                 
@@ -686,16 +722,22 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     
                     <!-- Card Senin (Blue) -->
-                    <div id="card-mon" data-day="1" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full">
+                    <div id="card-mon" data-day="1" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Senin - Video Materi">
                         <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
+                            <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-blue-100 hover:border-blue-300 transition-all duration-300">
+                                
+                                <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="video" class="w-7 h-7 text-white"></i>
                                         </div>
+                                        <!-- Day + Time -->
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900">Senin</h3>
                                             <div class="flex items-center gap-1 text-blue-600 font-semibold text-sm">
@@ -705,34 +747,44 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Active Badge (Hidden by default, shown when .jn-active) -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
                                         Next ⚡️
                                     </span>
                                 </div>
                                 
+                                <!-- Description -->
                                 <p class="text-gray-700 font-medium mb-3">Materi edukasi.</p>
                                 
+                                <!-- Format Tag -->
                                 <div class="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-xl border border-blue-100">
                                     <i data-lucide="film" class="w-4 h-4 text-blue-600"></i>
                                     <span class="text-sm text-blue-700 font-medium">Video pendek</span>
                                 </div>
                                 
+                                <!-- Decorative Bottom Accent -->
                                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Card Kamis (Orange) -->
-                    <div id="card-thu" data-day="4" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full">
+                    <div id="card-thu" data-day="4" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Kamis - Carousel">
                         <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
+                            <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-orange-100 hover:border-orange-300 transition-all duration-300">
+                                
+                                <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
                                         </div>
+                                        <!-- Day + Time -->
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900">Kamis</h3>
                                             <div class="flex items-center gap-1 text-orange-600 font-semibold text-sm">
@@ -742,34 +794,44 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Active Badge -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡️
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
+                                <!-- Description -->
                                 <p class="text-gray-700 font-medium mb-3">Materi edukasi lebih lengkap.</p>
                                 
+                                <!-- Format Tag -->
                                 <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 rounded-xl border border-orange-100">
                                     <i data-lucide="image" class="w-4 h-4 text-orange-600"></i>
                                     <span class="text-sm text-orange-700 font-medium">Carousel</span>
                                 </div>
                                 
+                                <!-- Decorative Bottom Accent -->
                                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Card Sabtu (Purple) -->
-                    <div id="card-sat" data-day="6" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full">
+                    <div id="card-sat" data-day="6" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Sabtu - Tips & Trik">
                         <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
+                            <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-purple-100 hover:border-purple-300 transition-all duration-300">
+                                
+                                <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="video" class="w-7 h-7 text-white"></i>
                                         </div>
+                                        <!-- Day + Time -->
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900">Sabtu</h3>
                                             <div class="flex items-center gap-1 text-purple-600 font-semibold text-sm">
@@ -779,18 +841,22 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Active Badge -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡️
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
+                                <!-- Description -->
                                 <p class="text-gray-700 font-medium mb-3">Tips & trik / info menarik.</p>
                                 
+                                <!-- Format Tag -->
                                 <div class="flex items-center gap-2 px-3 py-2 bg-purple-50 rounded-xl border border-purple-100">
                                     <i data-lucide="film" class="w-4 h-4 text-purple-600"></i>
                                     <span class="text-sm text-purple-700 font-medium">Video pendek</span>
                                 </div>
                                 
+                                <!-- Decorative Bottom Accent -->
                                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
@@ -800,18 +866,24 @@
                 <!-- Countdown Dashboard -->
                 <div class="max-w-3xl mx-auto">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <!-- Glass Background -->
                         <div class="absolute inset-0 bg-white/70 backdrop-blur-xl"></div>
+                        
+                        <!-- Gradient Border Glow -->
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl"></div>
                         
+                        <!-- Content -->
                         <div class="relative p-8 border-2 border-white/40">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                                
+                                <!-- Left: Next Upload Info -->
                                 <div class="text-center md:text-left">
                                     <div class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider font-semibold mb-2 justify-center md:justify-start">
                                         <i data-lucide="calendar-clock" class="w-4 h-4"></i>
                                         <span>Upload Berikutnya</span>
                                     </div>
                                     <div id="jn-next-day" class="text-3xl md:text-4xl font-black text-gray-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        —
+                                        â€”
                                     </div>
                                     <div class="flex items-center gap-2 text-gray-600 text-sm justify-center md:justify-start">
                                         <i data-lucide="clock" class="w-4 h-4"></i>
@@ -819,8 +891,10 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Divider (Hidden on Mobile) -->
                                 <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
                                 
+                                <!-- Right: Countdown Timer -->
                                 <div class="text-center">
                                     <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-100 shadow-inner">
                                         <div id="jn-countdown" class="text-4xl md:text-5xl font-black text-gray-900 font-mono tracking-tight mb-2 jn-countdown">
@@ -837,6 +911,7 @@
                     </div>
                 </div>
                 
+                <!-- Bottom Note -->
                 <p class="text-center text-sm text-gray-500 mt-6">
                     Waktu udah nyesuain timezone perangkatmu.
                 </p>
