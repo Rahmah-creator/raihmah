@@ -109,11 +109,10 @@
             0%, 100% { transform: rotate(0deg); } 
             50% { transform: rotate(-25deg); } 
             
-        @keyframes wave-arm-right { 
-            /* Bikin dia 90% diem, 10% gerak */
-            0%, 15%, 100% { transform: rotate(0deg) translateY(0); } /* DIEM */
-            3% { transform: rotate(40deg) translateY(-25px); } /* GERAK NAIK */
-            7% { transform: rotate(15deg) translateY(-15px); } /* GERAK TURUN */
+         @keyframes wave-arm-right { 
+            0%, 100% { transform: rotate(0deg) translateY(0); } 
+            25%, 75% { transform: rotate(40deg) translateY(-25px); } 
+            50% { transform: rotate(15deg) translateY(-15px); } 
         }
 
         @keyframes pulse-glow { 
@@ -302,10 +301,11 @@
            ANIMATION CLASSES
         ============================================ */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
-        .animate-float-robot { animation: float-robot 10s ease-in-out infinite; }
+        .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
         .animate-pulse-antenna { animation: pulse-antenna 2s ease-in-out infinite; }
         .animate-blink-eyes { animation: blink-eyes 1.8s step-end infinite; transform-origin: center; } 
+        .animate-breathe-body { animation: breathe-body 3s ease-in-out infinite; transform-origin: bottom; }
         .animate-wave-arm-left { animation: wave-arm-left 1.2s ease-in-out infinite; transform-origin: 28px 50px; }
         .animate-wave-arm-right { animation: wave-arm-right 3s ease-in-out infinite; transform-origin: 72px 50px; }
         .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
@@ -733,10 +733,10 @@
                                 <g class="animate-wave-arm-right">
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
-                                <g>
+                                <g class="animate-wave-arm-left">
                                     <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
-                                <g>
+                                <g class="animate-wiggle-head">
                                     <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" />
                                     <g class="animate-blink-eyes">
                                         <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
@@ -744,7 +744,7 @@
                                         <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                     </g>
-                                    <g>
+                                    <g class="animate-pulse-antenna">
                                         <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                         <circle cx="50" cy="5" r="3" fill="#F97316" />
                                     </g>
