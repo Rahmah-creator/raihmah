@@ -162,10 +162,106 @@
             100% { stroke-dashoffset: 0; } 
         }
 
-        /* Feedback Section - Wavy Lines */
-        @keyframes wave-move { 
-            0% { transform: translateX(0); } 
-            100% { transform: translateX(-50%); } 
+        /* Paper Plane Animations - 5 Different Paths */
+        @keyframes paper-plane-fly-1 {
+            0% { 
+                transform: translate(-100px, 120vh) rotate(-45deg); 
+                opacity: 0; 
+            }
+            5% { 
+                opacity: 1; 
+            }
+            95% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(calc(100vw + 100px), -100px) rotate(-45deg); 
+                opacity: 0; 
+            }
+        }
+        
+        @keyframes paper-plane-fly-2 {
+            0% { 
+                transform: translate(110vw, 80vh) rotate(-135deg); 
+                opacity: 0; 
+            }
+            5% { 
+                opacity: 1; 
+            }
+            95% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(-100px, -50px) rotate(-135deg); 
+                opacity: 0; 
+            }
+        }
+        
+        @keyframes paper-plane-fly-3 {
+            0% { 
+                transform: translate(-80px, 50vh) rotate(-30deg) scale(0.8); 
+                opacity: 0; 
+            }
+            5% { 
+                opacity: 1; 
+            }
+            50% {
+                transform: translate(50vw, 20vh) rotate(-30deg) scale(1);
+                opacity: 1;
+            }
+            95% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(calc(100vw + 80px), 10vh) rotate(-30deg) scale(0.9); 
+                opacity: 0; 
+            }
+        }
+        
+        @keyframes paper-plane-fly-4 {
+            0% { 
+                transform: translate(50vw, 110vh) rotate(-60deg); 
+                opacity: 0; 
+            }
+            5% { 
+                opacity: 1; 
+            }
+            30% {
+                transform: translate(30vw, 60vh) rotate(-50deg);
+            }
+            70% {
+                transform: translate(70vw, 30vh) rotate(-70deg);
+            }
+            95% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(90vw, -80px) rotate(-60deg); 
+                opacity: 0; 
+            }
+        }
+        
+        @keyframes paper-plane-fly-5 {
+            0% { 
+                transform: translate(-120px, 30vh) rotate(-40deg) scale(1.1); 
+                opacity: 0; 
+            }
+            5% { 
+                opacity: 1; 
+            }
+            25% {
+                transform: translate(25vw, 50vh) rotate(-35deg) scale(1.1);
+            }
+            75% {
+                transform: translate(75vw, 20vh) rotate(-45deg) scale(1.1);
+            }
+            95% { 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translate(calc(100vw + 120px), 5vh) rotate(-40deg) scale(1.1); 
+                opacity: 0; 
+            }
         }
 
         /* Support Section - Floating Hearts */
@@ -263,6 +359,89 @@
             transform: scale(1.1) rotate(5deg); 
             transition: transform 0.3s ease; 
         }
+
+        /* ============================================
+           FEEDBACK SECTION - MESH GRADIENT & PAPER PLANES
+        ============================================ */
+        
+        /* Mesh Gradient Orbs */
+        .feedback-mesh-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feedback-mesh-orb-1 {
+            width: 500px;
+            height: 500px;
+            top: -10%;
+            left: -5%;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, rgba(251, 146, 60, 0.2) 50%, transparent 100%);
+        }
+        
+        .feedback-mesh-orb-2 {
+            width: 450px;
+            height: 450px;
+            top: 5%;
+            right: -8%;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.35) 0%, rgba(244, 114, 182, 0.18) 50%, transparent 100%);
+        }
+        
+        .feedback-mesh-orb-3 {
+            width: 480px;
+            height: 480px;
+            bottom: -15%;
+            left: 10%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(167, 139, 250, 0.15) 50%, transparent 100%);
+        }
+        
+        .feedback-mesh-orb-4 {
+            width: 420px;
+            height: 420px;
+            bottom: -5%;
+            right: 5%;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.32) 0%, rgba(56, 189, 248, 0.16) 50%, transparent 100%);
+        }
+        
+        /* Paper Planes */
+        .paper-plane {
+            position: absolute;
+            color: rgba(107, 114, 128, 0.4);
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+            z-index: 5;
+        }
+        
+        .paper-plane-1 {
+            animation: paper-plane-fly-1 16s linear infinite;
+            animation-delay: 0s;
+            color: rgba(249, 115, 22, 0.5);
+        }
+        
+        .paper-plane-2 {
+            animation: paper-plane-fly-2 18s linear infinite;
+            animation-delay: 3s;
+            color: rgba(236, 72, 153, 0.5);
+        }
+        
+        .paper-plane-3 {
+            animation: paper-plane-fly-3 14s linear infinite;
+            animation-delay: 6s;
+            color: rgba(139, 92, 246, 0.5);
+        }
+        
+        .paper-plane-4 {
+            animation: paper-plane-fly-4 15s linear infinite;
+            animation-delay: 9s;
+            color: rgba(14, 165, 233, 0.5);
+        }
+        
+        .paper-plane-5 {
+            animation: paper-plane-fly-5 17s linear infinite;
+            animation-delay: 12s;
+            color: rgba(249, 115, 22, 0.45);
+        }
         
         /* ============================================
            RESPONSIVE ADJUSTMENTS
@@ -319,6 +498,55 @@
             .mission-card h3 { font-size: 1.5rem; }
         }
 
+            /* Feedback Section - Mobile Optimization */
+            .feedback-mesh-orb {
+                filter: blur(60px);
+                opacity: 0.4;
+            }
+            
+            .feedback-mesh-orb-1 {
+                width: 350px;
+                height: 350px;
+                top: -5%;
+                left: -10%;
+            }
+            
+            .feedback-mesh-orb-2 {
+                width: 320px;
+                height: 320px;
+                top: 10%;
+                right: -12%;
+            }
+            
+            .feedback-mesh-orb-3 {
+                width: 340px;
+                height: 340px;
+                bottom: -10%;
+                left: 5%;
+            }
+            
+            .feedback-mesh-orb-4 {
+                width: 300px;
+                height: 300px;
+                bottom: 0%;
+                right: -5%;
+            }
+            
+            /* Hide 2 paper planes on mobile for cleaner look */
+            .paper-plane-2,
+            .paper-plane-4 {
+                display: none;
+            }
+            
+            /* Adjust remaining planes size */
+            .paper-plane-1 svg,
+            .paper-plane-3 svg,
+            .paper-plane-5 svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
         @media (max-width: 480px) {
             body { font-size: 0.875rem; }
             .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); }
@@ -330,6 +558,41 @@
                 min-width: 220px; 
             }
         }
+
+        /* Feedback Section - Small Mobile */
+        .feedback-mesh-orb {
+            filter: blur(40px);
+            opacity: 0.5;
+        }
+        
+        .feedback-mesh-orb-1 {
+            width: 280px;
+            height: 280px;
+        }
+        
+        .feedback-mesh-orb-2 {
+            width: 260px;
+            height: 260px;
+        }
+        
+        .feedback-mesh-orb-3 {
+            width: 270px;
+            height: 270px;
+        }
+        
+        .feedback-mesh-orb-4 {
+            width: 240px;
+            height: 240px;
+        }
+        
+        /* Further reduce plane size */
+        .paper-plane-1 svg,
+        .paper-plane-3 svg,
+        .paper-plane-5 svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
 
         /* --- JADWAL NGONTEN SCOPED STYLING --- */
         #jadwal-ngonten * { box-sizing: border-box; }
@@ -1029,46 +1292,61 @@
         </section>
 
         <!-- ============================================
-             5. FEEDBACK SECTION - WAVY LINES
+             5. FEEDBACK SECTION - MESH GRADIENT + PAPER PLANES
         ============================================ -->
-        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-cyan-50/30 to-orange-50/20">
-            <!-- Wavy Lines Background -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-30">
-                <svg class="w-full h-full" viewBox="0 0 1440 800" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Wave 1 - Orange -->
-                    <path d="M0,400 Q360,300 720,400 T1440,400 L1440,800 L0,800 Z" 
-                          fill="url(#wave-gradient-1)">
-                        <animate attributeName="d" 
-                                 dur="15s" 
-                                 repeatCount="indefinite"
-                                 values="M0,400 Q360,300 720,400 T1440,400 L1440,800 L0,800 Z;
-                                         M0,400 Q360,500 720,400 T1440,400 L1440,800 L0,800 Z;
-                                         M0,400 Q360,300 720,400 T1440,400 L1440,800 L0,800 Z"/>
-                    </path>
-                    
-                    <!-- Wave 2 - Pink -->
-                    <path d="M0,500 Q360,400 720,500 T1440,500 L1440,800 L0,800 Z" 
-                          fill="url(#wave-gradient-2)">
-                        <animate attributeName="d" 
-                                 dur="18s" 
-                                 repeatCount="indefinite"
-                                 values="M0,500 Q360,400 720,500 T1440,500 L1440,800 L0,800 Z;
-                                         M0,500 Q360,600 720,500 T1440,500 L1440,800 L0,800 Z;
-                                         M0,500 Q360,400 720,500 T1440,500 L1440,800 L0,800 Z"/>
-                    </path>
-                    
-                    <!-- Gradients -->
-                    <defs>
-                        <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="rgba(251,146,60,0.2)" />
-                            <stop offset="100%" stop-color="rgba(251,146,60,0.05)" />
-                        </linearGradient>
-                        <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="rgba(236,72,153,0.15)" />
-                            <stop offset="100%" stop-color="rgba(236,72,153,0.03)" />
-                        </linearGradient>
-                    </defs>
-                </svg>
+        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-pink-50/20">
+            
+            <!-- Mesh Gradient Background -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <!-- Gradient Orb 1: Orange (Top Left) -->
+                <div class="feedback-mesh-orb feedback-mesh-orb-1"></div>
+                
+                <!-- Gradient Orb 2: Pink (Top Right) -->
+                <div class="feedback-mesh-orb feedback-mesh-orb-2"></div>
+                
+                <!-- Gradient Orb 3: Purple (Bottom Left) -->
+                <div class="feedback-mesh-orb feedback-mesh-orb-3"></div>
+                
+                <!-- Gradient Orb 4: Cyan (Bottom Right) -->
+                <div class="feedback-mesh-orb feedback-mesh-orb-4"></div>
+            </div>
+            
+            <!-- Flying Paper Planes -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <!-- Paper Plane 1 -->
+                <div class="paper-plane paper-plane-1">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Paper Plane 2 -->
+                <div class="paper-plane paper-plane-2">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Paper Plane 3 -->
+                <div class="paper-plane paper-plane-3">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Paper Plane 4 -->
+                <div class="paper-plane paper-plane-4">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                
+                <!-- Paper Plane 5 -->
+                <div class="paper-plane paper-plane-5">
+                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
             </div>
 
             <div class="max-w-3xl mx-auto relative z-10">
