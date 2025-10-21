@@ -21,8 +21,8 @@
           background: linear-gradient(90deg,#16A34A,#22C55E);
           color: #fff;
           text-decoration: none;
-          max-width: 440px !important;
-          width: 100% !important;
+          max-width: 440px !important;  /* tambahkan !important */
+          width: 100% !important;       /* biar proporsional tapi dibatasi max-width */
           box-shadow: 0 10px 30px rgba(16,185,129,0.12);
           border: 1px solid rgba(255,255,255,0.05);
           transition: transform .18s, box-shadow .18s;
@@ -38,7 +38,9 @@
         @media(max-width:1024px){
           .wa-button{ max-width:100%; padding:12px 14px; }
         }
+        /* Default desktop (biarkan seperti sekarang) */
         .brand-title {
+          /* mempertahankan gaya existing, hanya selector tambahan */
           text-decoration: none;
           display: inline-block;
           line-height: 1;
@@ -47,6 +49,8 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"></noscript>
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -58,27 +62,30 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            background: #FFFFFF;
+            overflow-x: hidden; /* Prevent horizontal scroll from orbs */
         }
         .glass-effect {
             background-color: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
+        /* Text shadow for better contrast on complex backgrounds */
+        .text-shadow {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.2);
+            .hero-subtitle { text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+        }
+        /* Soft SVG Shadow for Robot */
         svg.robot-svg {
             filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
         }
         
+        /* === Font Handwritten (Fallback to Inter) === */
         .font-handwritten {
             font-family: 'Inter', sans-serif;
         }
 
-        /* ============================================
-           KEYFRAMES - ROBOT ANIMATIONS ONLY
-        ============================================ */
-        
-        /* Robot Animations - Keep these for the robot character */
+        /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
+        /* Robot Animations */
         @keyframes float-robot { 
             0%, 100% { transform: translateY(0); } 
             50% { transform: translateY(-12px); } 
@@ -116,6 +123,11 @@
         }
 
         /* General Animations */
+        @keyframes float-orb { 
+            0%, 100% { transform: translate(0, 0) scale(1); } 
+            33% { transform: translate(30px, -30px) scale(1.1); } 
+            66% { transform: translate(-20px, 20px) scale(0.9); } 
+        }
         @keyframes float-avatar { 
             0%, 100% { transform: translateY(0) rotate(0deg); } 
             50% { transform: translateY(-15px) rotate(2deg); } 
@@ -125,19 +137,23 @@
             10%, 30% { transform: scale(1.1); } 
             20%, 40% { transform: scale(0.9); } 
         }
+        @keyframes rotate-gradient { 
+            from { transform: rotate(0deg); } 
+            to { transform: rotate(360deg); } 
+        }
         @keyframes fadeInUp { 
             from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
+
+        /* Jiggle Animation for CTA */
         @keyframes jiggle-button { 
             0%, 100% { transform: scale(1) rotate(0deg); } 
             25% { transform: scale(1.01) rotate(0.5deg); }
             75% { transform: scale(1.01) rotate(-0.5deg); }
         }
         
-        /* ============================================
-           ANIMATION CLASSES
-        ============================================ */
+        /* --- ANIMATION APPLICATION (Lembut di mobile) --- */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
         .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
@@ -147,13 +163,15 @@
         .animate-wave-arm-left { animation: wave-arm-left 1.2s ease-in-out infinite; transform-origin: 28px 50px; }
         .animate-wave-arm-right { animation: wave-arm-right 1.2s ease-in-out infinite; transform-origin: 72px 50px; }
         .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
+        .animate-float-orb-1 { animation: float-orb 15s ease-in-out infinite; }
+        .animate-float-orb-2 { animation: float-orb 17s reverse ease-in-out infinite; }
+        .animate-float-orb-3 { animation: float-orb 13s ease-in-out infinite; }
         .animate-float-avatar { animation: float-avatar 4s ease-in-out infinite; }
         .animate-heartbeat { animation: heartbeat 1s infinite; }
+        .animate-rotate-gradient { animation: rotate-gradient 10s linear infinite; }
         .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
 
-        /* ============================================
-           MISSION CARD STYLING
-        ============================================ */
+        /* --- MISSION CARD STYLING --- */
         .mission-card {
             background: white;
             border-radius: 24px;
@@ -177,6 +195,7 @@
             height: 100%;
             opacity: 0.05;
         }
+        /* Specific Card Accents and Hover Shadows */
         .card-blue { border: 2px solid #DBEAFE; }
         .card-blue::before { background: linear-gradient(to right, #0EA5E9, #3B82F6); }
         .card-blue:hover { 
@@ -199,303 +218,109 @@
             transform: scale(1.1) rotate(5deg); 
             transition: transform 0.3s ease; 
         }
-
-        /* ============================================
-           STATIC BACKGROUND STYLES - NEW
-        ============================================ */
         
-        /* Hero Section - Static Orbs */
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: linear-gradient(180deg, 
-                rgba(255, 255, 255, 1) 0%, 
-                rgba(255, 255, 255, 0.95) 20%, 
-                rgba(255, 255, 255, 0.9) 100%);
-        }
-        
-        .hero-orb-1 {
-            position: absolute;
-            top: -10%;
-            left: -5%;
-            width: 450px;
-            height: 450px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, 
-                rgba(59, 130, 246, 0.25) 0%, 
-                rgba(99, 102, 241, 0.15) 50%, 
-                rgba(79, 70, 229, 0.08) 100%);
-            filter: blur(80px);
-            opacity: 0.6;
-        }
-        
-        .hero-orb-2 {
-            position: absolute;
-            top: 5%;
-            right: -8%;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 70% 30%, 
-                rgba(168, 85, 247, 0.2) 0%, 
-                rgba(139, 92, 246, 0.12) 50%, 
-                rgba(99, 102, 241, 0.06) 100%);
-            filter: blur(90px);
-            opacity: 0.5;
-        }
-        
-        .hero-orb-3 {
-            position: absolute;
-            bottom: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 50% 50%, 
-                rgba(79, 70, 229, 0.18) 0%, 
-                rgba(99, 102, 241, 0.1) 50%, 
-                rgba(59, 130, 246, 0.05) 100%);
-            filter: blur(85px);
-            opacity: 0.4;
-        }
-
-        /* Mission Section - Gradient Mesh */
-        .mission-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: linear-gradient(180deg, 
-                rgba(255, 255, 255, 1) 0%, 
-                rgba(239, 246, 255, 0.3) 50%, 
-                rgba(255, 255, 255, 0.95) 100%);
-        }
-        
-        .mission-mesh {
-            position: absolute;
-            top: -20%;
-            left: -20%;
-            width: 140%;
-            height: 140%;
-            background: radial-gradient(ellipse at 20% 30%, 
-                rgba(59, 130, 246, 0.12) 0%, 
-                transparent 40%), 
-            radial-gradient(ellipse at 80% 20%, 
-                rgba(249, 115, 22, 0.1) 0%, 
-                transparent 40%), 
-            radial-gradient(ellipse at 50% 80%, 
-                rgba(239, 68, 68, 0.08) 0%, 
-                transparent 40%);
-            filter: blur(60px);
-            opacity: 0.7;
-        }
-
-        /* Personal Section - Radial Blur */
-        .personal-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: linear-gradient(180deg, 
-                rgba(239, 246, 255, 0.3) 0%, 
-                rgba(252, 231, 243, 0.2) 50%, 
-                rgba(255, 255, 255, 0.9) 100%);
-        }
-        
-        .personal-radial {
-            position: absolute;
-            top: 10%;
-            left: 10%;
-            width: 80%;
-            height: 80%;
-            background: radial-gradient(ellipse at 30% 40%, 
-                rgba(236, 72, 153, 0.15) 0%, 
-                rgba(168, 85, 247, 0.12) 30%, 
-                rgba(251, 146, 60, 0.08) 60%, 
-                transparent 100%);
-            filter: blur(90px);
-            opacity: 0.8;
-        }
-
-        /* Jadwal Section - Grid Pattern */
-        .jadwal-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: linear-gradient(180deg, 
-                rgba(252, 231, 243, 0.2) 0%, 
-                rgba(236, 254, 255, 0.3) 50%, 
-                rgba(255, 255, 255, 0.95) 100%);
-        }
-        
-        .jadwal-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px),
-                radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.04) 2px, transparent 2px),
-                radial-gradient(circle at 75% 75%, rgba(20, 184, 166, 0.04) 2px, transparent 2px);
-            background-size: 50px 50px, 50px 50px, 100px 100px, 120px 120px;
-            opacity: 0.6;
-        }
-
-        /* Feedback Section - Soft Gradient */
-        .feedback-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: linear-gradient(180deg, 
-                rgba(236, 254, 255, 0.3) 0%, 
-                rgba(255, 237, 213, 0.2) 50%, 
-                rgba(255, 255, 255, 0.9) 100%);
-        }
-        
-        .feedback-gradient {
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 120%;
-            height: 120%;
-            background: linear-gradient(135deg, 
-                rgba(251, 146, 60, 0.12) 0%, 
-                rgba(236, 72, 153, 0.08) 50%, 
-                rgba(249, 115, 22, 0.06) 100%);
-            filter: blur(70px);
-            opacity: 0.7;
-        }
-
-        /* Support Section - Bokeh Circles */
-        .support-bg {
-            position: absolute;
-            inset: 0;
-            overflow: hidden;
-            pointer-events: none;
-            background: linear-gradient(180deg, 
-                rgba(255, 237, 213, 0.2) 0%, 
-                rgba(250, 232, 255, 0.3) 50%, 
-                rgba(255, 255, 255, 0.95) 100%);
-        }
-        
-        .support-bokeh {
-            position: absolute;
-            inset: 0;
-        }
-        
-        .bokeh-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(90px);
-        }
-        
-        .bokeh-1 {
-            top: 15%;
-            left: 10%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 70%);
-        }
-        
-        .bokeh-2 {
-            top: 40%;
-            right: 15%;
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.12) 0%, transparent 70%);
-        }
-        
-        .bokeh-3 {
-            bottom: 20%;
-            left: 20%;
-            width: 180px;
-            height: 180px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
-        }
-        
-        .bokeh-4 {
-            bottom: 10%;
-            right: 25%;
-            width: 220px;
-            height: 220px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
-        }
-        
-        /* ============================================
-           RESPONSIVE ADJUSTMENTS
-        ============================================ */
+        /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
+        /* Tablet & Landscape Mobile (max-1024px) */
         @media (max-width: 1024px) {
             .hero-title { 
-                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-size: clamp(2.5rem, 6vw, 4rem); /* Kurangin dari 3.5-5rem, biar tablet nggak terlalu gede */
             }
             .hero-subtitle { 
-                font-size: clamp(1rem, 2vw, 1.25rem);
+                font-size: clamp(1rem, 2vw, 1.25rem); /* Subtitle lebih kompak */
             }
-            .hero-content-card { padding: 32px 20px; }
+            .hero-content-card { padding: 32px 20px; } /* Padding lebih kecil */
             .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; }
+            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; } /* Button text lebih kecil */
             .hero-grid { flex-direction: column-reverse; } 
-            .hero-robot-container { transform: scale(0.95); }
+            /* Robot scale lembut di tablet */
+            .hero-robot-container { transform: scale(0.95); } /* Naik dari 0.85, biar nggak terlalu kecil */
         }
 
+        /* Mobile HP (max-768px) */
         @media (max-width: 768px) {
-            .section-padding { padding: 60px 20px; }
+            .section-padding { padding: 60px 20px; } /* Kurangin dari 80px */
             .personal-container { flex-direction: column; text-align: center; }
             .mission-cards-grid { grid-template-columns: 1fr; }
+            .qris-container { width: 90%; max-width: 320px; height: 320px; } 
+            .qris-text { font-size: 90px !important; }
+            /* Hero spesifik HP: Font lebih kecil */
             .hero-title { 
-                font-size: clamp(2rem, 5vw, 3.5rem);
-                line-height: 1.1;
+                font-size: clamp(2rem, 5vw, 3.5rem); /* Max 3.5rem = ~56px, min 2rem=32px → pas di HP */
+                line-height: 1.1; /* Rapetin line-height biar nggak terlalu tinggi */
             }
             .hero-subtitle { 
-                font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+                font-size: clamp(0.875rem, 1.5vw, 1.125rem); /* ~14-18px, mudah dibaca tanpa dominan */
             }
             .hero-content-card { 
                 padding: 24px 16px; 
-                border-radius: 24px;
+                border-radius: 24px; /* Biar lebih compact */
             }
+            /* Robot lebih aman di HP - Naik scale, tambah min-width */
             .hero-robot-container { 
-                transform: scale(0.9);
-                min-width: 250px;
+                transform: scale(0.9); /* Naik dari 0.75, biar keliatan jelas */
+                min-width: 250px; /* Pastikan nggak hilang di layar kecil */
             }
             .hero-robot-container svg.robot-svg { 
                 width: 100%; 
                 height: auto; 
-                min-height: 200px;
+                min-height: 200px; /* Fallback height biar nggak collapse */
             }
+            /* Animasi lebih lambat di mobile buat performa */
             .animate-wiggle-head, .animate-wave-arm-left, .animate-wave-arm-right { 
-                animation-duration: 2s;
+                animation-duration: 2s; /* Dari 1.5s/1.2s → lebih smooth di HP */
             }
+            /* Buttons & Cards di mobile */
             .hero-buttons a { 
                 padding: 12px 20px; 
-                font-size: 0.875rem;
+                font-size: 0.875rem; /* Text button lebih kecil */
             }
             .mission-card { 
                 padding: 32px 24px; 
                 border-radius: 20px; 
             }
-            .mission-card h3 { font-size: 1.5rem; }
+            .mission-card h3 { font-size: 1.5rem; } /* Judul card lebih kecil */
         }
 
+        /* Extra Kecil untuk Very Small Screens (max-480px, misal iPhone SE) */
         @media (max-width: 480px) {
-            body { font-size: 0.875rem; }
-            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); }
+            body { font-size: 0.875rem; } /* Base font lebih kecil secara global */
+            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); } /* Max ~48px, aman */
             .section-padding { padding: 48px 16px; }
             .hero-content-card { padding: 20px 12px; }
             .mission-card { padding: 24px 16px; }
             .hero-robot-container { 
-                transform: scale(0.85);
+                transform: scale(0.85); /* Masih keliatan, tapi compact */
                 min-width: 220px; 
             }
         }
 
-        /* JADWAL NGONTEN SCOPED STYLING */
+        /* --- JADWAL NGONTEN SCOPED STYLING --- */
         #jadwal-ngonten * { box-sizing: border-box; }
         .jn-card { transition: transform .25s ease, box-shadow .3s ease; }
-        .jn-card:hover { transform: translateY(-8px); }
+        .jn-card:hover { transform: translateY(-8px);
+            transition: transform 0.3s ease;
+        }
+        .jn-glass {
+            background: rgba(255,255,255,0.8);
+            backdrop-filter: blur(10px) saturate(140%);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .jn-neon {
+            position: relative;
+            border-radius: 1.25rem;
+        }
+        .jn-neon::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: 1.5rem;
+            background: linear-gradient(90deg,#6366f1,#0ea5e9,#a855f7);
+            opacity: .15;
+            filter: blur(10px);
+            z-index: -1;
+        }
         .jn-active .relative.bg-white {
             background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(168,85,247,0.08));
             border: 2px solid rgba(99,102,241,0.4) !important;
@@ -503,12 +328,39 @@
             transform: scale(1.02);
             transition: all 0.3s ease;
         }
+        .jn-count-box {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        .jn-count-box::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(90deg,rgba(99,102,241,0.1),rgba(14,165,233,0.1));
+            opacity: 0.4;
+            pointer-events: none;
+        }
         .jn-countdown { font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
         @keyframes jn-tick { 
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-2px); }
         }
-        .jn-tick { animation: jn-tick 1s steps(1,end) infinite; }
+        .jn-tick { animation: jn-tick 1s steps(1,end) infinite;
+        }
+        .jn-follow-btn {
+            background: linear-gradient(90deg,#6366f1,#8b5cf6);
+            color: #fff;
+            font-weight: 600;
+            border-radius: 9999px;
+            transition: transform .25s ease;
+        }
+        .jn-follow-btn:hover { transform: scale(1.03); }
         @media (max-width:768px){
             .jn-card h3 { font-size: 1.125rem; }
         }
@@ -519,7 +371,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (Fixed and Responsive) -->
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-14">
@@ -553,77 +405,109 @@
         </div>
     </nav>
 
-    <main class="relative">
-        <!-- ============================================
-             1. HERO SECTION - STATIC ORBS
-        ============================================ -->
-        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
-            <!-- Static Hero Background -->
-            <div class="hero-bg">
-                <div class="hero-orb-1"></div>
-                <div class="hero-orb-2"></div>
-                <div class="hero-orb-3"></div>
-            </div>
+    <main>
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
+            bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
             
+            <!-- Background Orbs -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
+                <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
+                <div class="absolute w-56 h-56 bg-gradient-to-br from-[#F59E0B]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-3" style="top: 40%; right: 5%;"></div>
+            </div>
+
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) -->
+                    <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-                            <!-- Teks "Halo!" -->
-                            <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 z-20">
+                            <!-- Teks "Halo!" yang mengikuti robot -->
+                            <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
+                                    <!-- Speech Bubble Background dengan Glass Effect -->
                                     <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
                                         <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
+                                    <!-- Speech Bubble Tail dengan gradient -->
                                     <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
+                                    <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
-                            <!-- Robot SVG -->
+                            <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
                             <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
-                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%">
+                                    <!-- Cahaya pulsasi di belakang robot -->
+                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                                         <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
                                         <stop offset="100%" stop-color="transparent" stop-opacity="0" />
                                     </radialGradient>
+                                
+                                    <!-- Kepala: gradasi ungu lembut -->
                                     <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
                                         <stop offset="0%" stop-color="#6366F1" />
                                         <stop offset="100%" stop-color="#8B5CF6" />
                                     </linearGradient>
+                                
+                                    <!-- Badan: biru cerah harmonis -->
                                     <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
                                         <stop offset="0%" stop-color="#3B82F6" />
                                         <stop offset="100%" stop-color="#0EA5E9" />
                                     </linearGradient>
+                                
+                                    <!-- Tangan & kaki: putih kebiruan lembut -->
                                     <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
                                         <stop offset="0%" stop-color="#E0F2FE" />
                                         <stop offset="100%" stop-color="#BFDBFE" />
                                     </linearGradient>
+                                
+                                    <!-- Highlight lembut di sisi kiri badan -->
                                     <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
                                         <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
                                         <stop offset="100%" stop-color="transparent" />
                                     </linearGradient>
                                 </defs>
+                                <!-- Glowing Pulse Ring Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
+
+                                <!-- Legs -->
                                 <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                 <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                
+                                <!-- Body -->
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
+                                <!-- Highlight minimal di sisi kiri -->
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
+                                
+                                <!-- Chest Light (Pulse) -->
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                
+                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
                                 <g class="animate-wave-arm-left">
-                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
+                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
                                 <g class="animate-wave-arm-right">
-                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
+                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
+
+                                <!-- Head Wiggle Animation (Lebih Sering) -->
                                 <g class="animate-wiggle-head">
-                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" />
+                                    <!-- Head -->
+                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
+                                    
+                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
                                     <g class="animate-blink-eyes">
+                                        <!-- Eye 1 -->
                                         <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
+                                        <!-- Eye 2 -->
                                         <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                     </g>
+
+                                    <!-- Antenna Pulse Animation -->
                                     <g class="animate-pulse-antenna">
                                         <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                         <circle cx="50" cy="5" r="3" fill="#F97316" />
@@ -633,14 +517,14 @@
                         </div>
                     </div>
                     
-                    <!-- Left Content -->
+                    <!-- Left Content (Glass Card) -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
-                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700">
+                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#BFDBFE]">
                                 Dikasih Info Mase
                             </span>
                         </h1>
-                        <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
+                        <p class="text-lg md:text-xl text-white font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
                             Belajar AI itu gampang kok! Yuk, mulai dari dasar bareng aku.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
@@ -649,7 +533,7 @@
                                 Kenalan Dulu Yuk
                             </a>
                             <a href="#support"
-                               class="text-gray-700 font-bold py-3 px-8 rounded-full border-2 border-gray-300 backdrop-blur-sm bg-white/80 hover:bg-gray-50 hover:border-gray-400 transition-all duration-300 flex items-center justify-center whitespace-nowrap shadow-md hover:shadow-lg scroll-link">
+                               class="text-white font-bold py-3 px-8 rounded-full border border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 flex items-center justify-center whitespace-nowrap">
                                   Support Konten <i data-lucide="smile" class="w-5 h-5 ml-2"></i>
                             </a>
                         </div>
@@ -658,16 +542,9 @@
             </div>
         </section>
 
-        <!-- ============================================
-             2. MISSION SECTION - STATIC GRADIENT MESH
-        ============================================ -->
-        <section id="mission" class="py-24 md:py-32 section-padding relative px-4 sm:px-6 lg:px-8">
-            <!-- Static Mission Background -->
-            <div class="mission-bg">
-                <div class="mission-mesh"></div>
-            </div>
-
-            <div class="max-w-7xl mx-auto relative z-10">
+        <!-- 2. MISSION/TUJUAN SECTION -->
+        <section id="mission" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <i data-lucide="target" class="w-8 h-8 text-[#3B82F6] mx-auto mb-4"></i>
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
@@ -708,28 +585,32 @@
 
                 <!-- Andrew Ng Quote Box -->
                 <div class="relative p-6 md:p-10 lg:p-12 rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto
-                    bg-gradient-to-br from-blue-500/90 to-indigo-600/90 backdrop-blur-sm">
+                    bg-gradient-to-br from-[#0EA5E9]/90 to-[#3B82F6]/90">
+                    
+                    <!-- Floating Orb -->
+                    <div class="absolute w-40 h-40 bg-white/20 rounded-full blur-2xl animate-float-orb-1" style="top: -10%; right: -10%; animation-duration: 6s;"></div>
                     
                     <div class="relative z-10 text-white text-center">
                         <i data-lucide="sparkles" class="w-6 h-6 md:w-8 md:h-8 text-white mb-4 block mx-auto"></i>
                         <blockquote class="italic text-lg md:text-2xl lg:text-3xl font-light leading-snug mb-4">
                             "AI nggak sepenuhnya gantiin kerjaan manusia. Tapi, manusia yang punya skill AI akan gantiin yang nggak punya skilnya"
                         </blockquote>
-                        <footer class="text-right text-sm md:text-base text-blue-100 font-medium">— Andrew Ng</footer>
+                        <footer class="text-right text-sm md:text-base text-[#BFDBFE] font-medium">— Andrew Ng </footer>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             3. PERSONAL SECTION - STATIC RADIAL BLUR
-        ============================================ -->
-        <section id="personal" class="py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
-            <!-- Static Personal Background -->
-            <div class="personal-bg">
-                <div class="personal-radial"></div>
+        <!-- 3. PERSONAL SECTION -->
+        <section id="personal" class="py-24 md:py-32 section-padding relative overflow-hidden 
+            bg-gradient-to-br from-[#FDF4FF] via-[#FCE7F3] to-[#FEF3C7] px-4 sm:px-6 lg:px-8">
+            
+            <!-- Background Orbs -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute w-80 h-80 bg-pink-300/30 rounded-full blur-[60px] opacity-50 animate-float-orb-1" style="top: 60%; left: -10%; animation-duration: 4s;"></div>
+                <div class="absolute w-60 h-60 bg-purple-200/50 rounded-full blur-[60px] opacity-60 animate-float-orb-2" style="top: 15%; right: 5%; animation-duration: 5s;"></div>
             </div>
-
+        
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto items-start personal-container">
                     
@@ -756,30 +637,30 @@
                     <!-- Right: Story -->
                     <div class="w-full lg:w-2/3 space-y-6 text-left px-2 sm:px-4 md:px-6 lg:px-0">
                         <h2 class="text-3xl md:text-4xl font-extrabold mb-8 personal-title 
-                            bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600 text-center lg:text-left">
+                            bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-center lg:text-left">
                             Halo, Aku Raihan! 🙋‍♂️
-                            <span class="block text-lg md:text-xl font-semibold mt-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-pink-500">
+                            <span class="block text-lg md:text-xl font-semibold mt-2 text-gray-700">
                                 Bahas Yang Susah, Jadi Gampang.
                             </span>
                         </h2>
         
                         <!-- Body Paragraf -->
                         <p class="text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-700">
-                            <span class="bg-yellow-100/70 px-2 py-1 rounded font-semibold inline-block mb-1">Aku belum ahli di bidang AI, aku masih terus belajar.</span>
+                            <span class="bg-yellow-100/70 p-1 rounded font-semibold inline-block mb-1">Aku belum ahli di bidang AI, aku masih terus belajar.</span>
                             <br>
-                            Terkadang aku kesulitan belajar materi AI, karena <span class="font-bold text-pink-600">penjelasannya terlalu teknis buat pemula.</span> Jadi, aku harus luangin waktu ekstra buat mahamin bahasanya.
+                            Terkadang aku kesulitan belajar materi AI, karena <span class="font-bold text-[#EC4899]">penjelasannya terlalu teknis buat pemula.</span> Jadi, aku harus luangin waktu ekstra buat mahamin bahasanya.
                         </p>
         
                         <p class="text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-700">
-                            Dari pengalaman itu aku sadar, <span class="italic font-semibold text-purple-600 inline-block mb-1">belajar AI sebenernya bisa kok dibuat gampang.</span>
+                            Dari pengalaman itu aku sadar, <span class="italic font-semibold text-[#8B5CF6] inline-block mb-1">belajar AI sebenernya bisa kok dibuat gampang.</span>
                             <br>
                             Lewat konten ini, aku pengen kita belajar bareng pakai bahasa yang ringan, santai, tapi tetep berkualitas.
                         </p>
                         
                         <!-- Quote Box -->
-                        <div class="relative p-3 md:p-4 lg:p-6 rounded-lg shadow-md border-l-4 border-pink-500 bg-white/80 backdrop-blur-sm">
+                        <div class="relative p-3 md:p-4 lg:p-6 rounded-lg shadow-md border-l-4 border-[#EC4899] bg-white/80 backdrop-blur-sm">
                             <div class="flex items-start text-left gap-2 md:gap-3">
-                                <i data-lucide="heart" fill="#EC4899" class="w-5 h-5 md:w-6 md:h-6 text-pink-500 mt-0.5 animate-heartbeat flex-shrink-0"></i>
+                                <i data-lucide="heart" fill="#EC4899" class="w-5 h-5 md:w-6 md:h-6 text-[#EC4899] mt-0.5 animate-heartbeat flex-shrink-0"></i>
                                 <div class="flex-1">
                                     <p class="text-sm md:text-base font-medium text-gray-800 text-justify leading-relaxed">
                                         "Ilmu kalau dibagi bakal lebih berkah. Dan jujur aja, cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi... sekalian aja kita belajar bareng di sini, hehe. 😄"
@@ -792,15 +673,17 @@
             </div>
         </section>
 
-        <!-- ============================================
-             4. JADWAL NGONTEN SECTION - STATIC GRID PATTERN
-        ============================================ -->
+        <!-- 4. JADWAL NGONTEN SECTION -->
         <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-            <!-- Static Jadwal Background -->
-            <div class="jadwal-bg">
-                <div class="jadwal-grid"></div>
-            </div>
-
+            
+            <!-- Background Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50"></div>
+            
+            <!-- Floating Orbs Background -->
+            <div class="absolute top-10 left-10 w-64 h-64 bg-gradient-to-br from-blue-200/40 to-purple-200/40 rounded-full blur-3xl animate-float-orb-1"></div>
+            <div class="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-br from-purple-200/30 to-pink-200/30 rounded-full blur-3xl animate-float-orb-2"></div>
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-orange-100/20 to-yellow-100/20 rounded-full blur-3xl animate-float-orb-3"></div>
+            
             <div class="max-w-6xl mx-auto relative z-10">
                 
                 <!-- Header with Badge -->
@@ -819,7 +702,7 @@
                     
                     <!-- Subtitle -->
                     <p class="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
-                        ⚠️ Pantau biar nggak ketinggalan materi baru ⚠️
+                        ‼️ Pantau biar nggak ketinggalan materi baru ‼️
                     </p>
                 </div>
                 
@@ -827,16 +710,22 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     
                     <!-- Card Senin (Blue) -->
-                    <div id="card-mon" data-day="1" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full">
+                    <div id="card-mon" data-day="1" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Senin - Video Materi">
                         <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
+                            <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-blue-100 hover:border-blue-300 transition-all duration-300">
+                                
+                                <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="video" class="w-7 h-7 text-white"></i>
                                         </div>
+                                        <!-- Day + Time -->
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900">Senin</h3>
                                             <div class="flex items-center gap-1 text-blue-600 font-semibold text-sm">
@@ -846,34 +735,44 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Active Badge (Hidden by default, shown when .jn-active) -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
                                         Next ⚡️
                                     </span>
                                 </div>
                                 
+                                <!-- Description -->
                                 <p class="text-gray-700 font-medium mb-3">Materi edukasi.</p>
                                 
+                                <!-- Format Tag -->
                                 <div class="flex items-center gap-2 px-3 py-2 bg-blue-50 rounded-xl border border-blue-100">
                                     <i data-lucide="film" class="w-4 h-4 text-blue-600"></i>
                                     <span class="text-sm text-blue-700 font-medium">Video pendek</span>
                                 </div>
                                 
+                                <!-- Decorative Bottom Accent -->
                                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Card Kamis (Orange) -->
-                    <div id="card-thu" data-day="4" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full">
+                    <div id="card-thu" data-day="4" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Kamis - Carousel">
                         <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
+                            <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-orange-100 hover:border-orange-300 transition-all duration-300">
+                                
+                                <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="book-open" class="w-7 h-7 text-white"></i>
                                         </div>
+                                        <!-- Day + Time -->
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900">Kamis</h3>
                                             <div class="flex items-center gap-1 text-orange-600 font-semibold text-sm">
@@ -883,34 +782,44 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Active Badge -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡️
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
+                                <!-- Description -->
                                 <p class="text-gray-700 font-medium mb-3">Materi edukasi lebih lengkap.</p>
                                 
+                                <!-- Format Tag -->
                                 <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 rounded-xl border border-orange-100">
                                     <i data-lucide="image" class="w-4 h-4 text-orange-600"></i>
                                     <span class="text-sm text-orange-700 font-medium">Carousel</span>
                                 </div>
                                 
+                                <!-- Decorative Bottom Accent -->
                                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Card Sabtu (Purple) -->
-                    <div id="card-sat" data-day="6" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full">
+                    <div id="card-sat" data-day="6" class="jn-card group w-[90%] mx-auto md:mx-0 md:w-full" aria-label="Sabtu - Tips & Trik">
                         <div class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                            <!-- Gradient Border Effect -->
                             <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                             
+                            <!-- Card Content -->
                             <div class="relative bg-white rounded-3xl p-6 border-2 border-purple-100 hover:border-purple-300 transition-all duration-300">
+                                
+                                <!-- Header: Icon + Title + Badge -->
                                 <div class="flex items-start justify-between mb-4">
                                     <div class="flex items-center gap-3">
+                                        <!-- Icon Container with Gradient -->
                                         <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
                                             <i data-lucide="video" class="w-7 h-7 text-white"></i>
                                         </div>
+                                        <!-- Day + Time -->
                                         <div>
                                             <h3 class="text-xl font-bold text-gray-900">Sabtu</h3>
                                             <div class="flex items-center gap-1 text-purple-600 font-semibold text-sm">
@@ -920,39 +829,51 @@
                                         </div>
                                     </div>
                                     
+                                    <!-- Active Badge -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡️
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
+                                <!-- Description -->
                                 <p class="text-gray-700 font-medium mb-3">Tips & trik / info menarik.</p>
                                 
+                                <!-- Format Tag -->
                                 <div class="flex items-center gap-2 px-3 py-2 bg-purple-50 rounded-xl border border-purple-100">
                                     <i data-lucide="film" class="w-4 h-4 text-purple-600"></i>
                                     <span class="text-sm text-purple-700 font-medium">Video pendek</span>
                                 </div>
                                 
+                                <!-- Decorative Bottom Accent -->
                                 <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
+        
+                
                 <!-- Countdown Dashboard -->
                 <div class="max-w-3xl mx-auto">
                     <div class="relative rounded-3xl overflow-hidden shadow-2xl">
+                        <!-- Glass Background -->
                         <div class="absolute inset-0 bg-white/70 backdrop-blur-xl"></div>
+                        
+                        <!-- Gradient Border Glow -->
                         <div class="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-xl"></div>
                         
+                        <!-- Content -->
                         <div class="relative p-8 border-2 border-white/40">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                                
+                                <!-- Left: Next Upload Info -->
                                 <div class="text-center md:text-left">
                                     <div class="flex items-center gap-2 text-gray-500 text-xs uppercase tracking-wider font-semibold mb-2 justify-center md:justify-start">
                                         <i data-lucide="calendar-clock" class="w-4 h-4"></i>
                                         <span>Upload Berikutnya</span>
                                     </div>
                                     <div id="jn-next-day" class="text-3xl md:text-4xl font-black text-gray-900 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        —
+                                        â€”
                                     </div>
                                     <div class="flex items-center gap-2 text-gray-600 text-sm justify-center md:justify-start">
                                         <i data-lucide="clock" class="w-4 h-4"></i>
@@ -960,8 +881,10 @@
                                     </div>
                                 </div>
                                 
+                                <!-- Divider (Hidden on Mobile) -->
                                 <div class="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-px h-20 bg-gradient-to-b from-transparent via-gray-300 to-transparent"></div>
                                 
+                                <!-- Right: Countdown Timer -->
                                 <div class="text-center">
                                     <div class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6 border-2 border-blue-100 shadow-inner">
                                         <div id="jn-countdown" class="text-4xl md:text-5xl font-black text-gray-900 font-mono tracking-tight mb-2 jn-countdown">
@@ -978,39 +901,42 @@
                     </div>
                 </div>
                 
+                <!-- Bottom Note -->
                 <p class="text-center text-sm text-gray-500 mt-6">
                     Waktu udah nyesuain timezone perangkatmu.
                 </p>
             </div>
         </section>
 
-        <!-- ============================================
-             5. FEEDBACK SECTION - STATIC SOFT GRADIENT
-        ============================================ -->
-        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8">
-            <!-- Static Feedback Background -->
-            <div class="feedback-bg">
-                <div class="feedback-gradient"></div>
+
+        <!-- 5. FEEDBACK SECTION -->
+        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
+            bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
+
+            <!-- Radial Light Effect -->
+            <div class="absolute w-full h-full top-0 left-0 opacity-50">
+                <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
+                <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
             </div>
 
             <div class="max-w-3xl mx-auto relative z-10">
                 <div class='text-center mb-12'>
-                    <i data-lucide="message-square" class="w-8 h-8 text-orange-500 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-pink-600">
+                    <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
                         Yuk, Evaluasi! 🚀
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <p class="text-lg text-gray-600 text-center">
+                    <p class="text-lg text-gray-300 text-center">
                         Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
 
                 <!-- Glass-morphism Form Card -->
-                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl shadow-xl border border-gray-200 bg-white/80 backdrop-blur-sm">
+                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
 
                     <!-- Asal Kota Input -->
                     <div class="mb-6">
-                        <label for="city" class="text-lg text-gray-700 font-semibold mb-2 block flex items-center">
+                        <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
                             <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
                         </label>
                         <input 
@@ -1019,22 +945,22 @@
                             name="city"
                             placeholder="Dari kota mana nih? 📍" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-sm transition-all"
+                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
                         />
                     </div>
 
                     <!-- Evaluasi / Saran Topik Textarea -->
                     <div class="mb-8">
-                        <label for="feedback-text" class="text-lg text-gray-700 font-semibold mb-2 block flex items-center">
+                        <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
                             <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
                         </label>
                         <textarea 
                             id="feedback-text" 
                             name="evaluation_or_topic"
                             rows="6" 
-                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 💬✨" 
+                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-sm resize-none transition-all"
+                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
                         ></textarea>
                     </div>
 
@@ -1050,24 +976,12 @@
             </div>
         </section>
 
-        <!-- ============================================
-             6. SUPPORT SECTION - STATIC BOKEH CIRCLES
-        ============================================ -->
-        <section id="support" class="py-24 md:py-32 section-padding relative px-4 sm:px-6 lg:px-8 overflow-hidden">
-            <!-- Static Support Background -->
-            <div class="support-bg">
-                <div class="support-bokeh">
-                    <div class="bokeh-circle bokeh-1"></div>
-                    <div class="bokeh-circle bokeh-2"></div>
-                    <div class="bokeh-circle bokeh-3"></div>
-                    <div class="bokeh-circle bokeh-4"></div>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto text-center relative z-10">
+        <!-- 6. SUPPORT SECTION -->
+        <section id="support" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#F0F9FF] via-[#DBEAFE] to-[#BFDBFE] px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto text-center">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <i data-lucide="coffee" class="w-8 h-8 text-purple-600 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+                    <i data-lucide="coffee" class="w-8 h-8 text-[#8B5CF6] mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">
                         Support Konten 
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
@@ -1075,70 +989,73 @@
                         Aku usahain materi <strong>100% gratis!</strong> Kalau kamu <strong>pengen support</strong>, aku bersyukur banget. Dukunganmu jadi bahan bakar buat ningkatin kualitas belajar kita! 🫶
                     </p>
                 </div>
-                    
-                <!-- Benefits Column -->
-                <div class="space-y-6 mb-12">
-                    <!-- Benefit 1 -->
-                    <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer max-w-2xl mx-auto">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="gift" class="w-7 h-7 text-purple-600"></i>
-                            <p class="font-bold text-gray-800">Dukung konten gratis berkualitas</p>
-                        </div>
-                    </div>
-                    <!-- Benefit 2 -->
-                    <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer max-w-2xl mx-auto">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="heart" class="w-7 h-7 text-purple-600"></i>
-                            <p class="font-bold text-gray-800">Jadi bagian dari perjalanan ini</p>
-                        </div>
-                    </div>
-                    <!-- Benefit 3 -->
-                    <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer max-w-2xl mx-auto">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="zap" class="w-7 h-7 text-purple-600"></i>
-                            <p class="font-bold text-gray-800">Bonus: Nomor WA buat ngobrol</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- QRIS Container -->
-                <div class="flex justify-center items-center mb-12">
-                    <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-200">
-                        <div class="relative z-10 flex flex-col items-center justify-center">
-                            <!-- Title -->
-                            <div class="mb-4 text-center">
-                                <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                    
+                    <!-- Benefits Column (Left) -->
+                    <div class="space-y-6">
+                        <!-- Benefit 1 -->
+                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="gift" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <p class="font-bold text-gray-800">Dukung konten gratis berkualitas</p>
                             </div>
-                        
-                            <!-- QRIS Image -->
-                            <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4">
-                                <img 
-                                    src="qris.jpg"
-                                    loading="lazy"
-                                    alt="QRIS Raihan Hikmah" 
-                                    class="w-full h-auto"
-                                />
+                        </div>
+                        <!-- Benefit 2 -->
+                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="heart" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <p class="font-bold text-gray-800">Jadi bagian dari perjalanan ini</p>
                             </div>
-                        
-                            <!-- Info Text -->
-                            <div class="text-center space-y-1">
-                                <p class="text-lg font-bold text-gray-800">Nominal Berapa Aja Boleh 💝</p>
-                                <p class="text-sm text-gray-500">Semua e-wallet & mobile banking</p>
+                        </div>
+                        <!-- Benefit 3 -->
+                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="zap" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <p class="font-bold text-gray-800">Bonus: Nomor WA buat ngobrol</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QRIS Container (Right) -->
+                    <div class="flex justify-center items-center">
+                        <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-200">
+                            <div class="relative z-10 flex flex-col items-center justify-center">
+                                <!-- Title -->
+                                <div class="mb-4 text-center">
+                                    <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                                </div>
+                            
+                                <!-- QRIS Image -->
+                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4"> <!-- Fix border-gray-80 → gray-100 -->
+                                    <img 
+                                        src="qris.jpg"
+                                        loading="lazy"
+                                        alt="QRIS Raihan Hikmah" 
+                                        class="w-full h-auto"
+                                    />
+                                </div>
+                            
+                                <!-- Info Text -->
+                                <div class="text-center space-y-1">
+                                    <p class="text-lg font-bold text-gray-800">Nominal Berapa Aja Boleh 💜</p>
+                                    <p class="text-sm text-gray-500">Semua e-wallet & mobile banking</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Note Box -->
-                <p class="text-base text-gray-700 font-medium text-center">
-                    Upload bukti transfer <span class="font-bold text-purple-600">buat akses BONUS! 💬 </span>
+                <p class="text-base text-gray-700 font-medium mt-16 sm:mt-20 md:mt-24 lg:mt-28 text-center">
+                    Upload bukti transfer <span class="font-bold text-[#8B5CF6]">buat akses BONUS! 💬 </span>
                 </p>
                 <div class="mt-6 flex justify-center">
                     <a 
                         href="https://forms.gle/41Tb488BMszWqg267" 
                         target="_blank"
                         class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg text-white 
-                               bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 
+                               bg-gradient-to-r from-[#8B5CF6] via-[#A855F7] to-[#F97316] 
                                shadow-lg hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] 
                                hover:scale-[1.03] transition-all duration-300 ease-in-out 
                                backdrop-blur-md border border-white/20"
@@ -1151,10 +1068,8 @@
             </div>
         </section>
         
-        <!-- ============================================
-             7. FOOTER
-        ============================================ -->
-        <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- 7. FOOTER -->
+        <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 
                 <!-- Footer Content Grid -->
@@ -1185,7 +1100,7 @@
                     
                     <!-- Column 2 - Social -->
                     <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-gray-200 mb-4">Follow! 🚀</h4>
+                        <h4 class="text-xl font-bold text-gray-200 mb-4">Follow! </h4>
                         <div class="space-y-3">
                             <a href="#" class="flex items-center p-3 rounded-xl transition-all duration-300 glass-effect hover:bg-orange-500/20 hover:-translate-y-1">
                                 <i data-lucide="instagram" class="w-6 h-6 mr-3 text-pink-400"></i>
@@ -1204,17 +1119,17 @@
 
                     <!-- Column 3 - Kerjasama -->
                     <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-gray-200 mb-4">Kerjasama?</h4>
-                        <div class="space-y-4">
-                            <!-- WhatsApp Button -->
-                            <a href="https://wa.me/62895324959492" 
-                               target="_blank" rel="noopener noreferrer"
-                               class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
-                              <span class="wa-icon"><i data-lucide="message-circle"></i></span>
-                              <span>Chat via WhatsApp</span>
-                            </a>
-                        </div>
+                    <h4 class="text-xl font-bold text-gray-200 mb-4">Kerjasama?</h4>
+                    <div class="space-y-4">
+                        <!-- WhatsApp Button -->
+                        <a href="https://wa.me/62895324959492" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
+                          <span class="wa-icon"><i data-lucide="message-circle"></i></span>
+                          <span>Chat via WhatsApp</span>
+                        </a>
                     </div>
+                </div>
                 </div>
 
                 <!-- Bottom Copyright -->
@@ -1349,8 +1264,7 @@
 
             // JADWAL NGONTEN SCRIPT
             (function(){
-                const SCHEDULE = [1,4,6]; 
-                const UPLOAD_HOUR = 19;
+                const SCHEDULE = [1,4,6]; const UPLOAD_HOUR = 19;
                 const pad = n => String(n).padStart(2,'0');
                 const elDay = document.getElementById('jn-next-day');
                 const elCount = document.getElementById('jn-countdown');
@@ -1358,8 +1272,7 @@
                 function nextUpload(now = new Date()){
                     for(let i = 0; i < 14; i++){
                         const d = new Date(now);
-                        d.setDate(now.getDate() + i); 
-                        d.setHours(UPLOAD_HOUR, 0, 0, 0);
+                        d.setDate(now.getDate() + i); d.setHours(UPLOAD_HOUR, 0, 0, 0);
                         if(SCHEDULE.includes(d.getDay()) && d > now) return d;
                     }
                     return new Date(now.getTime() + 86400000 * 7);
