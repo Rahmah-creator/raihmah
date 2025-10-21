@@ -300,11 +300,10 @@
            ANIMATION CLASSES
         ============================================ */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
-        .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
+        .animate-float-robot { animation: float-robot 10s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
         .animate-pulse-antenna { animation: pulse-antenna 2s ease-in-out infinite; }
         .animate-blink-eyes { animation: blink-eyes 1.8s step-end infinite; transform-origin: center; } 
-        .animate-breathe-body { animation: breathe-body 3s ease-in-out infinite; transform-origin: bottom; }
         .animate-wave-arm-left { animation: wave-arm-left 1.2s ease-in-out infinite; transform-origin: 28px 50px; }
         .animate-wave-arm-right { animation: wave-arm-right 1.2s ease-in-out infinite; transform-origin: 72px 50px; }
         .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
@@ -729,13 +728,13 @@
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
-                                <g class="animate-wave-arm-left">
+                                <g> 
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
-                                <g class="animate-wave-arm-right">
+                                <g>
                                     <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
-                                <g class="animate-wiggle-head">
+                                <g>
                                     <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" />
                                     <g class="animate-blink-eyes">
                                         <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
@@ -743,7 +742,7 @@
                                         <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                     </g>
-                                    <g class="animate-pulse-antenna">
+                                    <g>
                                         <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                         <circle cx="50" cy="5" r="3" fill="#F97316" />
                                     </g>
@@ -756,15 +755,15 @@
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700">
-                                Dikasih Info Mase
+                                Belajar AI Santai bareng Raihan
                             </span>
                         </h1>
                         <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
-                            Belajar AI itu gampang kok! Yuk, mulai dari dasar bareng aku.
+                            Di raihmah.ai, kita bedah yang rumit jadi asik!
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
                             <a href="#mission" class="px-8 py-3 rounded-full text-lg font-bold transition-all duration-300 ease-in-out shadow-2xl hover:shadow-2xl hover:scale-[1.03] text-white 
-                                bg-orange-500 hover:bg-orange-600 border-2 border-transparent hover:border-white flex items-center justify-center whitespace-nowrap scroll-link animate-jiggle">
+                                bg-orange-500 hover:bg-orange-600 border-2 border-transparent hover:border-white">
                                 Kenalan Dulu Yuk
                             </a>
                             <a href="#support"
