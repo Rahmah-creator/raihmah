@@ -108,12 +108,14 @@
         @keyframes wave-arm-left { 
             0%, 100% { transform: rotate(0deg); } 
             50% { transform: rotate(-25deg); } 
-        } 
+            
         @keyframes wave-arm-right { 
-            0%, 100% { transform: rotate(0deg) translateY(0); } 
-            25%, 75% { transform: rotate(40deg) translateY(-25px); } 
-            50% { transform: rotate(15deg) translateY(-15px); } 
+            /* Bikin dia 90% diem, 10% gerak */
+            0%, 15%, 100% { transform: rotate(0deg) translateY(0); } /* DIEM */
+            3% { transform: rotate(40deg) translateY(-25px); } /* GERAK NAIK */
+            7% { transform: rotate(15deg) translateY(-15px); } /* GERAK TURUN */
         }
+
         @keyframes pulse-glow { 
             0%, 100% { opacity: 0.3; } 
             50% { opacity: 0.6; } 
@@ -305,7 +307,7 @@
         .animate-pulse-antenna { animation: pulse-antenna 2s ease-in-out infinite; }
         .animate-blink-eyes { animation: blink-eyes 1.8s step-end infinite; transform-origin: center; } 
         .animate-wave-arm-left { animation: wave-arm-left 1.2s ease-in-out infinite; transform-origin: 28px 50px; }
-        .animate-wave-arm-right { animation: wave-arm-right 1.2s ease-in-out infinite; transform-origin: 72px 50px; }
+        .animate-wave-arm-right { animation: wave-arm-right 3s ease-in-out infinite; transform-origin: 72px 50px; }
         .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
         .animate-float-avatar { animation: float-avatar 4s ease-in-out infinite; }
         .animate-heartbeat { animation: heartbeat 1s infinite; }
@@ -728,7 +730,7 @@
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
-                                <g> 
+                                <g class="animate-wave-arm-right">
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
                                 <g>
