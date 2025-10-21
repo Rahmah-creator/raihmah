@@ -108,13 +108,12 @@
         @keyframes wave-arm-left { 
             0%, 100% { transform: rotate(0deg); } 
             50% { transform: rotate(-25deg); } 
-            
-         @keyframes wave-arm-right { 
+        } 
+        @keyframes wave-arm-right { 
             0%, 100% { transform: rotate(0deg) translateY(0); } 
             25%, 75% { transform: rotate(40deg) translateY(-25px); } 
             50% { transform: rotate(15deg) translateY(-15px); } 
         }
-
         @keyframes pulse-glow { 
             0%, 100% { opacity: 0.3; } 
             50% { opacity: 0.6; } 
@@ -730,10 +729,10 @@
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
-                                <g class="animate-wave-arm-right">
+                                <g class="animate-wave-arm-left">
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
-                                <g class="animate-wave-arm-left">
+                                <g class="animate-wave-arm-right">
                                     <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
                                 <g class="animate-wiggle-head">
@@ -755,17 +754,17 @@
                     
                     <!-- Left Content -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
-                        <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
+                        <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 4.5rem);">
                             <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700">
                                 Belajar AI Santai bareng Raihan
                             </span>
                         </h1>
-                        <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
-                            Di raihmah.ai, kita bedah yang rumit jadi asik!
+                        <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle">
+                            Di raihmah.ai, kita bedah yang rumit jadi asik.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
                             <a href="#mission" class="px-8 py-3 rounded-full text-lg font-bold transition-all duration-300 ease-in-out shadow-2xl hover:shadow-2xl hover:scale-[1.03] text-white 
-                                bg-orange-500 hover:bg-orange-600 border-2 border-transparent hover:border-white">
+                                bg-orange-500 hover:bg-orange-600 border-2 border-transparent hover:border-white flex items-center justify-center whitespace-nowrap scroll-link animate-jiggle">
                                 Kenalan Dulu Yuk
                             </a>
                             <a href="#support"
