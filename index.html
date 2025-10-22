@@ -695,8 +695,7 @@
                             <!-- Teks "Halo!" -->
                             <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
-                                    <div class="px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-3 border-white backdrop-blur-sm transition-all duration-500" 
-                                         style="background: linear-gradient(135deg, #FBBF24, #F97316); box-shadow: 0 10px 40px rgba(251, 191, 36, 0.5);">
+                                    <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
                                         <p class="text-xl md:text-3xl lg:text-4xl font-black font-handwritten" 
                                            style="color: #FFFFFF; 
                                                   text-shadow: 
@@ -704,8 +703,7 @@
                                                     0px 6px 12px rgba(0, 0, 0, 0.2),
                                                     0px 1px 0px rgba(0, 0, 0, 0.6);">Halo!</p>
                                     </div>
-                                    <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] drop-shadow-lg" 
-                                         style="border-top-color: #F97316;"></div>
+                                    <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
                                 </div>
                             </div>
                             <!-- Robot SVG -->
@@ -716,12 +714,12 @@
                                         <stop offset="100%" stop-color="transparent" stop-opacity="0" />
                                     </radialGradient>
                                     <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
-                                        <stop offset="0%" stop-color="#FF6B35" />
-                                        <stop offset="100%" stop-color="#F97316" />
+                                        <stop offset="0%" stop-color="#6366F1" />
+                                        <stop offset="100%" stop-color="#8B5CF6" />
                                     </linearGradient>
                                     <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
-                                        <stop offset="0%" stop-color="#FB923C" />
-                                        <stop offset="100%" stop-color="#FDBA74" />
+                                        <stop offset="0%" stop-color="#3B82F6" />
+                                        <stop offset="100%" stop-color="#0EA5E9" />
                                     </linearGradient>
                                     <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
                                         <stop offset="0%" stop-color="#FED7AA" />
@@ -737,7 +735,7 @@
                                 <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
-                                <circle cx="50" cy="65" r="5" fill="#FBBF24" class="animate-pulse-antenna" />
+                                <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
                                 <g class="animate-wave-arm-left">
                                     <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
                                 </g>
@@ -754,8 +752,8 @@
                                     </g>
 
                                     <g class="animate-pulse-antenna">
-                                        <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FBBF24" />
-                                        <circle cx="50" cy="5" r="3" fill="#FBBF24" />
+                                        <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
+                                        <circle cx="50" cy="5" r="3" fill="#F97316" />
                                     </g>
                                 </g>
                             </svg>
