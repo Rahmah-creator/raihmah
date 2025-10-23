@@ -667,25 +667,19 @@
     </nav>
 
     <main class="relative">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0"> 
+        <div class="absolute w-[800px] h-[800px] rounded-full blur-[250px] opacity-20" 
+             style="top: -30%; left: -20%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div> 
+        <div class="absolute w-[900px] h-[900px] rounded-full blur-[300px] opacity-15" 
+             style="top: -10%; right: -30%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
+        <div class="absolute w-[700px] h-[700px] rounded-full blur-[200px] opacity-20" 
+             style="bottom: -30%; left: 40%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div>
+    </div>
+        
         <!-- ============================================
              1. HERO SECTION - FLOATING ORBS
         ============================================ -->
-        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
-            <!-- Hero Orbs Background -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <!-- Orb 1: Top Left - Oranye / Kuning -->
-                <div class="absolute w-[800px] h-[800px] rounded-full blur-[250px] opacity-20" 
-                     style="top: -30%; left: -20%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div>
-                
-                <!-- Orb 2: Top Right - Purple -->
-                <div class="absolute w-[900px] h-[900px] rounded-full blur-[300px] opacity-15" 
-                     style="top: -10%; right: -30%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
-                
-                <!-- Orb 3: Bottom - Oranye / Pink -->
-                <div class="absolute w-[700px] h-[700px] rounded-full blur-[200px] opacity-20" 
-                     style="bottom: -30%; left: 40%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div>
-            </div>
-            
+        <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-transparent">
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
@@ -792,7 +786,7 @@
         <!-- ============================================
              2. MISSION SECTION - GEOMETRIC SHAPES
         ============================================ -->
-        <section id="mission" class="py-24 md:py-32 section-padding relative px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50/30">
+        <section id="mission" class="relative z-10 py-24 md:py-32 section-padding px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-blue-50/30">
             <!-- Geometric Shapes Background -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
                 <!-- Triangle Blue -->
@@ -869,7 +863,7 @@
         <!-- ============================================
              3. PERSONAL SECTION - OPTIMIZED PERFECT
         ============================================ -->
-        <section id="personal" class="py-10 sm:py-12 md:py-16 lg:py-20 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8" style="background: #FAFBFC;">
+        <section id="personal" class="relative z-10 py-10 sm:py-12 md:py-16 lg:py-20 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8" style="background: #FAFBFC;">
             
             <!-- Ambient Light Glows (Optimized) -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1030,7 +1024,7 @@
         </section>
 
         <!-- 4. JADWAL NGONTEN SECTION -->
-        <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section id="jadwal-ngonten" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             
             <!-- Background Gradient -->
             <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50"></div>
@@ -1265,7 +1259,7 @@
         <!-- ============================================
              5. FEEDBACK SECTION - MESH GRADIENT + PAPER PLANES
         ============================================ -->
-        <section id="feedback" class="py-28 md:py-36 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-pink-50/20">
+        <section id="feedback" class="relative z-10 py-28 md:py-36 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-pink-50/20">
             
             <!-- Mesh Gradient Background -->
             <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -1380,7 +1374,7 @@
         <!-- ============================================
              6. SUPPORT SECTION - FLOATING HEARTS
         ============================================ -->
-        <section id="support" class="py-24 md:py-32 section-padding relative px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-purple-50/30 overflow-hidden">
+        <section id="support" class="relative z-10 py-24 md:py-32 section-padding relative px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-purple-50/30 overflow-hidden">
             <div class="max-w-7xl mx-auto text-center relative z-10">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <i data-lucide="coffee" class="w-8 h-8 text-purple-600 mx-auto mb-4 block"></i>
@@ -1471,7 +1465,7 @@
         <!-- ============================================
              7. FOOTER
         ============================================ -->
-        <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8 relative z-10">
+        <footer id="footer" class="relative z-10 pt-12 pb-8 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="max-w-7xl mx-auto">
                 
                 <!-- Footer Content Grid -->
