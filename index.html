@@ -10,11 +10,7 @@
 
       <!-- Style kustom khusus tombol WhatsApp -->
       <style>
-        /* Accessibility: respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-}
-/* WhatsApp CTA - minimal & scoped */
+        /* WhatsApp CTA - minimal & scoped */
         .wa-button{
           display: inline-flex !important;
           align-items: center;
@@ -25,8 +21,8 @@
           background: linear-gradient(90deg,#16A34A,#22C55E);
           color: #fff;
           text-decoration: none;
-          max-width: 440px !important;
-          width: 100% !important;
+          max-width: 440px !important;  /* tambahkan !important */
+          width: 100% !important;       /* biar proporsional tapi dibatasi max-width */
           box-shadow: 0 10px 30px rgba(16,185,129,0.12);
           border: 1px solid rgba(255,255,255,0.05);
           transition: transform .18s, box-shadow .18s;
@@ -42,7 +38,9 @@
         @media(max-width:1024px){
           .wa-button{ max-width:100%; padding:12px 14px; }
         }
+        /* Default desktop (biarkan seperti sekarang) */
         .brand-title {
+          /* mempertahankan gaya existing, hanya selector tambahan */
           text-decoration: none;
           display: inline-block;
           line-height: 1;
@@ -51,9 +49,11 @@
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet"></noscript>
     
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         /* Global Reset & Base */
@@ -62,27 +62,29 @@
         }
         body {
             font-family: 'Inter', sans-serif;
-            background: #FFFFFF;
+            overflow-x: hidden; /* Prevent horizontal scroll from orbs */
         }
         .glass-effect {
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.08);
             backdrop-filter: blur(24px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .hero-title span { /* Target spesifik ke span H1 di hero */
-           text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1); /* Coba shadow ini: agak ke bawah, blur sedang, hitam transparan */
+        /* Text shadow for better contrast on complex backgrounds */
+        .text-shadow {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 0, 0.2);
+            .hero-subtitle { text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
         }
+        /* Soft SVG Shadow for Robot */
         svg.robot-svg {
-            filter: drop-shadow(0px 15px 30px rgba(0, 0, 0, 0.25));
+            filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.08));
         }
+        
+        /* === Font Handwritten (Fallback to Inter) === */
         .font-handwritten {
             font-family: 'Inter', sans-serif;
         }
 
-        /* ============================================
-           KEYFRAMES - ANIMATIONS
-        ============================================ */
-        
+        /* --- KEYFRAMES (Tambah durasi lebih lambat di mobile untuk smoothness) --- */
         /* Robot Animations */
         @keyframes float-robot { 
             0%, 100% { transform: translateY(0); } 
@@ -120,164 +122,12 @@
             50% { opacity: 0.6; } 
         }
 
-        /* Hero Section - Orbs Float */
-        @keyframes float-orb-hero { 
-            0%, 100% { transform: translate(0, 0) scale(1); } 
-            33% { transform: translate(40px, -40px) scale(1.15); } 
-            66% { transform: translate(-30px, 30px) scale(0.9); } 
-        }
-
-        /* Mission Section - Geometric Shapes */
-        @keyframes rotate-shape { 
-            from { transform: rotate(0deg); } 
-            to { transform: rotate(360deg); } 
-        }
-        @keyframes float-shape { 
-            0%, 100% { transform: translateY(0) rotate(0deg); } 
-            50% { transform: translateY(-30px) rotate(180deg); } 
-        }
-
-        /* Personal Section - Enhanced Animations */
-        @keyframes avatar-glow-pulse {
-            0%, 100% { box-shadow: 0 0 20px rgba(236, 72, 153, 0.4), 0 0 40px rgba(139, 92, 246, 0.2); }
-            50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), 0 0 60px rgba(139, 92, 246, 0.4); }
-        }
-        @keyframes rotate-ring {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        @keyframes float-shape-personal {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(20px, -20px) rotate(120deg); }
-            66% { transform: translate(-15px, 15px) rotate(240deg); }
-        }
-        
-        /* Animation Classes */
-        .animate-avatar-glow { animation: avatar-glow-pulse 3s ease-in-out infinite; }
-        .animate-rotate-ring { animation: rotate-ring 20s linear infinite; }
-        .animate-float-shape-personal { animation: float-shape-personal 15s ease-in-out infinite; }
-
-        /* Jadwal Section - Circuit Pattern */
-        @keyframes circuit-pulse { 
-            0%, 100% { opacity: 0.2; } 
-            50% { opacity: 0.6; } 
-        }
-        @keyframes circuit-flow { 
-            0% { stroke-dashoffset: 1000; } 
-            100% { stroke-dashoffset: 0; } 
-        }
-
-        /* Paper Plane Animations - 5 Different Paths */
-        @keyframes paper-plane-fly-1 {
-            0% { 
-                transform: translate(-100px, 120vh) rotate(-45deg); 
-                opacity: 0; 
-            }
-            5% { 
-                opacity: 1; 
-            }
-            95% { 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translate(calc(100vw + 100px), -100px) rotate(-45deg); 
-                opacity: 0; 
-            }
-        }
-        
-        @keyframes paper-plane-fly-2 {
-            0% { 
-                transform: translate(110vw, 80vh) rotate(-135deg); 
-                opacity: 0; 
-            }
-            5% { 
-                opacity: 1; 
-            }
-            95% { 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translate(-100px, -50px) rotate(-135deg); 
-                opacity: 0; 
-            }
-        }
-        
-        @keyframes paper-plane-fly-3 {
-            0% { 
-                transform: translate(-80px, 50vh) rotate(-30deg) scale(0.8); 
-                opacity: 0; 
-            }
-            5% { 
-                opacity: 1; 
-            }
-            50% {
-                transform: translate(50vw, 20vh) rotate(-30deg) scale(1);
-                opacity: 1;
-            }
-            95% { 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translate(calc(100vw + 80px), 10vh) rotate(-30deg) scale(0.9); 
-                opacity: 0; 
-            }
-        }
-        
-        @keyframes paper-plane-fly-4 {
-            0% { 
-                transform: translate(50vw, 110vh) rotate(-60deg); 
-                opacity: 0; 
-            }
-            5% { 
-                opacity: 1; 
-            }
-            30% {
-                transform: translate(30vw, 60vh) rotate(-50deg);
-            }
-            70% {
-                transform: translate(70vw, 30vh) rotate(-70deg);
-            }
-            95% { 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translate(90vw, -80px) rotate(-60deg); 
-                opacity: 0; 
-            }
-        }
-        
-        @keyframes paper-plane-fly-5 {
-            0% { 
-                transform: translate(-120px, 30vh) rotate(-40deg) scale(1.1); 
-                opacity: 0; 
-            }
-            5% { 
-                opacity: 1; 
-            }
-            25% {
-                transform: translate(25vw, 50vh) rotate(-35deg) scale(1.1);
-            }
-            75% {
-                transform: translate(75vw, 20vh) rotate(-45deg) scale(1.1);
-            }
-            95% { 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translate(calc(100vw + 120px), 5vh) rotate(-40deg) scale(1.1); 
-                opacity: 0; 
-            }
-        }
-
-        /* Support Section - Floating Hearts */
-        @keyframes heart-float { 
-            0% { transform: translateY(100vh) scale(0.8); opacity: 0; } 
-            10% { opacity: 1; } 
-            90% { opacity: 1; } 
-            100% { transform: translateY(-100px) scale(1.2); opacity: 0; } 
-        }
-
         /* General Animations */
+        @keyframes float-orb { 
+            0%, 100% { transform: translate(0, 0) scale(1); } 
+            33% { transform: translate(30px, -30px) scale(1.1); } 
+            66% { transform: translate(-20px, 20px) scale(0.9); } 
+        }
         @keyframes float-avatar { 
             0%, 100% { transform: translateY(0) rotate(0deg); } 
             50% { transform: translateY(-15px) rotate(2deg); } 
@@ -287,19 +137,23 @@
             10%, 30% { transform: scale(1.1); } 
             20%, 40% { transform: scale(0.9); } 
         }
+        @keyframes rotate-gradient { 
+            from { transform: rotate(0deg); } 
+            to { transform: rotate(360deg); } 
+        }
         @keyframes fadeInUp { 
             from { opacity: 0; transform: translateY(20px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
+
+        /* Jiggle Animation for CTA */
         @keyframes jiggle-button { 
             0%, 100% { transform: scale(1) rotate(0deg); } 
             25% { transform: scale(1.01) rotate(0.5deg); }
             75% { transform: scale(1.01) rotate(-0.5deg); }
         }
         
-        /* ============================================
-           ANIMATION CLASSES
-        ============================================ */
+        /* --- ANIMATION APPLICATION (Lembut di mobile) --- */
         .animate-jiggle { animation: jiggle-button 0.8s ease-in-out infinite; }
         .animate-float-robot { animation: float-robot 2.8s ease-in-out infinite; }
         .animate-wiggle-head { animation: wiggle-head 1.5s ease-in-out infinite; transform-origin: 50% 35px; }
@@ -307,18 +161,17 @@
         .animate-blink-eyes { animation: blink-eyes 1.8s step-end infinite; transform-origin: center; } 
         .animate-breathe-body { animation: breathe-body 3s ease-in-out infinite; transform-origin: bottom; }
         .animate-wave-arm-left { animation: wave-arm-left 1.2s ease-in-out infinite; transform-origin: 28px 50px; }
-        .animate-wave-arm-right { animation: wave-arm-right 3s ease-in-out infinite; transform-origin: 72px 50px; }
+        .animate-wave-arm-right { animation: wave-arm-right 1.2s ease-in-out infinite; transform-origin: 72px 50px; }
         .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
+        .animate-float-orb-1 { animation: float-orb 15s ease-in-out infinite; }
+        .animate-float-orb-2 { animation: float-orb 17s reverse ease-in-out infinite; }
+        .animate-float-orb-3 { animation: float-orb 13s ease-in-out infinite; }
         .animate-float-avatar { animation: float-avatar 4s ease-in-out infinite; }
         .animate-heartbeat { animation: heartbeat 1s infinite; }
+        .animate-rotate-gradient { animation: rotate-gradient 10s linear infinite; }
         .animate-fadeInUp { animation: fadeInUp 0.8s ease-out; }
-        .animate-avatar-glow { animation: avatar-glow-pulse 3s ease-in-out infinite; }
-        .animate-rotate-ring { animation: rotate-ring 20s linear infinite; }
-        .animate-float-shape-personal { animation: float-shape-personal 15s ease-in-out infinite; }
 
-        /* ============================================
-           MISSION CARD STYLING
-        ============================================ */
+        /* --- MISSION CARD STYLING --- */
         .mission-card {
             background: white;
             border-radius: 24px;
@@ -342,6 +195,7 @@
             height: 100%;
             opacity: 0.05;
         }
+        /* Specific Card Accents and Hover Shadows */
         .card-blue { border: 2px solid #DBEAFE; }
         .card-blue::before { background: linear-gradient(to right, #0EA5E9, #3B82F6); }
         .card-blue:hover { 
@@ -364,193 +218,80 @@
             transform: scale(1.1) rotate(5deg); 
             transition: transform 0.3s ease; 
         }
-
-        /* Paper Planes */
-        .paper-plane {
-            position: absolute;
-            z-index: 5;
-            transition: filter 0.3s ease;
-        }
         
-        .paper-plane-1 {
-            animation: paper-plane-fly-1 16s linear infinite;
-            animation-delay: 0s;
-            color: rgba(249, 115, 22, 0.6);
-            filter: drop-shadow(0 4px 12px rgba(249, 115, 22, 0.35));
-        }
-        
-        .paper-plane-2 {
-            animation: paper-plane-fly-2 18s linear infinite;
-            animation-delay: 3s;
-            color: rgba(236, 72, 153, 0.6);
-            filter: drop-shadow(0 4px 12px rgba(236, 72, 153, 0.35));
-        }
-        
-        .paper-plane-3 {
-            animation: paper-plane-fly-3 14s linear infinite;
-            animation-delay: 6s;
-            color: rgba(139, 92, 246, 0.6);
-            filter: drop-shadow(0 4px 12px rgba(139, 92, 246, 0.35));
-        }
-        
-        .paper-plane-4 {
-            animation: paper-plane-fly-4 15s linear infinite;
-            animation-delay: 9s;
-            color: rgba(14, 165, 233, 0.6);
-            filter: drop-shadow(0 4px 12px rgba(14, 165, 233, 0.35));
-        }
-        
-        .paper-plane-5 {
-            animation: paper-plane-fly-5 17s linear infinite;
-            animation-delay: 12s;
-            color: rgba(249, 115, 22, 0.55);
-            filter: drop-shadow(0 4px 12px rgba(249, 115, 22, 0.3));
-        }
-        
-        /* Desktop/Laptop - Larger Planes */
-        @media (min-width: 1024px) {
-            .paper-plane-1 svg { width: 44px; height: 44px; }
-            .paper-plane-2 svg { width: 40px; height: 40px; }
-            .paper-plane-3 svg { width: 48px; height: 48px; }
-            .paper-plane-4 svg { width: 42px; height: 42px; }
-            .paper-plane-5 svg { width: 50px; height: 50px; }
-        }
-        
-        /* ============================================
-           RESPONSIVE ADJUSTMENTS
-        ============================================ */
+        /* --- RESPONSIVE ADJUSTMENTS (REVISI: Scale robot lebih lembut, pastikan nggak hilang) --- */
+        /* Tablet & Landscape Mobile (max-1024px) */
         @media (max-width: 1024px) {
             .hero-title { 
-                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-size: clamp(2.5rem, 6vw, 4rem); /* Kurangin dari 3.5-5rem, biar tablet nggak terlalu gede */
             }
             .hero-subtitle { 
-                font-size: clamp(1rem, 2vw, 1.25rem);
+                font-size: clamp(1rem, 2vw, 1.25rem); /* Subtitle lebih kompak */
             }
-            .hero-content-card { padding: 32px 20px; }
+            .hero-content-card { padding: 32px 20px; } /* Padding lebih kecil */
             .hero-buttons { flex-direction: column; width: 100%; }
-            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; }
-            .hero-robot-container { transform: scale(0.95); }
+            .hero-buttons a { width: 100%; justify-content: center; font-size: 1rem; } /* Button text lebih kecil */
+            .hero-grid { flex-direction: column-reverse; } 
+            /* Robot scale lembut di tablet */
+            .hero-robot-container { transform: scale(0.95); } /* Naik dari 0.85, biar nggak terlalu kecil */
         }
 
+        /* Mobile HP (max-768px) */
         @media (max-width: 768px) {
-            .section-padding { padding: 60px 20px; }
+            .section-padding { padding: 60px 20px; } /* Kurangin dari 80px */
             .personal-container { flex-direction: column; text-align: center; }
             .mission-cards-grid { grid-template-columns: 1fr; }
+            .qris-container { width: 90%; max-width: 320px; height: 320px; } 
+            .qris-text { font-size: 90px !important; }
+            /* Hero spesifik HP: Font lebih kecil */
             .hero-title { 
-                font-size: clamp(2rem, 5vw, 3.5rem);
-                line-height: 1.1;
+                font-size: clamp(2rem, 5vw, 3.5rem); /* Max 3.5rem = ~56px, min 2rem=32px → pas di HP */
+                line-height: 1.1; /* Rapetin line-height biar nggak terlalu tinggi */
             }
             .hero-subtitle { 
-                font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+                font-size: clamp(0.875rem, 1.5vw, 1.125rem); /* ~14-18px, mudah dibaca tanpa dominan */
             }
             .hero-content-card { 
                 padding: 24px 16px; 
-                border-radius: 24px;
+                border-radius: 24px; /* Biar lebih compact */
             }
+            /* Robot lebih aman di HP - Naik scale, tambah min-width */
             .hero-robot-container { 
-                transform: scale(0.9);
-                min-width: 250px;
+                transform: scale(0.9); /* Naik dari 0.75, biar keliatan jelas */
+                min-width: 250px; /* Pastikan nggak hilang di layar kecil */
             }
             .hero-robot-container svg.robot-svg { 
                 width: 100%; 
                 height: auto; 
-                min-height: 200px;
+                min-height: 200px; /* Fallback height biar nggak collapse */
             }
+            /* Animasi lebih lambat di mobile buat performa */
             .animate-wiggle-head, .animate-wave-arm-left, .animate-wave-arm-right { 
-                animation-duration: 2s;
+                animation-duration: 2s; /* Dari 1.5s/1.2s → lebih smooth di HP */
             }
+            /* Buttons & Cards di mobile */
             .hero-buttons a { 
                 padding: 12px 20px; 
-                font-size: 0.875rem;
+                font-size: 0.875rem; /* Text button lebih kecil */
             }
             .mission-card { 
                 padding: 32px 24px; 
                 border-radius: 20px; 
             }
-            .mission-card h3 { font-size: 1.5rem; }
+            .mission-card h3 { font-size: 1.5rem; } /* Judul card lebih kecil */
         }
 
-            /* Feedback Section - Mobile Optimization */
-            .feedback-mesh-orb {
-                filter: blur(50px);
-                opacity: 0.45;
-            }
-            
-            .feedback-mesh-orb-1 {
-                width: 320px;
-                height: 320px;
-                top: 5%;
-            }
-            
-            .feedback-mesh-orb-2 {
-                width: 280px;
-                height: 280px;
-                right: 8%;
-            }
-            
-            .feedback-mesh-orb-3 {
-                width: 300px;
-                height: 300px;
-                left: 8%;
-            }
-            
-            .feedback-mesh-orb-4 {
-                width: 260px;
-                height: 260px;
-                bottom: 5%;
-            }
-            
-            /* Hide 2 paper planes on mobile for cleaner look */
-            .paper-plane-2,
-            .paper-plane-4 {
-                display: none;
-            }
-            
-            /* Adjust remaining planes size */
-            .paper-plane-1 svg,
-            .paper-plane-3 svg,
-            .paper-plane-5 svg {
-                width: 24px;
-                height: 24px;
-            }
-        }
-
+        /* Extra Kecil untuk Very Small Screens (max-480px, misal iPhone SE) */
         @media (max-width: 480px) {
-            body { font-size: 0.875rem; }
-            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); }
+            body { font-size: 0.875rem; } /* Base font lebih kecil secara global */
+            .hero-title { font-size: clamp(1.75rem, 4.5vw, 3rem); } /* Max ~48px, aman */
             .section-padding { padding: 48px 16px; }
             .hero-content-card { padding: 20px 12px; }
             .mission-card { padding: 24px 16px; }
             .hero-robot-container { 
-                transform: scale(0.85);
+                transform: scale(0.85); /* Masih keliatan, tapi compact */
                 min-width: 220px; 
             }
-        }
-
-        /* Feedback Section - Small Mobile */
-        .feedback-mesh-orb {
-            filter: blur(35px);
-            opacity: 0.52;
-        }
-        
-        .feedback-mesh-orb-1 {
-            width: 240px;
-            height: 240px;
-        }
-        
-        .feedback-mesh-orb-2 {
-            width: 220px;
-            height: 220px;
-        }
-        
-        .feedback-mesh-orb-3 {
-            width: 230px;
-            height: 230px;
-        }
-        
-        .feedback-mesh-orb-4 {
-            width: 210px;
-            height: 210px;
         }
 
         /* --- JADWAL NGONTEN SCOPED STYLING --- */
@@ -630,7 +371,7 @@
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
-    <!-- NAVIGATION -->
+    <!-- NAVIGATION (Fixed and Responsive) -->
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-14">
@@ -664,83 +405,109 @@
         </div>
     </nav>
 
-    <main class="relative">
+    <main>
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
+            bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
+            
+            <!-- Background Orbs -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
+                <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
+                <div class="absolute w-56 h-56 bg-gradient-to-br from-[#F59E0B]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-3" style="top: 40%; right: 5%;"></div>
+            </div>
 
-        <!-- ============================================
-             1. HERO SECTION - FLOATING ORBS
-        ============================================ -->
-        <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
-        <!-- Hero Orbs Background (TAMBAHKAN INI TEPAT SETELAH <section> DIBUKA) -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0"> 
-            <div class="absolute w-[800px] h-[800px] rounded-full blur-[250px] opacity-35"
-                    style="top: -15%; left: -20%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div> 
-            
-            <div class="absolute w-[900px] h-[900px] rounded-full blur-[300px] opacity-25" 
-                    style="top: -10%; right: -25%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
-            
-            <div class="absolute w-[700px] h-[700px] rounded-full blur-[200px] opacity-30" 
-                    style="bottom: -5%; left: 40%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div> {/* Bottom jadi -15% */}
-        </div>
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
-                    <!-- Right Visual (Robot SVG) -->
+                    <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-                            <!-- Teks "Halo!" -->
-                            <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 z-20">
+                            <!-- Teks "Halo!" yang mengikuti robot -->
+                            <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
+                                    <!-- Speech Bubble Background dengan Glass Effect -->
                                     <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
-                                        <p class="text-xl md:text-3xl lg:text-4xl font-semibold text-gray-500 font-handwritten">Halo!</p>
+                                        <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
+                                    <!-- Speech Bubble Tail dengan gradient -->
                                     <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
+                                    <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
-                            <!-- Robot SVG -->
-                            <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
+                            <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
-                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%">
+                                    <!-- Cahaya pulsasi di belakang robot -->
+                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                                         <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
                                         <stop offset="100%" stop-color="transparent" stop-opacity="0" />
                                     </radialGradient>
+                                
+                                    <!-- Kepala: gradasi ungu lembut -->
                                     <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
                                         <stop offset="0%" stop-color="#6366F1" />
                                         <stop offset="100%" stop-color="#8B5CF6" />
                                     </linearGradient>
+                                
+                                    <!-- Badan: biru cerah harmonis -->
                                     <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
                                         <stop offset="0%" stop-color="#3B82F6" />
                                         <stop offset="100%" stop-color="#0EA5E9" />
                                     </linearGradient>
+                                
+                                    <!-- Tangan & kaki: putih kebiruan lembut -->
                                     <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
                                         <stop offset="0%" stop-color="#E0F2FE" />
                                         <stop offset="100%" stop-color="#BFDBFE" />
                                     </linearGradient>
+                                
+                                    <!-- Highlight lembut di sisi kiri badan -->
                                     <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
                                         <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
                                         <stop offset="100%" stop-color="transparent" />
                                     </linearGradient>
                                 </defs>
+                                <!-- Glowing Pulse Ring Ring Behind (Layer 1) -->
                                 <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
+
+                                <!-- Legs -->
                                 <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
                                 <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                
+                                <!-- Body -->
                                 <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
+                                <!-- Highlight minimal di sisi kiri -->
                                 <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
+                                
+                                <!-- Chest Light (Pulse) -->
                                 <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                
+                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
                                 <g class="animate-wave-arm-left">
-                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
+                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
                                 <g class="animate-wave-arm-right">
-                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" />
+                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
+
+                                <!-- Head Wiggle Animation (Lebih Sering) -->
                                 <g class="animate-wiggle-head">
-                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" />
+                                    <!-- Head -->
+                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
+                                    
+                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
                                     <g class="animate-blink-eyes">
+                                        <!-- Eye 1 -->
                                         <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
+                                        <!-- Eye 2 -->
                                         <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
                                         <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
                                     </g>
 
+                                    <!-- Antenna Pulse Animation -->
                                     <g class="animate-pulse-antenna">
                                         <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
                                         <circle cx="50" cy="5" r="3" fill="#F97316" />
@@ -750,33 +517,24 @@
                         </div>
                     </div>
                     
-                    <!-- Left Content -->
+                    <!-- Left Content (Glass Card) -->
                     <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
-                        <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 4rem);">
-                        <span class="text-indigo-600">  Belajar AI Bareng Raihan
-                        </span>
+                        <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 6rem);">
+                            <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-[#BFDBFE]">
+                                Dikasih Info Mase
+                            </span>
                         </h1>
-                        <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle">
-                            Di raihmah.ai, kita bedah yang rumit jadi asik!
+                        <p class="text-lg md:text-xl text-white font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
+                            Belajar AI itu gampang kok! Yuk, mulai dari dasar bareng aku.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
-                            <a href="#mission" class="px-8 py-3 rounded-full text-lg font-bold transition-all duration-300 ease-in-out text-white flex items-center justify-center whitespace-nowrap scroll-link animate-jiggle"
-                               style="background: linear-gradient(90deg, #F97316, #FB923C); 
-                                      border: 2px solid #FFFFFF; 
-                                      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);"
-                               onmouseover="this.style.background='linear-gradient(90deg, #EA580C, #F97316)'; this.style.boxShadow='0 15px 40px rgba(249, 115, 22, 0.6)'; this.style.transform='translateY(-3px) scale(1.03)';"
-                               onmouseout="this.style.background='linear-gradient(90deg, #F97316, #FB923C)'; this.style.boxShadow='0 10px 30px rgba(249, 115, 22, 0.4)'; this.style.transform='translateY(0) scale(1)';">
+                            <a href="#mission" class="px-8 py-3 rounded-full text-lg font-bold transition-all duration-300 ease-in-out shadow-2xl hover:shadow-2xl hover:scale-[1.03] text-white 
+                                bg-orange-500 hover:bg-orange-600 border-2 border-transparent hover:border-white flex items-center justify-center whitespace-nowrap scroll-link animate-jiggle">
                                 Kenalan Dulu Yuk
                             </a>
                             <a href="#support"
-                               class="font-bold py-3 px-8 rounded-full border-2 backdrop-blur-sm transition-all duration-300 flex items-center justify-center whitespace-nowrap scroll-link"
-                               style="background: rgba(255, 255, 255, 0.9); 
-                                      color: #F97316; 
-                                      border-color: #F97316;
-                                      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);"
-                               onmouseover="this.style.background='#F97316'; this.style.color='#FFFFFF'; this.style.borderColor='#FFFFFF'; this.style.boxShadow='0 8px 25px rgba(249, 115, 22, 0.4)';"
-                               onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.color='#F97316'; this.style.borderColor='#F97316'; this.style.boxShadow='0 4px 15px rgba(249, 115, 22, 0.2)';">
-                                  Support Konten <i data-lucide="heart" class="w-5 h-5 ml-2"></i>
+                               class="text-white font-bold py-3 px-8 rounded-full border border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 flex items-center justify-center whitespace-nowrap">
+                                  Support Konten <i data-lucide="smile" class="w-5 h-5 ml-2"></i>
                             </a>
                         </div>
                     </div>
@@ -784,30 +542,9 @@
             </div>
         </section>
 
-        <!-- ============================================
-             2. MISSION SECTION - GEOMETRIC SHAPES
-        ============================================ -->
-        <section id="mission" class="relative z-10 -mt-20 pt-12 pb-24 md:pb-32 section-padding px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-blue-50/30">
-            <!-- Geometric Shapes Background -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-                <!-- Triangle Blue -->
-                <div class="absolute w-32 h-32 border-4 border-blue-400" 
-                     style="top: 10%; left: 5%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: float-shape 15s ease-in-out infinite;"></div>
-                
-                <!-- Circle Orange -->
-                <div class="absolute w-40 h-40 rounded-full border-4 border-orange-400" 
-                     style="top: 20%; right: 8%; animation: rotate-shape 20s linear infinite;"></div>
-                
-                <!-- Square Red -->
-                <div class="absolute w-28 h-28 border-4 border-red-400" 
-                     style="bottom: 15%; left: 10%; animation: float-shape 18s ease-in-out infinite reverse;"></div>
-                
-                <!-- Small Triangle Purple -->
-                <div class="absolute w-20 h-20 border-3 border-purple-400" 
-                     style="bottom: 25%; right: 15%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: rotate-shape 12s linear infinite;"></div>
-            </div>
-
-            <div class="max-w-7xl mx-auto relative z-10">
+        <!-- 2. MISSION/TUJUAN SECTION -->
+        <section id="mission" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <i data-lucide="target" class="w-8 h-8 text-[#3B82F6] mx-auto mb-4"></i>
                     <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
@@ -848,176 +585,88 @@
 
                 <!-- Andrew Ng Quote Box -->
                 <div class="relative p-6 md:p-10 lg:p-12 rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto
-                    bg-gradient-to-br from-blue-500/90 to-indigo-600/90 backdrop-blur-sm">
+                    bg-gradient-to-br from-[#0EA5E9]/90 to-[#3B82F6]/90">
+                    
+                    <!-- Floating Orb -->
+                    <div class="absolute w-40 h-40 bg-white/20 rounded-full blur-2xl animate-float-orb-1" style="top: -10%; right: -10%; animation-duration: 6s;"></div>
                     
                     <div class="relative z-10 text-white text-center">
                         <i data-lucide="sparkles" class="w-6 h-6 md:w-8 md:h-8 text-white mb-4 block mx-auto"></i>
                         <blockquote class="italic text-lg md:text-2xl lg:text-3xl font-light leading-snug mb-4">
                             "AI nggak sepenuhnya gantiin kerjaan manusia. Tapi, manusia yang punya skill AI akan gantiin yang nggak punya skilnya"
                         </blockquote>
-                        <footer class="text-right text-sm md:text-base text-blue-100 font-medium">— Andrew Ng</footer>
+                        <footer class="text-right text-sm md:text-base text-[#BFDBFE] font-medium">— Andrew Ng </footer>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ============================================
-             3. PERSONAL SECTION - OPTIMIZED PERFECT
-        ============================================ -->
-        <section id="personal" class="relative z-10 py-10 sm:py-12 md:py-16 lg:py-20 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8" style="background: #FAFBFC;">
+        <!-- 3. PERSONAL SECTION -->
+        <section id="personal" class="py-24 md:py-32 section-padding relative overflow-hidden 
+            bg-gradient-to-br from-[#FDF4FF] via-[#FCE7F3] to-[#FEF3C7] px-4 sm:px-6 lg:px-8">
             
-            <!-- Ambient Light Glows (Optimized) -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <!-- Glow 1: Pink (Top Left) -->
-                <div class="absolute w-[380px] sm:w-[420px] md:w-[480px] h-[380px] sm:h-[420px] md:h-[480px] rounded-full" 
-                     style="top: 8%; left: 5%; filter: blur(140px); background: radial-gradient(circle, rgba(236, 72, 153, 0.20) 0%, transparent 65%);"></div>
-                
-                <!-- Glow 2: Purple (Bottom Right) -->
-                <div class="absolute w-[420px] sm:w-[460px] md:w-[520px] h-[420px] sm:h-[460px] md:h-[520px] rounded-full" 
-                     style="bottom: 5%; right: 8%; filter: blur(140px); background: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, transparent 65%);"></div>
+            <!-- Background Orbs -->
+            <div class="absolute top-0 left-0 w-full h-full">
+                <div class="absolute w-80 h-80 bg-pink-300/30 rounded-full blur-[60px] opacity-50 animate-float-orb-1" style="top: 60%; left: -10%; animation-duration: 4s;"></div>
+                <div class="absolute w-60 h-60 bg-purple-200/50 rounded-full blur-[60px] opacity-60 animate-float-orb-2" style="top: 15%; right: 5%; animation-duration: 5s;"></div>
             </div>
-            
-            <!-- Frosted Glass Panel (Desktop Only, Behind Avatar) -->
-            <div class="hidden lg:block absolute inset-0 overflow-hidden pointer-events-none">
-                <div class="absolute w-[320px] h-[400px] rounded-3xl" 
-                     style="top: 18%; left: 8%; background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(50px); border: 1px solid rgba(255, 255, 255, 0.15); transform: rotate(-8deg);"></div>
-            </div>
-            
-            <!-- Minimal Geometric Shapes Background -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-[0.12]">
-                <!-- Circle Shape -->
-                <div class="absolute w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 rounded-full border-2 border-pink-400" 
-                     style="top: 12%; right: 6%; animation: float-shape-personal 18s ease-in-out infinite;"></div>
-                
-                <!-- Triangle Shape -->
-                <div class="absolute w-24 sm:w-28 md:w-32 h-24 sm:h-28 md:h-32 border-2 border-purple-400" 
-                     style="bottom: 22%; left: 10%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: float-shape-personal 15s ease-in-out infinite reverse;"></div>
-                
-                <!-- Small Dots -->
-                <div class="absolute w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-pink-400 opacity-50" 
-                     style="top: 32%; left: 18%; animation: sparkle-twinkle 3s ease-in-out infinite;"></div>
-                <div class="absolute w-2 h-2 rounded-full bg-purple-400 opacity-50" 
-                     style="top: 58%; right: 22%; animation: sparkle-twinkle 4s ease-in-out infinite 1s;"></div>
-                <div class="absolute w-2 sm:w-3 h-2 sm:h-3 rounded-full bg-pink-300 opacity-50" 
-                     style="bottom: 38%; right: 28%; animation: sparkle-twinkle 3.5s ease-in-out infinite 0.5s;"></div>
-            </div>
-
+        
             <div class="max-w-7xl mx-auto relative z-10">
-                <div class="flex flex-col lg:flex-row gap-5 sm:gap-6 md:gap-8 lg:gap-10 max-w-6xl mx-auto items-center lg:items-start personal-container">
+                <div class="flex flex-col lg:flex-row gap-12 max-w-6xl mx-auto items-start personal-container">
                     
-                    <!-- Left: Enhanced Avatar -->
-                    <div class="w-full lg:w-1/3 flex justify-center relative flex-shrink-0">
-                        <div class="relative">
-                            <!-- Decorative Rotating Ring (Outer) -->
-                            <div class="absolute inset-0 w-full h-full rounded-full border-2 border-dashed border-pink-300/50 animate-rotate-ring" 
-                                 style="transform: scale(1.10);"></div>
-                            
-                            <!-- Decorative Rotating Ring (Inner) -->
-                            <div class="absolute inset-0 w-full h-full rounded-full border-2 border-dotted border-purple-300/50" 
-                                 style="animation: rotate-ring 15s linear infinite reverse; transform: scale(1.06);"></div>
-                            
-                            <!-- Avatar Container with Glow -->
-                            <div class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52 rounded-full relative p-2 
-                                bg-gradient-to-br from-[#EC4899] to-[#8B5CF6] animate-float-avatar animate-avatar-glow">
-                                <div class="w-full h-full rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
-                                    <img 
-                                        src="profil.png"
-                                        loading="lazy"
-                                        alt="Raihan Hikmah"
-                                        class="w-full h-full object-cover rounded-full"
-                                    />
-                                </div>
-                                
-                                <!-- Enhanced Star Badge (Touch Target Optimized) -->
-                                <div class="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-11 h-11 rounded-full 
-                                    bg-gradient-to-r from-[#F59E0B] to-[#F97316] border-2 sm:border-3 border-white shadow-2xl 
-                                    animate-pulse-antenna hover:scale-110 transition-transform duration-300 flex items-center justify-center">
-                                    <i data-lucide="star" class="w-5 h-5 text-white"></i>
-                                </div>
+                    <!-- Left: Avatar -->
+                    <div class="w-full lg:w-1/3 flex justify-center relative flex-shrink-0 lg:mt-10">
+                        <div class="w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-60 lg:h-60 rounded-full relative p-2 
+                            bg-gradient-to-br from-[#EC4899] to-[#8B5CF6] animate-float-avatar shadow-xl">
+                            <div class="w-full h-full rounded-full bg-white/10 flex items-center justify-center">
+                                <img 
+                                    src="profil.png"
+                                    loading="lazy"
+                                    alt="Raihan Hikmah"
+                                    class="w-full h-full object-cover rounded-full"
+                                />
+                            </div>
+                            <!-- Star Badge -->
+                            <div class="absolute bottom-3 right-3 p-2 rounded-full 
+                                bg-gradient-to-r from-[#F59E0B] to-[#F97316] border-2 border-white shadow-lg animate-pulse-antenna">
+                                <i data-lucide="star" class="w-4 h-4 text-white"></i>
                             </div>
                         </div>
                     </div>
         
-                    <!-- Right: Enhanced Content Card -->
-                    <div class="w-full lg:w-2/3 relative">
-                        <!-- Glass-morphism Card Wrapper with Shadow -->
-                        <div class="relative p-4 sm:p-5 md:p-6 lg:p-7 rounded-2xl sm:rounded-3xl 
-                            bg-white/95 backdrop-blur-lg 
-                            transition-all duration-500
-                            animate-fadeInUp card-with-accent"
-                            style="box-shadow: 0 20px 60px rgba(0,0,0,0.06), 
-                                              0 8px 25px rgba(236,72,153,0.08), 
-                                              0 2px 10px rgba(139,92,246,0.06);">
-                            
-                            <!-- Content -->
-                            <div class="space-y-2.5 sm:space-y-3 md:space-y-4 text-left">
-                                
-                                <!-- Title with Gradient -->
-                                <div class="mb-2 sm:mb-3 md:mb-4 text-center lg:text-left">
-                                    <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold mb-2">
-                                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-600">
-                                            Halo, Aku Raihan! 🙋‍♂️
-                                        </span>
-                                    </h2>
-                                    <p class="text-base sm:text-lg md:text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-pink-500">
-                                        Bahas Yang Susah, Jadi Gampang.
-                                    </p>
-                                </div>
+                    <!-- Right: Story -->
+                    <div class="w-full lg:w-2/3 space-y-6 text-left px-2 sm:px-4 md:px-6 lg:px-0">
+                        <h2 class="text-3xl md:text-4xl font-extrabold mb-8 personal-title 
+                            bg-clip-text text-transparent bg-gradient-to-r from-[#EC4899] to-[#8B5CF6] text-center lg:text-left">
+                            Halo, Aku Raihan! 🙋‍♂️
+                            <span class="block text-lg md:text-xl font-semibold mt-2 text-gray-700">
+                                Bahas Yang Susah, Jadi Gampang.
+                            </span>
+                        </h2>
         
-                                <!-- Paragraph 1 with Highlighted Box -->
-                                <div class="relative">
-                                    <div class="absolute -left-2 top-0 bottom-0 w-1 bg-gradient-to-b from-pink-500 to-purple-500 rounded-full"></div>
-                                    <p class="text-sm sm:text-base leading-relaxed text-gray-700 pl-4">
-                                        <span class="inline-block bg-gradient-to-r from-yellow-50 to-yellow-100 px-2.5 py-1 rounded-lg font-bold text-gray-800 mb-1 border border-yellow-300/40 shadow-sm">
-                                            Aku belum ahli di bidang AI, aku masih terus belajar.
-                                        </span>
-                                        <br>
-                                        Terkadang aku kesulitan belajar materi AI, karena <span class="font-bold text-pink-600 relative inline-block">penjelasannya terlalu teknis buat pemula.</span>Jadi, aku harus luangin waktu ekstra buat mahamin bahasanya.
-                                    </p>
-                                </div>
+                        <!-- Body Paragraf -->
+                        <p class="text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-700">
+                            <span class="bg-yellow-100/70 p-1 rounded font-semibold inline-block mb-1">Aku belum ahli di bidang AI, aku masih terus belajar.</span>
+                            <br>
+                            Terkadang aku kesulitan belajar materi AI, karena <span class="font-bold text-[#EC4899]">penjelasannya terlalu teknis buat pemula.</span> Jadi, aku harus luangin waktu ekstra buat mahamin bahasanya.
+                        </p>
         
-                                <!-- Paragraph 2 with Icon Bullet (Touch Target Optimized) -->
-                                <div class="flex items-start gap-2.5 sm:gap-3">
-                                    <div class="flex-shrink-0 w-9 h-9 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mt-0.5">
-                                        <i data-lucide="lightbulb" class="w-5 h-5 text-white"></i>
-                                    </div>
-                                    <p class="text-sm sm:text-base leading-relaxed text-gray-700 flex-1">
-                                        Dari pengalaman itu aku sadar, <span class="italic font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded mb-1">belajar AI sebenernya bisa kok dibuat gampang!</span>
-                                        <br>
-                                        Lewat konten ini, aku pengen kita belajar bareng pakai bahasa yang ringan, santai, tapi tetep berkualitas.
+                        <p class="text-sm sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-700">
+                            Dari pengalaman itu aku sadar, <span class="italic font-semibold text-[#8B5CF6] inline-block mb-1">belajar AI sebenernya bisa kok dibuat gampang.</span>
+                            <br>
+                            Lewat konten ini, aku pengen kita belajar bareng pakai bahasa yang ringan, santai, tapi tetep berkualitas.
+                        </p>
+                        
+                        <!-- Quote Box -->
+                        <div class="relative p-3 md:p-4 lg:p-6 rounded-lg shadow-md border-l-4 border-[#EC4899] bg-white/80 backdrop-blur-sm">
+                            <div class="flex items-start text-left gap-2 md:gap-3">
+                                <i data-lucide="heart" fill="#EC4899" class="w-5 h-5 md:w-6 md:h-6 text-[#EC4899] mt-0.5 animate-heartbeat flex-shrink-0"></i>
+                                <div class="flex-1">
+                                    <p class="text-sm md:text-base font-medium text-gray-800 text-justify leading-relaxed">
+                                        "Ilmu kalau dibagi bakal lebih berkah. Dan jujur aja, cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi... sekalian aja kita belajar bareng di sini, hehe. 😄"
                                     </p>
-                                </div>
-                                
-                                <!-- Enhanced Quote Box (Text Size Fixed) -->
-                                <div class="relative mt-3 sm:mt-4 md:mt-5 p-4 sm:p-5 rounded-xl sm:rounded-2xl shadow-md
-                                    bg-gradient-to-br from-pink-50/90 to-purple-50/90 backdrop-blur-sm
-                                    border-l-4 border-pink-500
-                                    hover:shadow-lg hover:scale-[1.01]
-                                    transition-all duration-300">
-                                    
-                                    <!-- Quote Icon Background -->
-                                    <div class="absolute top-2 right-2 opacity-[0.07]">
-                                        <i data-lucide="quote" class="w-10 sm:w-12 h-10 sm:h-12 text-pink-600"></i>
-                                    </div>
-                                    
-                                    <div class="flex items-start gap-2.5 sm:gap-3 relative z-10">
-                                        <div class="flex-shrink-0">
-                                            <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center animate-heartbeat">
-                                                <i data-lucide="heart" fill="#FFFFFF" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1">
-                                            <p class="text-sm sm:text-base font-semibold text-gray-800 leading-relaxed">
-                                                "Ilmu kalau dibagi bakal lebih berkah. Dan jujur aja, cara belajarku yang efektif adalah jelasin lagi ke orang lain. Jadi... sekalian aja kita belajar bareng di sini, hehe. 😄"
-                                            </p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                            
-                            <!-- Gradient Accent Line (Bottom) -->
-                            <div class="absolute -bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-[3px] rounded-full opacity-60 hover:opacity-100 transition-opacity duration-300"
-                                 style="background: linear-gradient(90deg, #EC4899, #8B5CF6);"></div>
                         </div>
                     </div>
                 </div>
@@ -1025,7 +674,7 @@
         </section>
 
         <!-- 4. JADWAL NGONTEN SECTION -->
-        <section id="jadwal-ngonten" class="relative z-10 py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <section id="jadwal-ngonten" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             
             <!-- Background Gradient -->
             <div class="absolute inset-0 bg-gradient-to-br from-white via-blue-50 to-purple-50"></div>
@@ -1135,7 +784,7 @@
                                     
                                     <!-- Active Badge -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡️
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
@@ -1182,7 +831,7 @@
                                     
                                     <!-- Active Badge -->
                                     <span class="hidden group-[.jn-active]:inline-block px-3 py-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-bold rounded-full shadow-lg animate-pulse">
-                                        Next ⚡️
+                                        Next âš¡
                                     </span>
                                 </div>
                                 
@@ -1201,6 +850,8 @@
                         </div>
                     </div>
                 </div>
+                
+        
                 
                 <!-- Countdown Dashboard -->
                 <div class="max-w-3xl mx-auto">
@@ -1257,106 +908,59 @@
             </div>
         </section>
 
-        <!-- ============================================
-             5. FEEDBACK SECTION - MESH GRADIENT + PAPER PLANES
-        ============================================ -->
-        <section id="feedback" class="relative z-10 py-28 md:py-36 section-padding relative overflow-hidden px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-pink-50/20">
-            
-            <!-- Mesh Gradient Background -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <!-- Gradient Orb 1: Orange (Top Left) -->
-                <div class="feedback-mesh-orb feedback-mesh-orb-1"></div>
-                
-                <!-- Gradient Orb 2: Pink (Top Right) -->
-                <div class="feedback-mesh-orb feedback-mesh-orb-2"></div>
-                
-                <!-- Gradient Orb 3: Purple (Bottom Left) -->
-                <div class="feedback-mesh-orb feedback-mesh-orb-3"></div>
-                
-                <!-- Gradient Orb 4: Cyan (Bottom Right) -->
-                <div class="feedback-mesh-orb feedback-mesh-orb-4"></div>
-            </div>
-            
-            <!-- Flying Paper Planes -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                <!-- Paper Plane 1 -->
-                <div class="paper-plane paper-plane-1">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                
-                <!-- Paper Plane 2 -->
-                <div class="paper-plane paper-plane-2">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                
-                <!-- Paper Plane 3 -->
-                <div class="paper-plane paper-plane-3">
-                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                
-                <!-- Paper Plane 4 -->
-                <div class="paper-plane paper-plane-4">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                
-                <!-- Paper Plane 5 -->
-                <div class="paper-plane paper-plane-5">
-                    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
+
+        <!-- 5. FEEDBACK SECTION -->
+        <section id="feedback" class="py-24 md:py-32 section-padding relative overflow-hidden 
+            bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#334155] px-4 sm:px-6 lg:px-8">
+
+            <!-- Radial Light Effect -->
+            <div class="absolute w-full h-full top-0 left-0 opacity-50">
+                <div class="absolute w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px] animate-float-orb-1" style="top: 5%; left: 5%; animation-duration: 10s;"></div>
+                <div class="absolute w-72 h-72 bg-orange-400/10 rounded-full blur-[100px] animate-float-orb-2" style="bottom: 10%; right: 10%; animation-duration: 8s;"></div>
             </div>
 
             <div class="max-w-3xl mx-auto relative z-10">
                 <div class='text-center mb-12'>
-                    <i data-lucide="message-square" class="w-8 h-8 text-orange-500 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-orange-500 to-pink-600">
-                        Yuk, Evaluasi!
+                    <i data-lucide="message-square" class="w-8 h-8 text-orange-400 mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-4 text-white">
+                        Yuk, Evaluasi! 🚀
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                    <p class="text-lg text-gray-600 text-center">
-                        Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, kasih tau ya!
+                    <p class="text-lg text-gray-300 text-center">
+                        Konten ini <strong>buat kita belajar bareng</strong>. Jadi, kalau kurang nyaman, kurang jelas, atau kamu punya <strong>ide materi lain</strong>, beri tau ya! 😊
                     </p>
                 </div>
 
                 <!-- Glass-morphism Form Card -->
-                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl shadow-xl border border-gray-200 bg-white/80 backdrop-blur-sm">
+                <form id="feedback-form" class="p-8 md:p-10 rounded-3xl" style="background-color: rgba(255,255,255,0.08); backdrop-filter: blur(24px);">
 
                     <!-- Asal Kota Input -->
                     <div class="mb-6">
-                        <label for="city" class="text-lg text-gray-700 font-semibold mb-2 block flex items-center">
+                        <label for="city" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
                             <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i> Asal Kota
                         </label>
                         <input 
                             type="text" 
                             id="city" 
                             name="city"
-                            placeholder="Dari kota mana nih? 🌉" 
+                            placeholder="Dari kota mana nih? 📍" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-sm transition-all"
+                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner transition-shadow"
                         />
                     </div>
 
                     <!-- Evaluasi / Saran Topik Textarea -->
                     <div class="mb-8">
-                        <label for="feedback-text" class="text-lg text-gray-700 font-semibold mb-2 block flex items-center">
+                        <label for="feedback-text" class="text-lg text-[#E0F2FE] font-semibold mb-2 block flex items-center">
                             <i data-lucide="message-square" class="w-5 h-5 mr-2"></i> Evaluasi / Saran Topik
                         </label>
                         <textarea 
                             id="feedback-text" 
                             name="evaluation_or_topic"
                             rows="6" 
-                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill! 👂" 
+                            placeholder="Gimana kontennya? Kurang jelas? Mau request topik apa? Spill aja! 👂✨" 
                             required 
-                            class="w-full p-4 rounded-xl bg-white border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-sm resize-none transition-all"
+                            class="w-full p-4 rounded-xl bg-white/95 border border-transparent focus:border-orange-500 focus:ring-4 focus:ring-orange-500/30 outline-none text-gray-800 shadow-inner resize-none transition-shadow"
                         ></textarea>
                     </div>
 
@@ -1372,14 +976,12 @@
             </div>
         </section>
 
-        <!-- ============================================
-             6. SUPPORT SECTION - FLOATING HEARTS
-        ============================================ -->
-        <section id="support" class="relative z-10 py-24 md:py-32 section-padding relative px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50/20 to-purple-50/30 overflow-hidden">
-            <div class="max-w-7xl mx-auto text-center relative z-10">
+        <!-- 6. SUPPORT SECTION -->
+        <section id="support" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#F0F9FF] via-[#DBEAFE] to-[#BFDBFE] px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto text-center">
                 <div class="text-center max-w-2xl mx-auto mb-16">
-                    <i data-lucide="coffee" class="w-8 h-8 text-purple-600 mx-auto mb-4 block"></i>
-                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
+                    <i data-lucide="coffee" class="w-8 h-8 text-[#8B5CF6] mx-auto mb-4 block"></i>
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-4 text-gray-900">
                         Support Konten 
                     </h2>
                     <div class="w-24 h-1 mx-auto mb-8 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
@@ -1387,70 +989,73 @@
                         Aku usahain materi <strong>100% gratis!</strong> Kalau kamu <strong>pengen support</strong>, aku bersyukur banget. Dukunganmu jadi bahan bakar buat ningkatin kualitas belajar kita! 🫶
                     </p>
                 </div>
-                    
-                <!-- Benefits Column -->
-                <div class="space-y-6 mb-12">
-                    <!-- Benefit 1 -->
-                    <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer max-w-2xl mx-auto">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="gift" class="w-7 h-7 text-purple-600"></i>
-                            <p class="font-bold text-gray-800">Dukung konten gratis berkualitas</p>
-                        </div>
-                    </div>
-                    <!-- Benefit 2 -->
-                    <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer max-w-2xl mx-auto">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="heart" class="w-7 h-7 text-purple-600"></i>
-                            <p class="font-bold text-gray-800">Jadi bagian dari perjalanan ini</p>
-                        </div>
-                    </div>
-                    <!-- Benefit 3 -->
-                    <div class="p-6 rounded-xl bg-white border-2 border-purple-200 text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-purple-400 cursor-pointer max-w-2xl mx-auto">
-                        <div class="flex items-center space-x-3">
-                            <i data-lucide="zap" class="w-7 h-7 text-purple-600"></i>
-                            <p class="font-bold text-gray-800">Bonus: Nomor WA buat ngobrol</p>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- QRIS Container -->
-                <div class="flex justify-center items-center mb-12">
-                    <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-200">
-                        <div class="relative z-10 flex flex-col items-center justify-center">
-                            <!-- Title -->
-                            <div class="mb-4 text-center">
-                                <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto items-center">
+                    
+                    <!-- Benefits Column (Left) -->
+                    <div class="space-y-6">
+                        <!-- Benefit 1 -->
+                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="gift" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <p class="font-bold text-gray-800">Dukung konten gratis berkualitas</p>
                             </div>
-                        
-                            <!-- QRIS Image -->
-                            <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4">
-                                <img 
-                                    src="qris.jpg"
-                                    loading="lazy"
-                                    alt="QRIS Raihan Hikmah" 
-                                    class="w-full h-auto"
-                                />
+                        </div>
+                        <!-- Benefit 2 -->
+                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="heart" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <p class="font-bold text-gray-800">Jadi bagian dari perjalanan ini</p>
                             </div>
-                        
-                            <!-- Info Text -->
-                            <div class="text-center space-y-1">
-                                <p class="text-lg font-bold text-gray-800">Nominal Berapa Aja Boleh 💝</p>
-                                <p class="text-sm text-gray-500">Semua e-wallet & mobile banking</p>
+                        </div>
+                        <!-- Benefit 3 -->
+                        <div class="p-6 rounded-xl bg-white border border-[#DDD6FE] text-left shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="zap" class="w-7 h-7 text-[#8B5CF6]"></i>
+                                <p class="font-bold text-gray-800">Bonus: Nomor WA buat ngobrol</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- QRIS Container (Right) -->
+                    <div class="flex justify-center items-center">
+                        <div class="relative w-full max-w-md p-8 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 hover:scale-[1.03] cursor-pointer bg-white border-4 border-purple-200">
+                            <div class="relative z-10 flex flex-col items-center justify-center">
+                                <!-- Title -->
+                                <div class="mb-4 text-center">
+                                    <h3 class="text-2xl font-black bg-gradient-to-r from-[#8B5CF6] to-[#EC4899] bg-clip-text text-transparent mb-2">Scan QRIS</h3>
+                                </div>
+                            
+                                <!-- QRIS Image -->
+                                <div class="w-full max-w-[280px] bg-white p-4 rounded-2xl shadow-xl border-2 border-gray-100 mb-4"> <!-- Fix border-gray-80 → gray-100 -->
+                                    <img 
+                                        src="qris.jpg"
+                                        loading="lazy"
+                                        alt="QRIS Raihan Hikmah" 
+                                        class="w-full h-auto"
+                                    />
+                                </div>
+                            
+                                <!-- Info Text -->
+                                <div class="text-center space-y-1">
+                                    <p class="text-lg font-bold text-gray-800">Nominal Berapa Aja Boleh 💜</p>
+                                    <p class="text-sm text-gray-500">Semua e-wallet & mobile banking</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Note Box -->
-                <p class="text-base text-gray-700 font-medium text-center">
-                    Upload bukti transfer <span class="font-bold text-purple-600">buat akses BONUS! 💬 </span>
+                <p class="text-base text-gray-700 font-medium mt-16 sm:mt-20 md:mt-24 lg:mt-28 text-center">
+                    Upload bukti transfer <span class="font-bold text-[#8B5CF6]">buat akses BONUS! 💬 </span>
                 </p>
                 <div class="mt-6 flex justify-center">
                     <a 
                         href="https://forms.gle/41Tb488BMszWqg267" 
                         target="_blank"
                         class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-lg text-white 
-                               bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 
+                               bg-gradient-to-r from-[#8B5CF6] via-[#A855F7] to-[#F97316] 
                                shadow-lg hover:shadow-[0_0_25px_rgba(139,92,246,0.6)] 
                                hover:scale-[1.03] transition-all duration-300 ease-in-out 
                                backdrop-blur-md border border-white/20"
@@ -1463,10 +1068,8 @@
             </div>
         </section>
         
-        <!-- ============================================
-             7. FOOTER
-        ============================================ -->
-        <footer id="footer" class="relative z-10 pt-12 pb-8 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- 7. FOOTER -->
+        <footer id="footer" class="pt-12 pb-8 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-gray-300 border-t-4 border-orange-500/30 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 
                 <!-- Footer Content Grid -->
@@ -1476,7 +1079,7 @@
                     <div class="space-y-3 md:col-span-1">
                         <div class="w-20 h-20 mb-2 transition-transform hover:scale-[1.05]">
                             <!-- Mini Robot Icon SVG -->
-                            <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                            <svg width="80" height="80" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <defs>
                                     <linearGradient id="miniRobotGradient" x1="0" y1="0" x2="60" y2="60">
                                         <stop offset="0%" stop-color="#3B82F6"/>
@@ -1497,7 +1100,7 @@
                     
                     <!-- Column 2 - Social -->
                     <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-gray-200 mb-4">Follow! 🚀</h4>
+                        <h4 class="text-xl font-bold text-gray-200 mb-4">Follow! </h4>
                         <div class="space-y-3">
                             <a href="#" class="flex items-center p-3 rounded-xl transition-all duration-300 glass-effect hover:bg-orange-500/20 hover:-translate-y-1">
                                 <i data-lucide="instagram" class="w-6 h-6 mr-3 text-pink-400"></i>
@@ -1516,17 +1119,17 @@
 
                     <!-- Column 3 - Kerjasama -->
                     <div class="md:col-span-1">
-                        <h4 class="text-xl font-bold text-gray-200 mb-4">Kerjasama?</h4>
-                        <div class="space-y-4">
-                            <!-- WhatsApp Button -->
-                            <a href="https://wa.me/62895324959492" 
-                               target="_blank" rel="noopener noreferrer"
-                               class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
-                              <span class="wa-icon"><i data-lucide="message-circle"></i></span>
-                              <span>Chat via WhatsApp</span>
-                            </a>
-                        </div>
+                    <h4 class="text-xl font-bold text-gray-200 mb-4">Kerjasama?</h4>
+                    <div class="space-y-4">
+                        <!-- WhatsApp Button -->
+                        <a href="https://wa.me/62895324959492" 
+                           target="_blank" rel="noopener noreferrer"
+                           class="wa-button" aria-label="Chat via WhatsApp (Raihan)">
+                          <span class="wa-icon"><i data-lucide="message-circle"></i></span>
+                          <span>Chat via WhatsApp</span>
+                        </a>
                     </div>
+                </div>
                 </div>
 
                 <!-- Bottom Copyright -->
@@ -1661,8 +1264,7 @@
 
             // JADWAL NGONTEN SCRIPT
             (function(){
-                const SCHEDULE = [1,4,6]; 
-                const UPLOAD_HOUR = 19;
+                const SCHEDULE = [1,4,6]; const UPLOAD_HOUR = 19;
                 const pad = n => String(n).padStart(2,'0');
                 const elDay = document.getElementById('jn-next-day');
                 const elCount = document.getElementById('jn-countdown');
@@ -1670,8 +1272,7 @@
                 function nextUpload(now = new Date()){
                     for(let i = 0; i < 14; i++){
                         const d = new Date(now);
-                        d.setDate(now.getDate() + i); 
-                        d.setHours(UPLOAD_HOUR, 0, 0, 0);
+                        d.setDate(now.getDate() + i); d.setHours(UPLOAD_HOUR, 0, 0, 0);
                         if(SCHEDULE.includes(d.getDay()) && d > now) return d;
                     }
                     return new Date(now.getTime() + 86400000 * 7);
