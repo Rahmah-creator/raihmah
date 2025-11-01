@@ -411,14 +411,17 @@
             
         <!-- Hero Orbs Background --> 
         <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            <div class="absolute w-[800px] h-[800px] rounded-full blur-[250px] opacity-35"
-                    style="top: -15%; left: -20%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div> 
-            
-            <div class="absolute w-[900px] h-[900px] rounded-full blur-[300px] opacity-25" 
-                    style="top: -10%; right: -25%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
-            
-            <div class="absolute w-[700px] h-[700px] rounded-full blur-[200px] opacity-30" 
-                    style="bottom: -5%; left: 40%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div>
+            !-- Orb 1: Top-left (Orange-Yellow) - Behind glass card -->
+                <div class="absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-40"
+                     style="top: 10%; left: -10%; background: linear-gradient(135deg, #F97316, #FDE047); animation: float-orb-hero 60s ease-in-out infinite;"></div>
+                
+                <!-- Orb 2: Top-right (Purple-Pink) - Behind robot -->
+                <div class="absolute w-[500px] h-[500px] rounded-full blur-[100px] opacity-45"
+                     style="top: 15%; right: -8%; background: linear-gradient(135deg, #8B5CF6, #EC4899); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
+                
+                <!-- Orb 3: Bottom-center (Blue-Cyan) - Subtle depth -->
+                <div class="absolute w-[700px] h-[700px] rounded-full blur-[150px] opacity-30"
+                     style="bottom: -10%; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #3B82F6, #06B6D4); animation: float-orb-hero 66s ease-in-out infinite;"></div>
         </div>
 
             <div class="max-w-7xl mx-auto relative z-10 w-full">
