@@ -38,6 +38,48 @@
         @media(max-width:1024px){
           .wa-button{ max-width:100%; padding:12px 14px; }
         }
+
+        /* --- HERO ORB POSITIONS (DESKTOP & MOBILE) --- */
+        /* 1. Desktop (Default) - Sesuai style lo */
+        #hero-orb-1 { /* Biru */
+            top: 5%;
+            right: -25%;
+        }
+        #hero-orb-2 { /* Ungu */
+            bottom: -60%; 
+            right: -5%;
+        }
+        #hero-orb-3 { /* Oranye */
+            top: 0%;
+            left: -25%;
+        }
+        
+        /* 2. Tablet & Mobile (Breakpoint dari kode lo: max-width: 1024px) */
+        @media (max-width: 1024px) {
+            /* Layout lo ganti jadi: Robot (Top), Text (Bottom) */
+            
+            #hero-orb-1 { /* Biru - Pindahin ke atas, di belakang Robot */
+                top: -15%;  
+                right: -20%; 
+                left: auto;  /* Reset posisi kiri */
+                bottom: auto; /* Reset posisi bawah */
+            }
+            
+            #hero-orb-2 { /* Ungu - Jadi ambient, buang ke kiri atas */
+                top: 5%;
+                left: -30%;
+                right: auto;
+                bottom: auto;
+            }
+        
+            #hero-orb-3 { /* Oranye - Pindahin ke bawah, di belakang Teks */
+                top: auto;  /* Reset posisi atas */
+                bottom: 5%; /* Tarik ke area teks di bawah */
+                left: -20%; 
+                right: auto;
+            }
+        }
+          
         /* Default desktop (biarkan seperti sekarang) */
         .brand-title {
           /* mempertahankan gaya existing, hanya selector tambahan */
@@ -412,14 +454,14 @@
         <!-- Hero Orbs Background --> 
         <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
             <!-- Biru ke Indigo/Ungu --> 
-            <div class="absolute w-[1000px] h-[800px] rounded-full blur-[120px] opacity-35"
-                 style="top: 5%; right: -25%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div>
+            <div id="hero-orb-1" class="absolute w-[1000px] h-[800px] rounded-full blur-[120px] opacity-35"
+                 style="background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div>
             <!-- Ungu ke Fuchsia/Pink-Ungu --> 
-            <div class="absolute w-[100px] h-[900px] rounded-full blur-[130px] opacity-25"
-                 style="bottom: -60%; right: -5%; background: linear-gradient(to bottom right, #A855F7, #D946EF); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
+            <div id="hero-orb-2" class="absolute w-[100px] h-[900px] rounded-full blur-[130px] opacity-25"
+                 style="background: linear-gradient(to bottom right, #A855F7, #D946EF); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
             <!-- Oranye ke Pink --> 
-            <div class="absolute w-[1000px] h-[700px] rounded-full blur-[200px] opacity-30"
-                 style="top: 0%; left: -25%; background: linear-gradient(to bottom right, #F97316, #EC4899); animation: float-orb-hero 66s ease-in-out infinite;"></div>
+            <div id="hero-orb-3" class="absolute w-[1000px] h-[700px] rounded-full blur-[200px] opacity-30"
+                 style="background: linear-gradient(to bottom right, #F97316, #EC4899); animation: float-orb-hero 66s ease-in-out infinite;"></div>
         </div>
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
