@@ -409,12 +409,25 @@
         <!-- 1. HERO SECTION -->
         <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
             <div class="max-w-7xl mx-auto relative z-10 w-full">
+                <div class="hidden lg:block absolute top-20 right-1/4 w-24 h-24 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full z-0 opacity-80" 
+                     style="filter: blur(8px);">
+                </div>
+                
+                <div class="hidden lg:block absolute top-1/3 left-0 -translate-x-1/3 w-16 h-16 bg-orange-400 rounded-full z-0">
+                </div>
+            
+                <div class="hidden lg:block absolute top-3/4 right-1/4 z-0">
+                    <i data-lucide="plus" class="w-10 h-10 text-indigo-400 opacity-70 rotate-12"></i>
+                </div>
+                
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
+                    </div>
+            
+            </div>
                     
                     <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-                            <div class="absolute inset-0 bg-indigo-500 opacity-20 blur-[90px] rounded-full z-0"></div>
 
                             <!-- Teks "Halo!" yang mengikuti robot -->
                             <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
@@ -514,7 +527,7 @@
                     </div>
                     
                     <!-- Left Content (Glass Card) -->
-                    <div class="p-6 md:p-16 rounded-[32px] shadow-xl transition-all duration-500 glass-effect hero-content-card animate-fadeInUp lg:order-first">
+                    <div class="p-6 md:p-16 rounded-[32px] shadow-2xl transition-all duration-500 bg-white border border-gray-100 hero-content-card animate-fadeInUp lg:order-first">
                         <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 4rem);">
                         <span class="text-indigo-600">  Belajar AI Bareng Raihan
                         </span>
