@@ -407,104 +407,101 @@
 
     <main>
         <!-- 1. HERO SECTION -->
-        <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
-    
-        <div class="max-w-7xl mx-auto relative z-10 w-full">
-            
-            <div class="hidden lg:block absolute top-0 left-0 w-80 h-80 rounded-full z-0" 
-                 style="background: linear-gradient(to bottom right, #60A5FA, #4F46E5);
-                        transform: translate(-50%, -50%);">
-            </div>
-            <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid relative z-10"> 
-                
-                <div class="p-6 md:p-16 rounded-[32px] shadow-2xl transition-all duration-500 bg-white border border-gray-100 hero-content-card animate-fadeInUp lg:order-first">
-                    <h1 class="font-black mb-6 leading-tight hero-title" style="font-size: clamp(3rem, 8vw, 4rem);">
-                    <span class="text-indigo-600">  Belajar AI Bareng Raihan
-                    </span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
-                        Belajar AI itu gampang kok! Yuk, mulai dari dasar bareng aku.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
-                        <a href="#mission" class="px-8 py-3 rounded-full text-lg font-bold transition-all duration-300 ease-in-out text-white flex items-center justify-center whitespace-nowrap scroll-link"
-                           style="background: linear-gradient(90deg, #F97316, #FB923C); 
-                                  border: 2px solid #FFFFFF; 
-                                  box-shadow: 0 10px 30px rgba(249, 115, 22, 0.4);"
-                           onmouseover="this.style.background='linear-gradient(90deg, #EA580C, #F97316)'; this.style.boxShadow='0 15px 40px rgba(249, 115, 22, 0.6)'; this.style.transform='translateY(-3px) scale(1.03)';"
-                           onmouseout="this.style.background='linear-gradient(90deg, #F97316, #FB923C)'; this.style.boxShadow='0 10px 30px rgba(249, 115, 22, 0.4)'; this.style.transform='translateY(0) scale(1)';">
-                            Kenalan Dulu Yuk
-                        </a>
-                        <a href="#support"
-                           class="font-bold py-3 px-8 rounded-full border-2 backdrop-blur-sm transition-all duration-300 flex items-center justify-center whitespace-nowrap scroll-link"
-                           style="background: rgba(255, 255, 255, 0.9); 
-                                  color: #F97316; 
-                                  border-color: #F97316;
-                                  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.2);"
-                           onmouseover="this.style.background='#F97316'; this.style.color='#FFFFFF'; this.style.borderColor='#FFFFFF'; this.style.boxShadow='0 8px 25px rgba(249, 115, 22, 0.4)';"
-                           onmouseout="this.style.background='rgba(255, 255, 255, 0.9)'; this.style.color='#F97316'; this.style.borderColor='#F97316'; this.style.boxShadow='0 4px 15px rgba(249, 115, 22, 0.2)';">
-                              Support Konten <i data-lucide="heart" class="w-5 h-5 ml-2"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
-                    <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
-    
-                        <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
-                            <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
-                                <div class="px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-xl bg-white border border-gray-100">
-                                    <p class="text-xl md:text-3xl lg:text-4xl font-black text-indigo-600">Halo!</p>
+        <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white"> 
+            <div class="max-w-7xl mx-auto relative z-10 w-full">
+                <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
+                    
+                    <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
+                    <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
+                        <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
+                            <!-- Teks "Halo!" yang mengikuti robot -->
+                            <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
+                                <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
+                                    <!-- Speech Bubble Background dengan Glass Effect -->
+                                    <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
+                                        <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
+                                    </div>
+                                    <!-- Speech Bubble Tail dengan gradient -->
+                                    <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
+                                    <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
-                                <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-gray-100"></div>
-                                <div class="absolute -bottom-[7px] left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white"></div>
                             </div>
-                        </div>
-                        
-                        <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-                                    <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
-                                    <stop offset="100%" stop-color="transparent" stop-opacity="0" />
-                                </radialGradient>
-                                <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
-                                    <stop offset="0%" stop-color="#6366F1" />
-                                    <stop offset="100%" stop-color="#8B5CF6" />
-                                </linearGradient>
-                                <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
-                                    <stop offset="0%" stop-color="#3B82F6" />
-                                    <stop offset="100%" stop-color="#0EA5E9" />
-                                </linearGradient>
-                                <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
-                                    <stop offset="0%" stop-color="#E0F2FE" />
-                                    <stop offset="100%" stop-color="#BFDBFE" />
-                                </linearGradient>
-                                <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
-                                    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
-                                    <stop offset="100%" stop-color="transparent" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
-                            <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                            <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
-                            <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
-                            <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
-                            <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
-                            <g class="animate-wave-arm-left">
-                                <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
-                            </g>
-                            <g class="animate-wave-arm-right">
-                                <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
-                            </g>
-                            <g class="animate-wiggle-head">
-                                <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
-                                <g class="animate-blink-eyes">
-                                    <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
-                                    <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
-                                    <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
-                                    <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
+                            <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
+                            <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
+                                <defs>
+                                    <!-- Cahaya pulsasi di belakang robot -->
+                                    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                        <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
+                                        <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+                                    </radialGradient>
+                                
+                                    <!-- Kepala: gradasi ungu lembut -->
+                                    <linearGradient id="robotHeadGradient" x1="30" y1="15" x2="70" y2="40">
+                                        <stop offset="0%" stop-color="#6366F1" />
+                                        <stop offset="100%" stop-color="#8B5CF6" />
+                                    </linearGradient>
+                                
+                                    <!-- Badan: biru cerah harmonis -->
+                                    <linearGradient id="robotBodyGradient" x1="25" y1="35" x2="75" y2="90">
+                                        <stop offset="0%" stop-color="#3B82F6" />
+                                        <stop offset="100%" stop-color="#0EA5E9" />
+                                    </linearGradient>
+                                
+                                    <!-- Tangan & kaki: putih kebiruan lembut -->
+                                    <linearGradient id="armLegGradient" x1="0" y1="0" x2="100" y2="100">
+                                        <stop offset="0%" stop-color="#E0F2FE" />
+                                        <stop offset="100%" stop-color="#BFDBFE" />
+                                    </linearGradient>
+                                
+                                    <!-- Highlight lembut di sisi kiri badan -->
+                                    <linearGradient id="bodyHighlight" x1="0%" y1="0%" x2="30%" y2="0%">
+                                        <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.15" />
+                                        <stop offset="100%" stop-color="transparent" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Glowing Pulse Ring Ring Behind (Layer 1) -->
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#pulseGradient)" stroke-width="3" class="animate-pulse-glow" />
+
+                                <!-- Legs -->
+                                <rect x="30" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                <rect x="60" y="90" width="10" height="5" rx="2.5" fill="url(#armLegGradient)" />
+                                
+                                <!-- Body -->
+                                <rect x="25" y="35" width="50" height="55" rx="10" fill="url(#robotBodyGradient)" />
+                                <!-- Highlight minimal di sisi kiri -->
+                                <rect x="25" y="35" width="8" height="55" rx="10" fill="url(#bodyHighlight)" />
+                                
+                                <!-- Chest Light (Pulse) -->
+                                <circle cx="50" cy="65" r="5" fill="#F59E0B" class="animate-pulse-antenna" />
+                                
+                                <!-- Arms Waving Animation (Lebih Ekspresif) -->
+                                <g class="animate-wave-arm-left">
+                                    <rect x="18" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
                                 </g>
-                                <g class="animate-pulse-antenna">
-                                    <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
-                                    <circle cx="50" cy="5" r="3" fill="#F97316" />
+                                <g class="animate-wave-arm-right">
+                                    <rect x="72" y="45" width="10" height="30" rx="5" fill="url(#armLegGradient)" class="shadow-lg" />
+                                </g>
+
+                                <!-- Head Wiggle Animation (Lebih Sering) -->
+                                <g class="animate-wiggle-head">
+                                    <!-- Head -->
+                                    <rect x="30" y="15" width="40" height="25" rx="5" fill="url(#robotHeadGradient)" class="shadow-xl" />
+                                    
+                                    <!-- Eyes Blinking Animation (Lebih Cepat) -->
+                                    <g class="animate-blink-eyes">
+                                        <!-- Eye 1 -->
+                                        <rect x="38" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
+                                        <circle cx="41" cy="27" r="1.5" fill="#1F2937" />
+                                        <!-- Eye 2 -->
+                                        <rect x="56" y="22" width="6" height="10" rx="1" fill="#FFFFFF" />
+                                        <circle cx="59" cy="27" r="1.5" fill="#1F2937" />
+                                    </g>
+
+                                    <!-- Antenna Pulse Animation -->
+                                    <g class="animate-pulse-antenna">
+                                        <rect x="48.5" y="5" width="3" height="10" rx="1.5" fill="#FDE047" />
+                                        <circle cx="50" cy="5" r="3" fill="#F97316" />
                                     </g>
                                 </g>
                             </svg>
@@ -517,7 +514,7 @@
                         <span class="text-indigo-600">  Belajar AI Bareng Raihan
                         </span>
                         </h1>
-                        <p class="text-lg md:text-xl text-gray-700 font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
+                        <p class="text-lg md:text-xl text-white font-medium mb-10 max-w-lg hero-subtitle" style="font-size: clamp(1rem, 2.5vw, 1.5rem);">
                             Belajar AI itu gampang kok! Yuk, mulai dari dasar bareng aku.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
@@ -540,65 +537,6 @@
                                   Support Konten <i data-lucide="heart" class="w-5 h-5 ml-2"></i>
                             </a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. MISSION/TUJUAN SECTION -->
-        <section id="mission" class="py-24 md:py-32 section-padding bg-gradient-to-br from-[#FFFFFF] to-[#F8FAFC] px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-2xl mx-auto mb-16">
-                    <i data-lucide="target" class="w-8 h-8 text-[#3B82F6] mx-auto mb-4"></i>
-                    <h2 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
-                        Apa Tujuan Akun Ini?
-                    </h2>
-                    <div class="w-24 h-1 mx-auto mb-16 rounded-full bg-gradient-to-r from-orange-400 to-red-500"></div>
-                </div>
-
-                <!-- Mission Cards Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 max-w-6xl mx-auto mission-cards-grid">
-                    <!-- CARD 1 - BLUE -->
-                    <div class="mission-card card-blue w-[85%] mx-auto md:w-auto" tabindex="0">
-                        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#0EA5E9]/10 to-[#3B82F6]/10 mission-card-icon">
-                            <i data-lucide="zap" class="w-10 h-10 text-[#0EA5E9]"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">AI Itu Wajib</h3>
-                        <p class="text-gray-600 text-center">Membantu mempercepat dan mempermudah kehidupanmu.</p>
-                    </div>
-
-                    <!-- CARD 2 - ORANGE -->
-                    <div class="mission-card card-orange w-[85%] mx-auto md:w-auto" tabindex="0">
-                        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#F59E0B]/10 to-[#F97316]/10 mission-card-icon">
-                            <i data-lucide="book-open" class="w-10 h-10 text-[#F59E0B]"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">Materi Santai</h3>
-                        <p class="text-gray-600 text-center">Berbagi materi yang rumit jadi gampang dan asik.</p>
-                    </div>
-
-                    <!-- CARD 3 - RED -->
-                    <div class="mission-card card-red w-[85%] mx-auto md:w-auto" tabindex="0">
-                        <div class="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-2xl bg-gradient-to-br from-[#EF4444]/10 to-[#DC2626]/10 mission-card-icon">
-                            <i data-lucide="trending-up" class="w-10 h-10 text-[#EF4444]"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3 text-center">100% Gratis</h3>
-                        <p class="text-gray-600 text-center">Bantu belajar AI tanpa hambatan biaya.</p>
-                    </div>
-                </div>
-
-                <!-- Andrew Ng Quote Box -->
-                <div class="relative p-6 md:p-10 lg:p-12 rounded-3xl overflow-hidden shadow-2xl max-w-4xl mx-auto
-                    bg-gradient-to-br from-[#0EA5E9]/90 to-[#3B82F6]/90">
-                    
-                    <!-- Floating Orb -->
-                    <div class="absolute w-40 h-40 bg-white/20 rounded-full blur-2xl animate-float-orb-1" style="top: -10%; right: -10%; animation-duration: 6s;"></div>
-                    
-                    <div class="relative z-10 text-white text-center">
-                        <i data-lucide="sparkles" class="w-6 h-6 md:w-8 md:h-8 text-white mb-4 block mx-auto"></i>
-                        <blockquote class="italic text-lg md:text-2xl lg:text-3xl font-light leading-snug mb-4">
-                            "AI nggak sepenuhnya gantiin kerjaan manusia. Tapi, manusia yang punya skill AI akan gantiin yang nggak punya skilnya"
-                        </blockquote>
-                        <footer class="text-right text-sm md:text-base text-[#BFDBFE] font-medium">— Andrew Ng </footer>
                     </div>
                 </div>
             </div>
