@@ -8,26 +8,6 @@
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- ORB GLOBAL STYLE START -->
-    <style>
-      .orb-global > div {
-        position: absolute;
-        inset: 0;
-        mix-blend-mode: screen;
-        transition: opacity 0.8s ease;
-      }
-
-      .orb-global > div {
-        opacity: 0;
-      }
-
-      body[data-page="hero"] #orb-hero,
-      body[data-page="mission"] #orb-mission {
-        opacity: 1;
-      }
-    </style>
-    <!-- ORB GLOBAL STYLE END -->
-
       <!-- Style kustom khusus tombol WhatsApp -->
       <style>
         /* Accessibility: respect reduced motion */
@@ -648,38 +628,6 @@
 </head>
 
 <body>
-    <!-- ORB GLOBAL START -->
-    <div class="orb-global fixed inset-0 z-0 pointer-events-none overflow-visible">
-      <!-- Hero Orb -->
-      <div id="orb-hero" class="absolute inset-0 mix-blend-screen">
-        <!-- Orb 1: Top Left - Biru/Indigo -->
-        <div class="absolute w-[700px] h-[700px] rounded-full blur-[220px] opacity-30" 
-                style="top: -20%; left: -15%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div>
-        <!-- Orb 2: Top Right - Ungu -->
-        <div class="absolute w-[800px] h-[800px] rounded-full blur-[220px] opacity-25" 
-                style="top: -15%; right: -20%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div> 
-        <!-- Orb 3: Bottom Center - Indigo/Ungu -->
-        <div class="absolute w-[900px] h-[900px] rounded-full blur-[240px] opacity-35" 
-                style="bottom: -20%; left: 50%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div>
-      </div>
-    
-      <!-- Mission Orb -->
-      <div id="orb-mission" class="absolute inset-0 mix-blend-screen">
-        <!-- Triangle Blue -->
-        <div class="absolute w-32 h-32 border-4 border-blue-400" 
-                style="top: 10%; left: 5%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: float-shape 15s ease-in-out infinite;"></div>  
-        <!-- Circle Orange -->
-        <div class="absolute w-40 h-40 rounded-full border-4 border-orange-400" 
-                style="top: 20%; right: 8%; animation: rotate-shape 20s linear infinite;"></div>
-        <!-- Square Red -->
-        <div class="absolute w-28 h-28 border-4 border-red-400" 
-                style="bottom: 15%; left: 10%; animation: float-shape 18s ease-in-out infinite reverse;"></div>
-        <!-- Small Triangle Purple -->
-        <div class="absolute w-20 h-20 border-3 border-purple-400" 
-                style="bottom: 25%; right: 15%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: rotate-shape 12s linear infinite;"></div>
-      </div>
-    <!-- ORB GLOBAL END -->
-
     <!-- Toast Notification Container -->
     <div id="toast-container" class="fixed top-6 right-6 z-[100]"></div>
 
@@ -723,7 +671,20 @@
              1. HERO SECTION - FLOATING ORBS
         ============================================ -->
         <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-transparent">
-            <!-- REVISED: orb layer moved to global -->
+            <!-- Hero Orbs Background (TAMBAHKAN INI TEPAT SETELAH <section> DIBUKA) -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <!-- Orb 1: Top Left - Biru/Indigo -->
+                <div class="absolute w-[700px] h-[700px] rounded-full blur-[220px] opacity-30" 
+                     style="top: -20%; left: -15%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div>
+                
+                <!-- Orb 2: Top Right - Ungu -->
+                <div class="absolute w-[800px] h-[800px] rounded-full blur-[220px] opacity-25" 
+                     style="top: -15%; right: -20%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
+                
+                <!-- Orb 3: Bottom Center - Indigo/Ungu -->
+                <div class="absolute w-[900px] h-[900px] rounded-full blur-[240px] opacity-35" 
+                     style="bottom: -20%; left: 50%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div>
+            </div>
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
@@ -831,7 +792,25 @@
              2. MISSION SECTION - GEOMETRIC SHAPES
         ============================================ -->
         <section id="mission" class="relative z-10 -mt-20 pt-12 pb-24 md:pb-32 section-padding px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-transparent to-blue-50/30">
-            <!-- REVISED: orb layer moved to global -->
+            <!-- Geometric Shapes Background -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+                <!-- Triangle Blue -->
+                <div class="absolute w-32 h-32 border-4 border-blue-400" 
+                     style="top: 10%; left: 5%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: float-shape 15s ease-in-out infinite;"></div>
+                
+                <!-- Circle Orange -->
+                <div class="absolute w-40 h-40 rounded-full border-4 border-orange-400" 
+                     style="top: 20%; right: 8%; animation: rotate-shape 20s linear infinite;"></div>
+                
+                <!-- Square Red -->
+                <div class="absolute w-28 h-28 border-4 border-red-400" 
+                     style="bottom: 15%; left: 10%; animation: float-shape 18s ease-in-out infinite reverse;"></div>
+                
+                <!-- Small Triangle Purple -->
+                <div class="absolute w-20 h-20 border-3 border-purple-400" 
+                     style="bottom: 25%; right: 15%; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); animation: rotate-shape 12s linear infinite;"></div>
+            </div>
+
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="text-center max-w-2xl mx-auto mb-16">
                     <i data-lucide="target" class="w-8 h-8 text-[#3B82F6] mx-auto mb-4"></i>
