@@ -161,7 +161,7 @@
         .animate-blink-eyes { animation: blink-eyes 1.8s step-end infinite; transform-origin: center; } 
         .animate-breathe-body { animation: breathe-body 3s ease-in-out infinite; transform-origin: bottom; }
         .animate-wave-arm-left { animation: wave-arm-left 1.2s ease-in-out infinite; transform-origin: 28px 50px; }
-        .animate-wave-arm-right { animation: wave-arm-right 3s ease-in-out infinite; transform-origin: 72px 50px; }
+        .animate-wave-arm-right { animation: wave-arm-right 2.5s ease-in-out infinite; transform-origin: 72px 50px; }
         .animate-pulse-glow { animation: pulse-glow 5s ease-in-out infinite; }
         .animate-float-orb-1 { animation: float-orb 15s ease-in-out infinite; }
         .animate-float-orb-2 { animation: float-orb 17s reverse ease-in-out infinite; }
@@ -407,16 +407,19 @@
 
     <main>
         <!-- 1. HERO SECTION -->
-        <section id="hero" class="relative pt-24 pb-16 min-h-screen flex items-center overflow-hidden 
-            bg-gradient-to-br from-[#0EA5E9] via-[#3B82F6] to-[#6366F1] md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8">
+        <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
+        
+        <!-- Hero Orbs Background (TAMBAHKAN INI TEPAT SETELAH <section> DIBUKA) -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0"> 
+            <div class="absolute w-[800px] h-[800px] rounded-full blur-[250px] opacity-35"
+                    style="top: -15%; left: -20%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div> 
             
-            <!-- Background Orbs -->
-            <div class="absolute top-0 left-0 w-full h-full">
-                <div class="absolute w-64 h-64 bg-gradient-to-br from-[#EC4899]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-1" style="top: 10%; left: 5%;"></div>
-                <div class="absolute w-96 h-96 bg-gradient-to-br from-[#EC4899]/70 to-[#FCD34D]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-2" style="bottom: -10%; right: 15%;"></div>
-                <div class="absolute w-56 h-56 bg-gradient-to-br from-[#F59E0B]/70 to-[#F97316]/70 rounded-full blur-[80px] opacity-40 animate-float-orb-3" style="top: 40%; right: 5%;"></div>
-            </div>
-
+            <div class="absolute w-[900px] h-[900px] rounded-full blur-[300px] opacity-25" 
+                    style="top: -10%; right: -25%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
+            
+            <div class="absolute w-[700px] h-[700px] rounded-full blur-[200px] opacity-30" 
+                    style="bottom: -5%; left: 40%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div> {/* Bottom jadi -15% */}
+        </div>
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
