@@ -408,24 +408,14 @@
     <main>
         <!-- 1. HERO SECTION -->
         <section id="hero" class="relative z-10 pt-24 pb-16 min-h-screen flex items-center overflow-hidden md:pt-40 md:pb-24 px-4 sm:px-6 lg:px-8 bg-white">
-        
-        <!-- Hero Orbs Background (TAMBAHKAN INI TEPAT SETELAH <section> DIBUKA) -->
-        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0"> 
-            <div class="absolute w-[800px] h-[800px] rounded-full blur-[250px] opacity-35"
-                    style="top: -15%; left: -20%; background: linear-gradient(to bottom right, #3B82F6, #6366F1); animation: float-orb-hero 60s ease-in-out infinite;"></div> 
-            
-            <div class="absolute w-[900px] h-[900px] rounded-full blur-[300px] opacity-25" 
-                    style="top: -10%; right: -25%; background: linear-gradient(to bottom right, #A855F7, #8B5CF6); animation: float-orb-hero 75s ease-in-out infinite reverse;"></div>
-            
-            <div class="absolute w-[700px] h-[700px] rounded-full blur-[200px] opacity-30" 
-                    style="bottom: -15%; left: 40%; transform: translateX(-50%); background: linear-gradient(to bottom right, #4F46E5, #6366F1); animation: float-orb-hero 66s ease-in-out infinite;"></div> {/* Bottom jadi -15% */}
-        </div>
             <div class="max-w-7xl mx-auto relative z-10 w-full">
                 <div class="lg:grid lg:grid-cols-2 gap-12 items-center hero-grid"> 
                     
                     <!-- Right Visual (Robot SVG) - Wrapper dengan kelas untuk scaling -->
                     <div class="hero-robot-container w-full flex justify-center items-center relative lg:order-last py-8 md:py-12">
                         <div class="w-72 h-80 sm:w-80 sm:h-96 md:w-96 md:h-[26rem] lg:w-[28rem] lg:h-[30rem] relative mx-auto">
+                            <div class="absolute inset-0 bg-indigo-500 opacity-20 blur-[90px] rounded-full z-0"></div>
+
                             <!-- Teks "Halo!" yang mengikuti robot -->
                             <div class="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 md:-top-6 md:-right-8 lg:-top-8 lg:-right-12 animate-wave-text z-20">
                                 <div class="relative transition-all duration-500 hover:scale-110 cursor-pointer">
@@ -433,15 +423,18 @@
                                     <div class="glass-effect px-4 py-2 md:px-6 md:py-3 rounded-2xl shadow-2xl border-2 border-white/40 backdrop-blur-xl hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] transition-all duration-500">
                                         <p class="text-xl md:text-3xl lg:text-4xl font-black text-white font-handwritten" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.3), 0 0 20px rgba(255,255,255,0.5);">Halo!</p>
                                     </div>
+                                    
                                     <!-- Speech Bubble Tail dengan gradient -->
                                     <div class="absolute -bottom-2 left-3 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-white/40 drop-shadow-lg"></div>
                                     <div class="absolute -bottom-3 left-[14px] w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-white/20"></div>
                                 </div>
                             </div>
+                            
                             <!-- Robot SVG component - FULL dan dengan kelas robot-svg -->
                             <svg class="robot-svg w-full h-full" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <!-- REVISED COLOR DEFINITIONS FOR ROBOT -->
                                 <defs>
+                                    
                                     <!-- Cahaya pulsasi di belakang robot -->
                                     <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
                                         <stop offset="0%" stop-color="#F97316" stop-opacity="0.8" />
